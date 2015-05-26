@@ -14,6 +14,8 @@ import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 public class actDebugCaidas extends Activity {
 
+
+
     private Intent intent;
     private TextView texto;
 
