@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.local.android.teleasistenciaticplus.act.debug.actDebugUserConfig">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borrado de SharedPreferences" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <Button
+        android:id="@+id/debug_screen_user_config_borrar_nombre_apellidos_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="user_config_borrar_nombre_apellidos_button"
+        android:text="Borrar nombre y apellidos" />
+
+    <Button
+        android:id="@+id/debug_screen_user_config_borrar_personas_contacto_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="user_config_borrar_personas_contacto_button"
+        android:text="Borrar personas de contacto" />
+
+    <Button
+        android:id="@+id/debug_screen_user_config_borrar_aviso_tarificacion_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="user_config_borrar_appshared_aviso_tarificacion"
+        android:text="Borrar valor de aviso tarificacion" />
+
+    <Button
+        android:id="@+id/debug_screen_user_config_borrar_ultimo_mensaje_enviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="user_config_borrar_appshared_ultimo_aviso_enviado"
+        android:text="Borrar valor de ultimo SMS enviado" />
+
+    <Button
+        android:id="@+id/debug_screen_button_exit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="exit_button"
+        android:text="Salida" />
+
+</LinearLayout>

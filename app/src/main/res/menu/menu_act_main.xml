@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.local.android.teleasistenciaticplus.act.main.actMain">
+
+    <item
+        android:id="@+id/menu_act_user_options"
+        android:orderInCategory="100"
+        android:title="@string/menu_act_user_options"
+        />
+
+    <item
+        android:id="@+id/menu_act_main_debug_screen"
+        android:orderInCategory="100"
+        android:title="@string/menu_actmain_debug_screen"
+         />
+
+    <item
+        android:id="@+id/menu_act_main_exit_app"
+        android:orderInCategory="100"
+        android:title="@string/menu_actmain_exit_app"
+         />
+</menu>

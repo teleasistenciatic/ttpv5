@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:id="@+id/btnCancelCountDown"
+        android:onClick="cancelCountDown"
+        android:layout_below="@+id/mTextField"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="87dp"
+        android:layout_marginEnd="87dp" />
+
+    <Button
+        android:id="@+id/debug_screen_button_exit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:text="Exit"
+        android:onClick="exit_button"
+        android:layout_below="@+id/btnCancelCountDown"
+        android:layout_alignLeft="@+id/tvMinutos"
+        android:layout_alignStart="@+id/tvMinutos"
+        android:layout_alignRight="@+id/etMinutos"
+        android:layout_alignEnd="@+id/etMinutos" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mTextField"
+        android:textSize="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/black"
+        android:text="00:00"
+        android:gravity="center_horizontal"
+        android:layout_alignLeft="@+id/btnStartCountDown"
+        android:layout_alignStart="@+id/btnStartCountDown"
+        android:layout_alignRight="@+id/btnCancelCountDown"
+        android:layout_alignEnd="@+id/btnCancelCountDown" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/btnStartCountDown"
+        android:onClick="startCountDown"
+        android:layout_marginRight="59dp"
+        android:layout_marginEnd="59dp"
+        android:layout_below="@+id/mTextField"
+        android:layout_toLeftOf="@+id/btnCancelCountDown"
+        android:layout_toStartOf="@+id/btnCancelCountDown" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time (minutes): "
+        android:id="@+id/tvMinutos"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/btnStartCountDown"
+        android:layout_alignLeft="@+id/btnStartCountDown"
+        android:layout_alignStart="@+id/btnStartCountDown" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etMinutos"
+        android:text="5"
+        android:layout_alignBottom="@+id/tvMinutos"
+        android:layout_alignRight="@+id/btnCancelCountDown"
+        android:layout_alignEnd="@+id/btnCancelCountDown"
+        android:layout_alignLeft="@+id/btnCancelCountDown"
+        android:layout_alignStart="@+id/btnCancelCountDown" />
+
+</RelativeLayout>

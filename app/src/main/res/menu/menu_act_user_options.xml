@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptions">
+
+    <item
+        android:id="@+id/menu_user_options_exit_app"
+        android:orderInCategory="100"
+        android:title="@string/menu_user_options_exit"
+        />
+
+</menu>

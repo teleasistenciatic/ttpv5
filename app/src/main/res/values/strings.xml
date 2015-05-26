@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Nombre de la aplicación -->
+    <string name="app_name">Teleasistenci@Tic+</string>
+
+    <!-- Versión de la aplicación -->
+    <string name="version_code">4</string>
+    <string name="version_name">Ver. 0.7 Alpha (7) build</string>
+
+    <!-- LAYOUT: init_splash_screen_logo_teleasistencia -->
+    <string name="init_splash_screen_iniciando_aplicacion">Iniciando aplicación</string>
+
+    <!-- Información de tarificación adicional SMS -->
+    <string name="tarificacion_adicional_sms_linea_1">El uso de esta aplicación implica el envío de mensajes de texto (SMS) que
+            pueden conllevar un coste adicional en su tarifa en caso de no estar incluidos en la misma.
+    </string>
+
+    <string name="tarificacion_adicional_sms_linea_2">Consulte a su operadora de telecomunicaciones para conocer detalles
+        sobre la tarificación de los mensajes de texto (SMS).
+    </string>
+
+    <string name="politica_de_uso_linea_1">La presente aplicación es el fruto de un proyecto de investigación y
+        aún se encuentra en fase de pruebas. Toda la responsabilidad de uso recae en el usuario/a de la misma. La aplicación y todos los derechos están
+        reservados y son propiedad de Fundación MAGTEL.
+    </string>
+
+    <string name="politica_de_uso_linea_2">
+    </string>
+
+    <!-- Cadenas por defecto -->
+
+
+    <!-- Inicio Cademas Opciones de usuario -->
+
+        <string name="user_options_nombre">Nombre*</string>
+        <string name="user_options_apellidos">Apellidos*</string>
+        <string name="user_options_nombre_apellidos_no_vacios">*Nombre y apellidos no pueden estar vacíos</string>
+        <string name="user_options_contacto_no_vacio">*Al menos es necesario un contacto</string>
+
+    <!-- Fin cadenas opciones de usuario -->
+
+    <!-- Mensajes de error -->
+        <string name="ERROR">ERROR</string>
+        <string name="CORRECTO">CORRECTO</string>
+        <string name="error_empty_string">Error: cadena vacía</string>
+
+    <!-- Mensajes de alerta -->
+        <!-- Genéricos -->
+        <string name="close_window">Cerrar</string>
+        <string name="cancel">Cancelar</string>
+
+    <!-- Actividad main -->
+        <string name="title_activity_act_main">Pantalla principal</string>
+
+        <string name="menu_user_options_exit">Salida</string>
+        <string name="menu_actmain_debug_screen">Pantalla de depuración</string>
+        <string name="menu_actmain_exit_app">Salida</string>
+    <!-- Fin cadenas actMain -->
+
+    <!-- Opciones de usuario -->
+        <string name="menu_act_user_options">Configuración</string>
+
+        <string name="user_options_datos_personales_edit">Datos Personales</string>
+        <string name="user_options_datos_personales_correct_edit">Modificación correcta</string>
+        <string name="user_options_datos_personales_empty_name_surname_edit">El nombre y apellidos no pueden estar vacíos</string>
+
+        <string name="user_options_contactos_edit">Personas de contacto</string>
+        <string name="user_options_contactos_empty_edit">Introduzca al menos un contacto</string>
+
+
+    <string name="user_options_persona_contacto_label">Persona de contacto (pulse para cambiar)</string>
+
+    <!-- Actividad main debug -->
+
+        <string name="title_activity_act_main_debug">Pantalla de depuracion</string>
+        <string name="sms_button_text">Aviso a familiar</string>
+
+        <string name="title_activity_act_debug_memory">Debug > Memoria</string>
+        <string name="title_activity_act_debug_data_connection">Debug > DataConnection</string>
+        <string name="title_activity_act_debug_check_server">Debug > CheckServer</string>
+        <string name="title_activity_act_debug_cifrado">Debug > Cifrado/Descifrado</string>
+
+        <string name="title_activity_act_debug_show_log">Debug > ShowLog</string>
+        <string name="title_activity_act_debug_sms">Debug > SMS</string>
+        <string name="title_activity_act_debug_ducha">Debug > Modo Ducha</string>
+        <string name="title_activity_act_debug_google_services">Debug > GoogleServices</string>
+
+        <string name="label_google_services">Debug > Google Services activados</string>
+        <string name="title_activity_act_debug_google_maps">Debug > Google Maps </string>
+        <string name="title_activity_act_debug_monitor_bateria">Debug > Monitor Bateria</string>
+
+    <!-- Fin cadenas actMain Debug -->
+
+    <!-- Cadenas de configuración de usuario -->
+    <string name="title_activity_act_user_options_datos_personales">Configuración > Datos personales</string>
+    <string name="title_activity_act_user_options_persona_contacto">Configuración > Persona/s de Contacto</string>
+    <string name="title_activity_act_debug_user_config">Configuración > sharedPreferences</string>
+    <string name="title_activity_act_user_options">Configuración usuario/a</string>
+    <string name="title_activity_act_user_options_monitor_bateria">Configuración > Monitor de Batería</string>
+    <!-- Fin cadenas de configuración de usuario -->
+
+    <!--Comprobación de registro de usuario -->
+        <string name="user_register_porfavor_label">Por favor, introduzca sus datos personales</string>
+    <!-- Fin cadenas registro de usuario -->
+
+    <!-- Relacionados con personas de contacto -->
+        <string name="user_register_no_phone_contacs">Se necesitan personas de contacto para poder envíar el aviso.</string>
+        <string name="user_register_no_phone_contacs_title">No hay personas de contacto</string>
+    <!-- Fin cadenas personas de contacto -->
+
+    <!-- Relacionados con detección de caidas -->
+        <string name="caidas_activar">Activar el modo de detección de caidas</string>
+        <string name="caidas_boton_arrancar">Iniciar</string>
+        <string name="caidas_boton_parar">Detener</string>
+        <string name="caidas_texto">Configuración de la detección de caidas</string>
+        <string name="caidas_texto_estado_activo">Servicio iniciado</string>
+        <string name="caidas_texto_estado_inactivo">Servicio detenido</string>
+        <string name="caidas_texto_estado_del_servicio">Estado del servicio</string>
+
+        <string name="title_activity_act_debug_caidas">actDebugCaidas</string>
+        <string name="title_activity_act_user_options_caidas">Detección de caidas</string>
+    <!-- Fin cadenas detección de caidas -->
+
+    <!-- Relacionados con Zona Segura -->
+    <string name="zona_segura_label">Activar o desactivar la función</string>
+    <string name="title_activity_act_user_options_zona_segura">Zona Segura</string>
+    <string name="title_activity_act_zona_segura_set_home">Zona Segura, establecer hogar</string>
+    <string name="zona_segura_activar">Activar la función zona segura al inicio</string>
+    <string name="zona_segura_texto_estado_activo">Servicio iniciado</string>
+    <string name="zona_segura_texto_estado_inactivo">Servicio detenido</string>
+    <string name="zona_segura_establecer_home">Pulse para establecer el hogar</string>
+    <string name="zona_segura_label_inicial">Zona Segura</string>
+    <string name="error_google_play_no_zona_segura">Servicio GooglePlayServices no disponible, se suspende el servicio zona segura</string>
+    <string name="error_zona_segura_no_home_set">la función de zona segura requiere establecer el hogar en la configuración</string>
+
+    <!-- Fin cadenas Zona Segura -->
+
+    <!-- Relacionadas SMS -->
+        <string name="user_sms_sent">Enviado</string>
+    <!-- fin Relacionadas SMS -->
+
+    <!-- Modo ducha -->
+        <string name="title_activity_act_modo_ducha">Modo Ducha</string>
+        <string name="modo_ducha_title">Elija el tiempo de la Ducha</string>
+        <string name="modo_ducha_boton_15_minutos">15 minutos</string>
+        <string name="modo_ducha_boton_30_minutos">30 minutos</string>
+        <string name="modo_ducha_boton_45_minutos">45 minutos</string>
+        <string name="modo_ducha_boton_detener">DETENER</string>
+        <string name="action_settings">Settings</string>
+        <string name="title_activity_act_ducha_cuenta_atras">Modo ducha: cuenta atrás</string>
+    <!-- Fin Modo Ducha -->
+
+    <!-- Aviso de coste de SMS -->
+    <string name="aceptar">Acepto las condiciones de uso</string>
+    <string name="no_volver_a_mostrar">no volver a mostrar este mensaje</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="title_activity_act_mensaje_tarificacion_extra">Politica de uso y tarificación SMS</string>
+    <!-- fin Relacionadas SMS -->
+
+    <!-- Mensajes del Widget -->
+    <string name="widget_image_button_description">Pulse para iniciar Tele Asistencia TIC+</string>
+    <string name="title_activity_act_debug_gps_shared_preferences">actDebugGpsSharedPreferences
+    </string>
+
+    <string name="hello_world">Hello world!</string>
+    <!-- Fin Widget -->
+
+</resources>
+
+<!-- Activity actMain
+
+
+
+
+<string name="main_btn_help">AVISO</string>
+<string name="user_name">Usuario</string>
+
+
+<string name="dialer_calling">Conectando con Teleasistencia.\n Espere por favor.</string>
+<string name="dialer_conected">Conectado. Registrando su petición de aviso.</string>
+<string name="dialer_delivered">Su petición de aviso ha sido registrada.</string>
+<string name="dialer_error">Error. Inténtelo de nuevo.</string>
+<string name="dialer_closed">Gracias. En breve será atendido/a.</string>
+<string name="dialer_checked">Actualmente hay un Aviso pendiente de ser atendido.</string>
+
+<string name="dialer_abort_petition">Cancelar el aviso.</string>
+<string name="dialer_abort_confirm">¿Desea cancelar aviso?</string>
+<string name="dialer_abort_aborted">Aviso cancelado.</string>
+<string name="dialer_abort_error">Error. No se pudo cancelar el aviso.</string>
+<string name="red_button_label_send">ENVIAR AVISO</string>
+<string name="red_button_label_cancel">CANCELAR AVISO</string>
+
+-->

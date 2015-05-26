@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.local.android.teleasistenciaticplus.act.debug.actDebugCifrado">
+
+    <TextView
+        android:id="@+id/cifrado_test_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Cadena a cifrar/descifrar">
+    </TextView>
+
+    <EditText
+        android:id="@+id/edit_string_cifrado_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=""
+        android:layout_below="@id/cifrado_test_label">
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_string_cifrado_output"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=""
+        android:layout_below="@id/edit_string_cifrado_input">
+
+        <!-- android:clickable="false" -->
+        <!--android:cursorVisible="false" -->
+        <!--android:focusable="false" -->
+        <!--android:focusableInTouchMode="false"> -->
+
+    </EditText>
+
+<Button
+    android:id="@+id/debug_screen_button_cifrar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="false"
+    android:text="Cifrar AES128"
+    android:layout_below="@id/edit_string_cifrado_output"
+    android:onClick="main_debug_button_cifrado_test"
+    />
+
+<Button
+    android:id="@+id/debug_screen_button_descifrar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="false"
+    android:text="Descifrar AES128"
+    android:layout_below="@id/debug_screen_button_cifrar"
+    android:onClick="main_debug_button_descifrado_test"
+    />
+
+<Button
+    android:id="@+id/debug_screen_button_exit"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:onClick="exit_button"
+    android:text="Salida" />
+
+</LinearLayout>

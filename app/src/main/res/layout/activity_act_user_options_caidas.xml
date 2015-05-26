@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsCaidas">
+
+    <TextView android:text="@string/caidas_texto" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView4" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caidas_activar"
+        android:id="@+id/caidas_checkbox"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caidas_boton_arrancar"
+        android:id="@+id/caidas_boton_arrancar"
+        android:layout_marginTop="40dp"
+        android:onClick="onClick"
+        android:layout_below="@+id/caidas_checkbox"
+        android:layout_alignLeft="@+id/caidas_checkbox"
+        android:layout_alignStart="@+id/caidas_checkbox" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caidas_boton_parar"
+        android:id="@+id/caidas_boton_parar"
+        android:onClick="onClick"
+        android:layout_alignTop="@+id/caidas_boton_arrancar"
+        android:layout_alignRight="@+id/caidas_checkbox"
+        android:layout_alignEnd="@+id/caidas_checkbox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/caidas_texto_estado_activo"
+        android:id="@+id/caidas_texto_estado"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
