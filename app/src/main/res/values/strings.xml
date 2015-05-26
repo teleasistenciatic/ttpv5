@@ -5,8 +5,8 @@
     <string name="app_name">Teleasistenci@Tic+</string>
 
     <!-- Versión de la aplicación -->
-    <string name="version_code">4</string>
-    <string name="version_name">Ver. 0.7 Alpha (7) build</string>
+    <string name="version_code">10</string>
+    <string name="version_name">Ver. 1 Beta</string>
 
     <!-- LAYOUT: init_splash_screen_logo_teleasistencia -->
     <string name="init_splash_screen_iniciando_aplicacion">Iniciando aplicación</string>
