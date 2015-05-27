@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 public class actMensajeTarificacionExtraYPoliticaDeUso extends Activity {
@@ -17,6 +18,10 @@ public class actMensajeTarificacionExtraYPoliticaDeUso extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_act_mensaje_tarificacion_extra);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("app", "pantalla de tarificacion extra");
+        /////////////////////////////////////////////////////
     }
 
     /**

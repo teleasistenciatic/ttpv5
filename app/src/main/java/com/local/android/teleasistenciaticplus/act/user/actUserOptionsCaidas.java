@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 public class actUserOptionsCaidas extends Activity {
@@ -21,6 +22,11 @@ public class actUserOptionsCaidas extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "caidas");
+        /////////////////////////////////////////////////////
+
         setContentView(R.layout.activity_act_user_options_caidas);
 
         AppSharedPreferences userSharedPreferences = new AppSharedPreferences();

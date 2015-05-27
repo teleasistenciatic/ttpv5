@@ -8,6 +8,7 @@ import android.view.View;
 import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 import java.util.Timer;
@@ -24,6 +25,10 @@ public class actLoadingScreen extends Activity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("app", "pantalla de carga");
+        /////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////
         /// Operaciones cosméticas sobre la UI de la actividad

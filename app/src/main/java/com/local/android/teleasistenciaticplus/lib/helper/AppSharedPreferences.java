@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 
@@ -15,6 +16,11 @@ import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 public class AppSharedPreferences implements Constants {
 
     public void setUserData(String nombre, String apellidos) {
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("appSharedPreferences", "nombre y apellidos creados : " + nombre + "-" + apellidos );
+        /////////////////////////////////////////////////////
+
         SharedPreferences.Editor editor = GlobalData.getAppContext().getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS).edit();
         editor.putString("nombre", nombre);
         editor.putString("apellidos", apellidos);
@@ -72,6 +78,15 @@ public class AppSharedPreferences implements Constants {
      * Función para almacenar en el shared preferences los datos de personas de contacto
      */
     public void setPersonasContacto(String nombre1, String telefono1, String nombre2, String telefono2, String nombre3, String telefono3) {
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("appSharedPreferences", "contactos creados : "
+                + nombre1 + "-" + telefono1 + "_"
+                        + nombre2 + "-" + telefono2 + "_"
+                        + nombre3 + "-" + telefono3
+        );
+        /////////////////////////////////////////////////////
+
         SharedPreferences.Editor editor = GlobalData.getAppContext().getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS).edit();
 
         editor.putString("nombre1", nombre1);
@@ -242,6 +257,10 @@ public class AppSharedPreferences implements Constants {
         if (radio < 10) {
             radio = 10.0;
         }
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("zona segura", "zona segura establecida: " + String.valueOf(pos.latitude) + "," + String.valueOf(pos.longitude) + "," + String.valueOf(radio));
+        /////////////////////////////////////////////////////
 
         setPreferenceData(Constants.ZONA_SEGURA_RADIO, String.valueOf(radio));
     }

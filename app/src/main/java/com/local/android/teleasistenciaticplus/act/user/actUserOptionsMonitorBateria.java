@@ -12,6 +12,7 @@ import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
 import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 public class actUserOptionsMonitorBateria extends Activity implements View.OnClickListener
 {
@@ -27,6 +28,11 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
     {
         // Acciones a ejecutar al crear la actividad
         super.onCreate(savedInstanceState);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "bateria");
+        /////////////////////////////////////////////////////
+
         setContentView(R.layout.layout_user_option_monitor_bateria);
 
         monitor = actMain.getInstance().getMonitorBateria();

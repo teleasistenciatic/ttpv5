@@ -3,6 +3,7 @@ package com.local.android.teleasistenciaticplus.lib.sms;
 import android.telephony.SmsManager;
 
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 /**
@@ -51,9 +52,15 @@ public class SmsDispatcher implements Constants {
         try {
             if ( ! Constants.FAKE_SMS ) {
                 sms.sendTextMessage(phoneNumber, null, message, null, null);
+                /////////////////////////////////////////////////////
+                StatsFileLogTextGenerator.write("SMS", "enviado" + ":" + message);
+                /////////////////////////////////////////////////////
             }
         } catch (Exception e) {
             AppLog.e("SmsDispatcher", "SMS send error", e);
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("SMS", "envio error");
+            /////////////////////////////////////////////////////
         }
         AppLog.i("SMSSend", phoneNumber + " " + message);
     }

@@ -2,6 +2,7 @@ package com.local.android.teleasistenciaticplus.lib.sms;
 
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
 
 /**
@@ -42,34 +43,68 @@ public class SmsLauncher {
                 switch (aviso) {
 
                     case DUCHANOATENDIDA:
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "ducha");
+                        /////////////////////////////////////////////////////
+
                         textoSms = new SmsTextGenerator().getTextGenerateSmsDucha( telefonos[i] );
+
                     break;
 
                     case AVISO:
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "alerta");
+                        /////////////////////////////////////////////////////
+
                         textoSms = new SmsTextGenerator().getTextGenerateSmsAviso(telefonos[i]);
+
                         break;
 
                     case IAMOK:
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "tranquilidad");
+                        /////////////////////////////////////////////////////
+
                         textoSms = new SmsTextGenerator().getTextGenerateSmsIamOK(telefonos[i]);
+
                         break;
 
                     case CAIDADETECTADA:
-                        textoSms= new SmsTextGenerator().getTextGenerateSmsCaida(telefonos[i]);
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "caida");
+                        /////////////////////////////////////////////////////
+
+                        //textoSms= new SmsTextGenerator().getTextGenerateSmsCaida(telefonos[i]);
                         break;
 
                     case SALIDAZONASEGURA:
-                        textoSms= new SmsTextGenerator().getTextGenerateSmsSalidaZonaSegura( telefonos[i] );
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "zona segura");
+                        /////////////////////////////////////////////////////
+
+                        //textoSms= new SmsTextGenerator().getTextGenerateSmsSalidaZonaSegura( telefonos[i] );
                         break;
                 }
 
-                //Envío "fisico" del SMS
-                new SmsDispatcher( telefonos[i], textoSms).send();
-            }
+                ///////////////////////////////////////////////////////////////////////
+                // Sólo se envía el SMS en los modos ducha,aviso y tranquilidad
+                // Eliminar tras el pilotaje
+                switch (aviso) {
 
+                    case DUCHANOATENDIDA:
+                    case AVISO:
+                    case IAMOK:
+
+                        //Envío "fisico" del SMS
+                        new SmsDispatcher( telefonos[i], textoSms).send();
+                        break;
+                }
+                /////////////////////////////////////////////////////////////////////////
+            }
         }
 
         //enviar los SMS's
-
+        // todo comprobador de correcto envio SMS
         return true;
     }
 

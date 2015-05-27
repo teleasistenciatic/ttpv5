@@ -14,6 +14,7 @@ import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 
 public class actUserOptionsDatosPersonales extends FragmentActivity implements AppDialog.AppDialogNeutralListener {
@@ -21,6 +22,11 @@ public class actUserOptionsDatosPersonales extends FragmentActivity implements A
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "datos personales");
+        /////////////////////////////////////////////////////
+
         setContentView(R.layout.layout_user_options_datos_personales);
 
         //Leemos los valores por defecto que hay guardados en el SharedPreferences

@@ -18,6 +18,7 @@ import com.local.android.teleasistenciaticplus.act.zonasegura.actZonaSeguraHomeS
 import com.local.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 public class actUserOptionsZonaSegura extends Activity implements ServiceConnection, Constants {
@@ -32,6 +33,10 @@ public class actUserOptionsZonaSegura extends Activity implements ServiceConnect
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_user_options_zona_segura);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "zona segura");
+        /////////////////////////////////////////////////////
 
         // Comprobacion de que la zona segura este activa o no
 

@@ -11,12 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.local.android.teleasistenciaticplus.R;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 public class actUserOptions extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "opciones usuario");
+        /////////////////////////////////////////////////////
 
         /////////////////////////////////////////////////////////////////////
         // Creación del UI de ListView con los subapartados de Opciones de usuario

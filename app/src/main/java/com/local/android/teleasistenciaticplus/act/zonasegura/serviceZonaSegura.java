@@ -29,6 +29,7 @@ import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.helper.AppTime;
 import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.DebugLevel;
 import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
@@ -344,9 +345,14 @@ public class serviceZonaSegura extends Service implements
 
                 //código para el envio de sms.
                 SmsLauncher miSmsLauncher = new SmsLauncher(TipoAviso.SALIDAZONASEGURA);
-                Boolean hayListaContactos = miSmsLauncher.generateAndSend();
+                Boolean temporal = miSmsLauncher.generateAndSend();
 
                 AppLog.i(TAG,"SMS de aviso de Zona Segura enviado");
+
+                /////////////////////////////////////////////////////
+                StatsFileLogTextGenerator.write("zona segura", "ha salido zona segura");
+                /////////////////////////////////////////////////////
+
 
                 /////////////////////////////////////////////////
             }
@@ -362,6 +368,12 @@ public class serviceZonaSegura extends Service implements
             if ( (Constants.DEBUG_LEVEL == DebugLevel.DEBUG) && (Constants.TOAST_DATOS_ZONA_SEGURA)) {
                 Toast.makeText(getBaseContext(), (String) mostrar,
                         Toast.LENGTH_LONG).show();
+            }
+
+            if ( Constants.STATS_LOG_ZONA_SEGURA_GPS ) {
+                /////////////////////////////////////////////////////
+                StatsFileLogTextGenerator.write("zona segura", (String) mostrar);
+                /////////////////////////////////////////////////////
             }
 
         } else {

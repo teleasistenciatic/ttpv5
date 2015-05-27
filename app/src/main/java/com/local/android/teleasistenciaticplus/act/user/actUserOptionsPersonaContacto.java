@@ -17,6 +17,7 @@ import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.phone.PhoneContacts;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 import java.util.Map;
 
@@ -26,6 +27,10 @@ public class actUserOptionsPersonaContacto extends FragmentActivity implements A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_user_options_persona_contacto);
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("configuracion", "personas contacto");
+        /////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////////////////
         /// Leer los valores de persona s de contacto

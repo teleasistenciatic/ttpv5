@@ -18,6 +18,8 @@ import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 
 /**
@@ -65,7 +67,13 @@ public class MonitorBateria
                         // Extraigo los datos de nivel de carga y estado de batería del intent recibido.
                         nivel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         estado = intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
-                        Log.i("onReceive", "Recogido nivel = " + nivel + " y estado = " + estado);
+                        AppLog.i("onReceive", "Recogido nivel = " + nivel + " y estado = " + estado);
+
+                        if ( Constants.STATS_LOG_BATERIA ) {
+                            /////////////////////////////////////////////////////
+                            StatsFileLogTextGenerator.write("bateria", "nivel: " + nivel + " estado: " + estado );
+                            /////////////////////////////////////////////////////
+                        }
 
                         // Guardo el dato de nivel de carga que acabo de leer.
                         guardaUltimoNivel();
@@ -151,6 +159,12 @@ public class MonitorBateria
 
     public void activaReceiver(boolean ahorrar, boolean tostar) // Terminado
     {
+        if ( Constants.STATS_LOG_BATERIA ) {
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("bateria", "reciver activo");
+            /////////////////////////////////////////////////////
+        }
+
         if(getReceiverActivo())
             // El receiver está activo, devuelvo un aviso.
             Toast.makeText(GlobalData.getAppContext(),"El Monitor de Batería ya está Activo",Toast.LENGTH_SHORT).show();

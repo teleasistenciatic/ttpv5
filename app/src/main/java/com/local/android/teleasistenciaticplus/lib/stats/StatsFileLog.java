@@ -4,6 +4,7 @@ import android.os.Environment;
 
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
+import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,17 +18,20 @@ import java.util.Date;
  */
 public class StatsFileLog implements Constants {
 
-    File sdcard;
-    File statLogFile;
+    static File sdcard;
+    static File statLogFile =null;
 
-    String statLogFileName;
+    static String statLogFileName;
+
 
     public StatsFileLog() {
 
-        sdcard = Environment.getExternalStorageDirectory();
+        if (statLogFileName == null) {
+            sdcard = Environment.getExternalStorageDirectory();
 
-        initStatLogDir();
-        initStatLogFile();
+            initStatLogDir();
+            initStatLogFile();
+        }
 
     }
 
@@ -45,7 +49,7 @@ public class StatsFileLog implements Constants {
 
     /** Iniciamos el Fichero de Log **/
 
-    public void initStatLogFile() {
+    public static void initStatLogFile() {
 
         //Se genera el nombre del fichero
         // STATS_LOG_DIR/05052015_123014.log
@@ -53,7 +57,7 @@ public class StatsFileLog implements Constants {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateandTime = sdf.format( new Date() );
 
-        statLogFileName = Constants.STATS_LOG_DIR + "/" + currentDateandTime + ".log.txt";
+        statLogFileName = GlobalData.getImei() + "_" + Constants.STATS_LOG_DIR + "/" + currentDateandTime + ".log.txt";
 
         statLogFile = new File(sdcard, statLogFileName);
 

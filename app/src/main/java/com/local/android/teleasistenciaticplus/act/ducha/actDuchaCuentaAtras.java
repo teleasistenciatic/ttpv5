@@ -21,6 +21,7 @@ import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
 import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
@@ -62,6 +63,10 @@ public class actDuchaCuentaAtras extends FragmentActivity implements AppDialog.A
 
         //El intervalo de refresco se estable a segundos
         interval = 1000;
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("modo ducha", "iniciado con minutos : "+ futureTime );
+        /////////////////////////////////////////////////////
 
         //Iniciamos la cuenta atrás
         startCountDown();
@@ -175,7 +180,9 @@ public class actDuchaCuentaAtras extends FragmentActivity implements AppDialog.A
                     //pasamos la fecha de envío del SMS a la actividad principal actMAin
                     actMain.getInstance().actualizarUltimoSMSEnviado(new Date());
                 } else{
-                    //TODO: error en el envío por no haber contactos
+                    /////////////////////////////////////////////////////
+                    StatsFileLogTextGenerator.write("modo ducha", "error al enviar no hay contactos" );
+                    /////////////////////////////////////////////////////
                 }
 
 
