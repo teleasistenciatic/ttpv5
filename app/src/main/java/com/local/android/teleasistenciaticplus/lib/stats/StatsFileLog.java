@@ -57,7 +57,12 @@ public class StatsFileLog implements Constants {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateandTime = sdf.format( new Date() );
 
-        statLogFileName = GlobalData.getImei() + "_" + Constants.STATS_LOG_DIR + "/" + currentDateandTime + ".log.txt";
+        String imei = GlobalData.getImei();
+        if ( imei.length() == 0 ) {
+            imei = "indefinido";
+        }
+        statLogFileName = Constants.STATS_LOG_DIR + "/" + imei + "_" + currentDateandTime + ".log.txt";
+
 
         statLogFile = new File(sdcard, statLogFileName);
 

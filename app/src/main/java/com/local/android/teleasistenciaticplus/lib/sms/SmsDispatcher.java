@@ -47,13 +47,17 @@ public class SmsDispatcher implements Constants {
      * Enviar SMS
      */
     public void send() {
+        if (phoneNumber.length() == 0) {
+            return;
+        }
+
         // ¿Qué import es? import android.telephony.gsm.SmsManager;
         SmsManager sms = SmsManager.getDefault();
         try {
             if ( ! Constants.FAKE_SMS ) {
                 sms.sendTextMessage(phoneNumber, null, message, null, null);
                 /////////////////////////////////////////////////////
-                StatsFileLogTextGenerator.write("SMS", "enviado" + ":" + message);
+                StatsFileLogTextGenerator.write("SMS", "enviado" + ":" + "[" + message + "]");
                 /////////////////////////////////////////////////////
             }
         } catch (Exception e) {

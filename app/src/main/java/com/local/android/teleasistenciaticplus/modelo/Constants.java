@@ -25,7 +25,7 @@ public interface Constants {
     public static final Boolean STATS_TO_FILE = true;
     public static final String STATS_LOG_DIR = "ttpvstats"; //directorio en el cual se crearan las estadisticas
     public static final String STAT_FILE_SHARED_PREFERENCES = "ficherostatssesion";
-    public static final Boolean STATS_LOG_ZONA_SEGURA_GPS = true;
+    public static final Boolean STATS_LOG_ZONA_SEGURA_GPS = false;
     public static final Boolean STATS_LOG_BATERIA = true;
 
     ////////////////////////////////////////////////
@@ -88,7 +88,7 @@ public interface Constants {
     // ZONA SEGURA
     ////////////////////////////////////////////////
 
-    public static final boolean TOAST_DATOS_ZONA_SEGURA = true; //Mostrar o no los datos de la zona segura
+    public static final boolean TOAST_DATOS_ZONA_SEGURA = false; //Mostrar o no los datos de la zona segura
 
     public static final int DEFAULT_ZONA_SEGURA_POOL = 10; //El tamaño de pool del FIFO
 
