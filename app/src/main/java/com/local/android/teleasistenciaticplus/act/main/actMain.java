@@ -69,8 +69,10 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
-        StatsFileLogTextGenerator.write("ACCION","VALOR");
+
+        /////////////////////////////////////////////////////
+        StatsFileLogTextGenerator.write("app", "iniciada");
+        /////////////////////////////////////////////////////
 
         instanciaActMain = this; //Se utiliza para obtener una instancia desde otra actividad
 
@@ -142,14 +144,23 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
         if(caidasActivas.equals(Constants.DETECTOR_CAIDAS_ACTIVAR)){   //si esta indicado arranco
             Intent intentA= new Intent(this,ServicioMuestreador.class);
             startService(intentA);
-            AppLog.i(TAG,"Caidas activo");
+            AppLog.i(TAG, "Caidas activo");
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("caidas", "servicio iniciado");
+            /////////////////////////////////////////////////////
         }else if( caidasActivas.equals(Constants.DETECTOR_CAIDAS_DESACTIVAR)){  //no hago nada.
             AppLog.i(TAG,"Caidas inactivo");
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("caidas", "servicio inactivo");
+            /////////////////////////////////////////////////////
         }else{ //no existe la preferencia. crear e iniciar el servicio.
             mispreferences.setPreferenceData(Constants.DETECTOR_CAIDAS_ARRANCAR_AL_INICIO,Constants.DETECTOR_CAIDAS_ACTIVAR);
             Intent intentA= new Intent(this,ServicioMuestreador.class);
             startService(intentA);
-            AppLog.i(TAG,"caidas creado y activo");
+            AppLog.i(TAG, "caidas creado y activo");
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("caidas", "no existe preferencia, servicio iniciado");
+            /////////////////////////////////////////////////////
         }
 
         ////////////////////////////////////////////////
@@ -162,7 +173,10 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             Intent intentA= new Intent(this, serviceZonaSegura.class);
             startService(intentA);
 
-            AppLog.i(TAG,"Servicio Zona Segura cargado al inicio ");
+            AppLog.i(TAG, "Servicio Zona Segura cargado al inicio ");
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("zona segura", "servicio iniciado");
+            /////////////////////////////////////////////////////
 
         }
 
@@ -175,7 +189,10 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
         } catch (Exception e) {
             e.printStackTrace();
-            AppLog.i("Error en main", "Efectivamente se da aquí -> e = "+ e.getMessage() + ", " + e.getLocalizedMessage());
+            AppLog.i("Error en main", "Efectivamente se da aquí -> e = " + e.getMessage() + ", " + e.getLocalizedMessage());
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("bateria", "no se ha podido monitorizar la bateria");
+            /////////////////////////////////////////////////////
         }
         AppLog.i("Monitor Bateria", "Creado objeto monBat, " + monBat.textoNivel() + " " + monBat.textoEstado());
     }
