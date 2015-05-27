@@ -1,10 +1,13 @@
 package com.local.android.teleasistenciaticplus.lib.sms;
 
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
+import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 
 /**
  * Created by FESEJU on 19/03/2015.
@@ -55,10 +58,30 @@ public class SmsDispatcher implements Constants {
         SmsManager sms = SmsManager.getDefault();
         try {
             if ( ! Constants.FAKE_SMS ) {
-                sms.sendTextMessage(phoneNumber, null, message, null, null);
-                /////////////////////////////////////////////////////
-                StatsFileLogTextGenerator.write("SMS", "enviado" + ":" + "[" + message + "]");
-                /////////////////////////////////////////////////////
+
+                ////////////////////////////////////////////
+                // PILOTAJE numero máximo SMSs
+                ////////////////////////////////////////////
+                String mensajesEnviados = new AppSharedPreferences().getSmsEnviados();
+
+                int mEnviados = Integer.valueOf(mensajesEnviados);
+
+                if ( mEnviados < Constants.LIMITE_SMS_POR_DEFECTO ) {
+
+                    sms.sendTextMessage(phoneNumber, null, message, null, null);
+                    /////////////////////////////////////////////////////
+                    StatsFileLogTextGenerator.write("SMS", "enviado" + ":" + "[" + message + "]");
+                    /////////////////////////////////////////////////////
+
+                    new AppSharedPreferences().incrementaSmsEnviado();
+
+                } else {
+
+                    Toast.makeText(GlobalData.getAppContext(), "Ha alcanzado el limite de mensajes SMS", Toast.LENGTH_LONG).show();
+
+                }
+
+
             }
         } catch (Exception e) {
             AppLog.e("SmsDispatcher", "SMS send error", e);

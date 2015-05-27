@@ -33,6 +33,15 @@ public class actDebugUserConfig extends Activity {
 
     }
 
+    public void user_config_reiniciar_sms_enviados(View view) {
+
+        new AppSharedPreferences().setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(0));
+
+        Toast.makeText(getBaseContext(), "OK",
+                Toast.LENGTH_SHORT).show();
+
+    }
+
     public void user_config_borrar_appshared_aviso_tarificacion(View view) {
 
         new AppSharedPreferences().deletePreferenceData(Constants.NOMBRE_APP_SHARED_PREFERENCES_NO_MOSTRAR_AVISO_TARIFICACION);

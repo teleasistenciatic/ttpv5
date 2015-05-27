@@ -48,6 +48,13 @@
         android:text="Borrar valor de ultimo SMS enviado" />
 
     <Button
+        android:id="@+id/debug_screen_user_config_borrar_sms_enviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="user_config_reiniciar_sms_enviados"
+        android:text="Reiniciar el numero de SMS enviados" />
+
+    <Button
         android:id="@+id/debug_screen_button_exit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

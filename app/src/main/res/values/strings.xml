@@ -165,6 +165,7 @@
     </string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_act_options_pilotaje">Configuracion > Pilotaje</string>
     <!-- Fin Widget -->
 
 </resources>

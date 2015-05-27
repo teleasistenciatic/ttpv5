@@ -93,6 +93,15 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
         boton_rojo_cuenta_atras_activa = false;
         boton_rojo_cancelar_envio = false;
 
+        ////////////////////////////////////////////////////////////////////////
+        // Si no hay un numero máximo de mensajes enviados, se crea el por defecto
+        ////////////////////////////////////////////////////////////////////////
+        String NumeroMensajesPorDefecto = new AppSharedPreferences().getPreferenceData( Constants.SMS_ENVIADOS_SHARED_PREFERENCES );
+        if ( NumeroMensajesPorDefecto.length() == 0 ) {
+            new AppSharedPreferences().setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(0) );
+        }
+        /////////////////////////////////////////////////////////////////////////
+
         //Damos la bienvenida
         if ( (Constants.PLAY_SOUNDS) && (Constants.PLAY_BIENVENIDO_SOUND) ) {
 

@@ -19,6 +19,12 @@ public interface Constants {
     public static final String DEBUG_LOG_FILE = "teleasistencia.log.txt";
 
     ////////////////////////////////////////////////
+    // NUMERO MAXIMO DE MENSAJES EN MODO PILOTAJE
+    ////////////////////////////////////////////////
+    public static final int LIMITE_SMS_POR_DEFECTO = 20;
+    public static final String SMS_ENVIADOS_SHARED_PREFERENCES = "numerosmsenviados";
+
+    ////////////////////////////////////////////////
     // MODULO ESTADISTICO
     ////////////////////////////////////////////////
 

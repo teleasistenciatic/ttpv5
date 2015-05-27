@@ -15,6 +15,8 @@ import com.local.android.teleasistenciaticplus.modelo.GlobalData;
  */
 public class AppSharedPreferences implements Constants {
 
+    String TAG = "AppSharedPreferences";
+
     public void setUserData(String nombre, String apellidos) {
 
         /////////////////////////////////////////////////////
@@ -339,5 +341,50 @@ public class AppSharedPreferences implements Constants {
         } else {
             return false;
         }
+    }
+
+    public String getSmsEnviados() {
+        return ( getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES) );
+    }
+
+    public void incrementaSmsEnviado() {
+        String mensajesEnviados = getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES);
+
+        int mEnviados;
+
+        try {
+            mEnviados = Integer.valueOf(mensajesEnviados);
+            if ( mEnviados < Constants.LIMITE_CARACTERS_SMS ) {
+                mEnviados = mEnviados + 1;
+            } else {
+                mEnviados = Constants.LIMITE_CARACTERS_SMS;
+            }
+
+        } catch (Exception e) {
+            AppLog.e(TAG, "incrementaSmsEnviado", e);
+            mEnviados = Constants.LIMITE_CARACTERS_SMS;
+        }
+
+        setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(mEnviados) );
+    }
+
+    public void decrementaSmsEnviado() {
+        String mensajesEnviados = getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES);
+
+        int mEnviados;
+
+        try {
+            mEnviados = Integer.valueOf(mensajesEnviados);
+            if ( mEnviados > 0) {
+                mEnviados = mEnviados - 1;
+            } else {
+                mEnviados = 0;
+            }
+        } catch (Exception e) {
+            AppLog.e(TAG, "incrementaSmsEnviado", e);
+            mEnviados = Constants.LIMITE_CARACTERS_SMS;
+        }
+
+        setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(mEnviados) );
     }
 }

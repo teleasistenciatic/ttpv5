@@ -144,7 +144,7 @@
         <activity
             android:name=".act.user.actUserOptionsMonitorBateria"
             android:label="@string/title_activity_act_user_options_monitor_bateria"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <!-- Fin actividades Depuración -->
 
@@ -166,6 +166,12 @@
             android:label="@string/title_activity_act_user_options_persona_contacto"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".act.user.actUserOptionsPilotaje"
+            android:label="@string/title_activity_act_options_pilotaje" >
+        </activity>
+
         <activity
             android:name=".act.debug.actDebugUserConfig"
             android:label="@string/title_activity_act_debug_user_config"
@@ -176,6 +182,8 @@
             android:label="@string/title_activity_act_debug_caidas"
             android:screenOrientation="portrait" >
         </activity>
+
+
         <!-- Fin Actividad de opciones de usuario -->
 
 
@@ -245,7 +253,7 @@
             android:name=".act.zonasegura.serviceZonaSegura"
             android:exported="false"
             android:process=":miserviciozonasegura" >
- //Solo se puede llamar por nuestra aplicación //
+            //Solo se puede llamar por nuestra aplicación //
         </service>
         <!-- Fin actividad y servicio de Zona Segura -->
 
@@ -253,6 +261,7 @@
             android:name=".act.debug.actDebugGpsSharedPreferences"
             android:label="@string/title_activity_act_debug_gps_shared_preferences" >
         </activity>
+
     </application>
 
 </manifest>
