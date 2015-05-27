@@ -16,7 +16,15 @@ public interface Constants {
     public static final int LIMITE_CARACTERS_SMS = 159;
 
     public static final Boolean LOG_TO_FILE = true;
-    public static final String DEBUG_LOG_FILE = "teleasistencia.log";
+    public static final String DEBUG_LOG_FILE = "teleasistencia.log.txt";
+
+    ////////////////////////////////////////////////
+    // MODULO ESTADISTICO
+    ////////////////////////////////////////////////
+
+    public static final Boolean STATS_TO_FILE = true;
+    public static final String STATS_LOG_DIR = "ttpvstats"; //directorio en el cual se crearan las estadisticas
+    public static final String STAT_FILE_SHARED_PREFERENCES = "ficherostatssesion";
 
     ////////////////////////////////////////////////
     // MISCELANEA

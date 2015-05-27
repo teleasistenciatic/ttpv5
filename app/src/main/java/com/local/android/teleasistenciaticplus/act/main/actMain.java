@@ -30,6 +30,7 @@ import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
 import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.DebugLevel;
 import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
@@ -68,6 +69,9 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        
+        StatsFileLogTextGenerator.write("ACCION","VALOR");
+
         instanciaActMain = this; //Se utiliza para obtener una instancia desde otra actividad
 
         super.onCreate(savedInstanceState);
