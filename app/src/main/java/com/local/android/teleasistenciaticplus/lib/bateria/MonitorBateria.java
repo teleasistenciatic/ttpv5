@@ -71,7 +71,7 @@ public class MonitorBateria
 
                         if ( Constants.STATS_LOG_BATERIA ) {
                             /////////////////////////////////////////////////////
-                            StatsFileLogTextGenerator.write("bateria", "nivel: " + nivel + " estado: " + estado );
+                            StatsFileLogTextGenerator.write("bateria", "nivel: " + nivel + " estado: " +  textoEstado() + " tasa de refresco: " + intervalo );
                             /////////////////////////////////////////////////////
                         }
 
@@ -268,6 +268,10 @@ public class MonitorBateria
             // Lanzo también el nivel de batería por voz.
             SintetizadorVoz loro = actMain.getInstance().getSintetizador();
             loro.hablaPorEsaBoquita("¡Atención!. " + textoNivel() + ". Por favor, ponga el móvil a cargar.");
+
+            /////////////////////////////////////////////////////
+            StatsFileLogTextGenerator.write("bateria", "notificacion bateria baja");
+            /////////////////////////////////////////////////////
         }
     }
 

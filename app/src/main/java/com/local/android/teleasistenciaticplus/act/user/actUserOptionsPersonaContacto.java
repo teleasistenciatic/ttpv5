@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
@@ -127,8 +128,10 @@ public class actUserOptionsPersonaContacto extends FragmentActivity implements A
      */
     public void user_options_persona_contacto_text_click_2(View view) {
         //Abrir la lista de contactos
-        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, 1);
+      //  Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+      //  startActivityForResult(intent, 1);
+
+        Toast.makeText(this,"Esta versión (Beta 1.0-piloto) sólo admite un contacto.",Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -138,8 +141,10 @@ public class actUserOptionsPersonaContacto extends FragmentActivity implements A
      */
     public void user_options_persona_contacto_text_click_3(View view) {
         //Abrir la lista de contactos
-        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-        startActivityForResult(intent, 2);
+     //   Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+     //   startActivityForResult(intent, 2);
+
+        Toast.makeText(this,"Esta versión (Beta 1.0-piloto) sólo admite un contacto.",Toast.LENGTH_SHORT).show();
     }
 
     /**

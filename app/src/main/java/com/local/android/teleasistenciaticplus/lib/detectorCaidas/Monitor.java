@@ -7,6 +7,7 @@ import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
 import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.DebugLevel;
 import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
@@ -209,14 +210,29 @@ class Monitor implements Constants{
                     case 1:
                         AppLog.i(TAG,"Monitor | Sentado");
                         if(Constants.DEBUG_LEVEL == DebugLevel.DEBUG) PlaySound.play(R.raw.sentado);
+
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "sentado");
+                        /////////////////////////////////////////////////////
+
                         break;
                     case 2:
                         AppLog.i(TAG,"Monitor | Correr");
                         if(Constants.DEBUG_LEVEL == DebugLevel.DEBUG) PlaySound.play(R.raw.correr);
+
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "correr");
+                        /////////////////////////////////////////////////////
+
                         break;
                     case 3:
                         AppLog.i(TAG,"Monitor | Golpe");
                         if(Constants.DEBUG_LEVEL == DebugLevel.DEBUG) PlaySound.play(R.raw.golpe);
+
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "golpe");
+                        /////////////////////////////////////////////////////
+
                         break;
                     case 4:
                         AppLog.i(TAG,"Monitor | Caida");

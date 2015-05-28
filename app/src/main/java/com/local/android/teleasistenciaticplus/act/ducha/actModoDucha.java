@@ -10,6 +10,7 @@ import android.view.View;
 import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.Constants;
 
 public class actModoDucha extends Activity {
