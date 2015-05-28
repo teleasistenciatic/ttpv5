@@ -52,10 +52,10 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         npNivelAlerta.setWrapSelectorWheel(false);
         npNivelAlerta.setValue(monitor.getNivelAlerta());
 
-        npIntervalo = (NumberPicker) findViewById(R.id.npIntervalo);
+        npIntervalo = (NumberPicker) findViewById(R.id.npTasaRefresco);
         npIntervalo.setMinValue(0); // Pide el estado de la batería al recibir cada evento.
         npIntervalo.setMaxValue(10); // Pide el estado de la batería al recibir 500 eventos.
-        npIntervalo.setValue(monitor.getIntervalo());
+        npIntervalo.setValue(monitor.getTasaRefresco());
 
         btnLanzarReceiver = (Button) findViewById(R.id.btnLanzarReceiver);
         btnLanzarReceiver.setOnClickListener(this);
@@ -93,7 +93,7 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
             case R.id.btnAplicar:
                 // Actualizo el valor de los atributos afectados por cambios.
                 monitor.setNivelAlerta(npNivelAlerta.getValue());
-                monitor.setIntervalo(npIntervalo.getValue());
+                monitor.setTasaRefresco(npIntervalo.getValue());
                 monitor.setActivarAlInicio(cbIniciarAuto.isChecked());
                 monitor.commit();
                 break;

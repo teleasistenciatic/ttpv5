@@ -19,8 +19,9 @@ import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
-import com.local.android.teleasistenciaticplus.modelo.Constants;
 import com.local.android.teleasistenciaticplus.modelo.GlobalData;
+
+import static com.local.android.teleasistenciaticplus.modelo.Constants.*;
 
 /**
  * Created by MORUGE on 14/05/2015.
@@ -28,17 +29,20 @@ import com.local.android.teleasistenciaticplus.modelo.GlobalData;
 public class MonitorBateria
 {
     // Atributos de la clase.
-    private static boolean activarAlInicio = false, receiverActivado = false, notificado = false;
-    private static boolean powerSafe = false, desactivarAlRecibir = false;
-    private static int nivelAlerta, nivel = 0, estado = 0;
-    private static BroadcastReceiver mBatInfoReceiver = null;
-    private static int intervalo, contador;
+    private boolean activarAlInicio = false, receiverActivado = false, notificado = false;
+    private boolean powerSafe = false, desactivarAlRecibir = false;
+    private int nivelAlerta, nivel = 0, estado = 0;
+    private BroadcastReceiver mBatInfoReceiver = null;
+    private int tasaRefresco, contador;
+    private static String TAG = "MonitorBateria";
 
     // Constructor sin parámetros.
     public MonitorBateria()
     {
         // Llamo al método que lee de las SharedPreferences y asigna los valores iniciales.
         cargaPreferencias();
+        AppLog.i(TAG + ".Constructor","Preferencias cargadas: " +
+                new AppSharedPreferences().dameCadenaPreferenciasMonitorBateria());
 
         // Inicio el contador a 0.
         contador = 0;
@@ -58,45 +62,50 @@ public class MonitorBateria
                 }
                 else
                 {
-                    // Con esta condición el intervalo mínimo de comprobaciones es uno cada dos eventos si intervalo es 0.
-                    // El contador se tiene en cuenta solo si powerSafe es true, si no pasa al else.
-                    if(powerSafe && contador < intervalo && hayDatos())
+                    // Con esta condición la tasa de refresco mínimo de comprobaciones es uno cada
+                    // dos eventos si tasaRefresco es 0.
+                    // El contador se tiene en cuenta la tasa de refresco solo si powerSafe es true,
+                    // si no pasa al else.
+                    if(powerSafe && contador < tasaRefresco && hayDatos())
+                    {
                         contador++;
+                    }
                     else
                     {
                         // Extraigo los datos de nivel de carga y estado de batería del intent recibido.
                         nivel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         estado = intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
-                        AppLog.i("onReceive", "Recogido nivel = " + nivel + " y estado = " + estado);
+                        AppLog.i(TAG + ".onReceive()", "Recogido nivel = " + nivel + " y estado = " + estado);
 
-                        if ( Constants.STATS_LOG_BATERIA ) {
+                        if ( STATS_LOG_BATERIA )
+						{
                             /////////////////////////////////////////////////////
-                            StatsFileLogTextGenerator.write("bateria", "nivel: " + nivel + " estado: " +  textoEstado() + " tasa de refresco: " + intervalo );
+                            StatsFileLogTextGenerator.write("bateria", "nivel: " + nivel + " estado: " + textoEstado() + " tasa de refresco: " + tasaRefresco);
                             /////////////////////////////////////////////////////
                         }
-
+						
                         // Guardo el dato de nivel de carga que acabo de leer.
                         guardaUltimoNivel();
 
                         // Actualizo datos del Layout y compruebo que el nivel de la batería esté por encima
                         // del nivel de alerta y que la batería no esté en carga.
                         // mostrarDatos(nivel, estado);
-                        if ((nivel <= nivelAlerta && estado != BatteryManager.BATTERY_STATUS_CHARGING))
+                        if ((nivel <= nivelAlerta) && estado != BatteryManager.BATTERY_STATUS_CHARGING)
                             // Lanzo una notificación
                             notificacion();
 
                         // Reinicio el contador
                         contador = 0;
                     }
-                }
 
-                // En este punto ya he recibido un dato, ya que si no había por ser la primera vez
-                // que se ha recibido alguno, la condición del if previo obliga a leer del intent.
-                // Si tengo activada la opción de desactivar el receiver al recibir lo hago.
-                if(getDesactivarAlRecibir())
-                {
-                    desactivaReceiver(false);
-                    setDesactivarAlRecibir(false);
+                    // En este punto ya he recibido un dato, ya que si no había por ser la primera vez
+                    // que se ha recibido alguno, la condición del if previo obliga a leer del intent.
+                    // Si tengo activada la opción de desactivar el receiver al recibir lo hago.
+                    if(getDesactivarAlRecibir())
+                    {
+                        setDesactivarAlRecibir(false);
+                        desactivaReceiver(false);
+                    }
                 }
             }
         };
@@ -107,70 +116,79 @@ public class MonitorBateria
         desactivaReceiver(false);
 
         // Si estaba configurado para activarse al inicio lo vuelvo a lanzar con las preferencias.
-        AppLog.i("constructor MonitorBateria", "Tengo la orden activarAlInicio = " + activarAlInicio);
+        AppLog.i(TAG + ".Constructor", "Tengo la orden activarAlInicio = " + activarAlInicio);
         if(activarAlInicio)
             activaReceiver(true, false);
     }
 
-    private static void cargaPreferencias() // Termminado
+    private void cargaPreferencias() // Termminado
     {
         // Saco el nivel de alerta y la opción de si se debe iniciar el receiver con la actividad.
         AppSharedPreferences miSharedPref = new AppSharedPreferences();
-        if(miSharedPref.hasPreferenceData("NivelAlerta") && miSharedPref.hasPreferenceData("ActivarAlInicio")
-                && miSharedPref.hasPreferenceData("Intervalo"))
+        if(miSharedPref.hayDatosBateria())
         {
             // Hay valores guardados, los leo
-            nivelAlerta = Integer.parseInt(miSharedPref.getPreferenceData("NivelAlerta"));
-            intervalo = Integer.parseInt(miSharedPref.getPreferenceData("Intervalo"));
-            activarAlInicio = Boolean.parseBoolean(miSharedPref.getPreferenceData("ActivarAlInicio"));
+            nivelAlerta = miSharedPref.damePreferenciasBateriaNivelAlerta();
+            tasaRefresco = miSharedPref.damePreferenciasBateriaTasaRefresco();
+            activarAlInicio = miSharedPref.damePreferenciasBAteriaActivarAlInicio();
         }
         else
         {
             // No hay valores guardados, pongo valores por defecto.
             activarAlInicio = false;
             nivelAlerta = 30;
-            intervalo = 6;
+            tasaRefresco = 6;
         }
-        AppLog.i("Batería", "Preferencias cargadas: nivelAlerta = " + nivelAlerta +
-                ", activarAlInicio = " + activarAlInicio +
-                ", Intervalo = " + intervalo);
     }
 
-    private static void guardaPreferencias() // Terminado
+    private void guardaPreferencias() // Terminado
     {
         // Creo un editor para guardar las preferencias.
         AppSharedPreferences miSharedPref = new AppSharedPreferences();
-        miSharedPref.setPreferenceData("NivelAlerta", Integer.toString(nivelAlerta));
-        miSharedPref.setPreferenceData("Intervalo", Integer.toString(intervalo));
-        miSharedPref.setPreferenceData("ActivarAlInicio", Boolean.toString(activarAlInicio));
+        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_NIVEL_ALERTA,
+                Integer.toString(nivelAlerta));
+        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_TASA_REFRESCO,
+                Integer.toString(tasaRefresco));
+        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_ARRANCAR_AL_INICIO,
+                Boolean.toString(activarAlInicio));
         Toast.makeText(GlobalData.getAppContext(), "Configuración Guardada", Toast.LENGTH_SHORT).show();
-        Log.i("guardaPreferencias","Preferencias guardadas con valores: nivelAlerta = " +
-                nivelAlerta + ", activarAlInicio = " + activarAlInicio +
-                "Intervalo de refresco = " + intervalo);
+        AppLog.i(TAG + ".guardaPreferencias()","Preferencias guardadas con valores: " +
+                new AppSharedPreferences().dameCadenaPreferenciasMonitorBateria());
     }
 
-    private static void guardaUltimoNivel()
+    private void guardaUltimoNivel()
     {
         AppSharedPreferences miSharedPref = new AppSharedPreferences();
-        miSharedPref.setPreferenceData("UltimoNivelBateria", Integer.toString(nivel));
-        Log.i("guardaUltimoNivel", "Guardado el último nivel de batería leído: " + nivel);
+        miSharedPref.escribeUltimoNivelRegistradoBateria(Integer.toString(nivel));
+        AppLog.i(TAG + "guardaUltimoNivel()", "Guardado el último nivel de batería leído: " + nivel);
     }
 
 
     public void activaReceiver(boolean ahorrar, boolean tostar) // Terminado
     {
-        if ( Constants.STATS_LOG_BATERIA ) {
+        if ( STATS_LOG_BATERIA ) {
             /////////////////////////////////////////////////////
             StatsFileLogTextGenerator.write("bateria", "reciver activo");
             /////////////////////////////////////////////////////
         }
-
+		
         if(getReceiverActivo())
+        {
+            if(getDesactivarAlRecibir())
+            {
+                setDesactivarAlRecibir(false);
+                setPowerSaver(ahorrar);
+                AppLog.i(TAG + ".activaReceiver()", "Al intentar activar el receiver veo que ya está activo, pero " +
+                        "tiene activada la bandera desactivarAlRecibir, por lo que está esperando datos para desactivarse " +
+                        "al recibirlos. Desactivo la bandera y lo pongo a funcionar normalmente.");
+                return;
+            }
             // El receiver está activo, devuelvo un aviso.
             Toast.makeText(GlobalData.getAppContext(),"El Monitor de Batería ya está Activo",Toast.LENGTH_SHORT).show();
+        }
         else
         {
-            // Primero establezco el intervalo de refresco a 0 para que lea inmediatamente la
+            // Primero establezco el tasaRefresco de refresco a 0 para que lea inmediatamente la
             // Registro el receiver para activarlo con el filtro de eventos de cambio de bateria,
             // cargador conectado, y cargador desconectado.
             IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -179,13 +197,13 @@ public class MonitorBateria
             GlobalData.getAppContext().registerReceiver(mBatInfoReceiver, intentFilter);
 
             setReceiverActivo(true);
-            Log.i("activaReceiver","Registrado receiver de batería...");
+            AppLog.i(TAG + ".activaReceiver()","Registrado receiver de batería...");
 
             if(tostar)
                 Toast.makeText(GlobalData.getAppContext(),"Monitor Batería Activado",Toast.LENGTH_SHORT).show();
 
-            // Establezco el intervalo de refresco
-            powerSafe = ahorrar;
+            // Establezco que use la tasa de refresco
+            setPowerSaver(ahorrar);
         }
     }
 
@@ -195,7 +213,11 @@ public class MonitorBateria
         {
             // La variable de control me dice que el receiver está registrado, lo quito.
             if(!hayDatos())
+            {
                 setDesactivarAlRecibir(true);
+                AppLog.i(TAG + ".desactivaReceiver()","No hay datos, pongo desactivarAlRecibir = " + getDesactivarAlRecibir() +
+                        ", getReceiverActivo = " + getReceiverActivo());
+            }
             else
             {
                 GlobalData.getAppContext().unregisterReceiver(mBatInfoReceiver);
@@ -203,32 +225,45 @@ public class MonitorBateria
                 powerSafe = false; // Desactivo el modo ahorro de energía (valor por defecto)
                 if(tostar)
                     Toast.makeText(GlobalData.getAppContext(), "Monitor Batería Desactivado", Toast.LENGTH_SHORT).show();
+                AppLog.i(TAG + ".desactivaReceiver()","Desactivado receiver.");
             }
         }
         else
             // El receiver está desactivado, lo aviso.
             if(tostar)
+            {
+                if(getDesactivarAlRecibir())
+                    return;
                 Toast.makeText(GlobalData.getAppContext(),"El Monitor de Batería ya está inactivo",Toast.LENGTH_SHORT).show();
+            }
     }
 
-    public static void setDesactivarAlRecibir(boolean opcion)
+    public void setPowerSaver(boolean valor)
+    {
+        powerSafe = valor;
+    }
+    public boolean getPowerSaver()
+    {
+        return powerSafe;
+    }
+    public void setDesactivarAlRecibir(boolean opcion)
     {
         desactivarAlRecibir = opcion;
     }
-    public static boolean getDesactivarAlRecibir()
+    public boolean getDesactivarAlRecibir()
     {
         return desactivarAlRecibir;
     }
-    public static int getNivel() { return nivel; }
-    public static int getEstado() { return estado; }
+    public int getNivel() { return nivel; }
+    public int getEstado() { return estado; }
     public Boolean getReceiverActivo() { return receiverActivado; } // Terminado
     public void setReceiverActivo(boolean op) { receiverActivado = op; }
     public int getNivelAlerta() { return nivelAlerta; } // Terminado
     public void setNivelAlerta(int alertLevel) { nivelAlerta = alertLevel; } // Terminado
     public Boolean getActivarAlInicio() { return activarAlInicio; } // Terminado
     public void setActivarAlInicio(Boolean alInicio) { activarAlInicio = alInicio; } // Terminado
-    public int getIntervalo() { return intervalo; } // Terminado
-    public void setIntervalo(int interval) { intervalo = interval; } // Terminado
+    public int getTasaRefresco() { return tasaRefresco; } // Terminado
+    public void setTasaRefresco(int tasa) { tasaRefresco = tasa; } // Terminado
     public void commit(){ guardaPreferencias(); } // Terminado
     public boolean hayDatos() {
         // Devuelvo true si estado != 0, que significa que ha leido algo
@@ -268,41 +303,41 @@ public class MonitorBateria
             // Lanzo también el nivel de batería por voz.
             SintetizadorVoz loro = actMain.getInstance().getSintetizador();
             loro.hablaPorEsaBoquita("¡Atención!. " + textoNivel() + ". Por favor, ponga el móvil a cargar.");
-
+			
             /////////////////////////////////////////////////////
             StatsFileLogTextGenerator.write("bateria", "notificacion bateria baja");
             /////////////////////////////////////////////////////
         }
     }
 
-    public static String textoEstado() // Terminado
+    public  String textoEstado() // Terminado
     {
         String strEstado;
         switch(getEstado())
         {
             case BatteryManager.BATTERY_STATUS_CHARGING:
-                strEstado = "Bateria en carga...";
+                strEstado = "Cargando";
                 break;
             case BatteryManager.BATTERY_STATUS_DISCHARGING:
-                strEstado = "Descargando bateria...";
+                strEstado = "Descargando";
                 break;
             case BatteryManager.BATTERY_STATUS_FULL:
-                strEstado = "Bateria a plena carga...";
+                strEstado = "Llena";
                 break;
             case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
-                strEstado = "La bateria no esta cargando...";
+                strEstado = "No está cargando";
                 break;
             case BatteryManager.BATTERY_STATUS_UNKNOWN:
-                strEstado = "Estado de la bateria desconocido...";
+                strEstado = "Desconocido";
                 break;
             default:
-                strEstado = "Figureseeeeeeeee...";
+                strEstado = "Error";
                 break;
         }
         return strEstado;
     }
 
-    public static String textoNivel() // Terminado
+    public String textoNivel() // Terminado
     {
         return "Nivel de carga: " + String.valueOf(getNivel()) + "%";
     }

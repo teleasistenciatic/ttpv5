@@ -6,144 +6,204 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:layout_marginTop="10sp"
         android:padding="10sp"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:textAppearance="?android:attr/textAppearanceMedium">
+
+        <!-- Barra separadora horizontal -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
 
         <TextView
             android:id="@+id/tvNivel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18sp"
-            android:text="Nivel de carga:"
-            android:textSize="18sp" />
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="@string/tv_nivel_carga"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <!-- android:textSize="18sp" -->
 
         <TextView
             android:id="@+id/tvEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18sp"
-            android:text="Estado de la batería"
-            android:textSize="18sp" />
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="@string/tv_estado_bateria"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/tvReceiver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estado del receiver"
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
+            android:text="@string/tv_estado_receiver"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
+
+        <CheckBox
+            android:id="@+id/cbIniciarAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="@string/cb_activar_al_inicio"
             android:textSize="18sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:padding="10sp">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:padding="10sp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nivel Alerta"
-                    android:textSize="16sp"
-                    />
-
-                <NumberPicker
-                    android:id="@+id/npNivelAlerta"
-                    android:focusable="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true">
-                </NumberPicker>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="1"
-                android:padding="10sp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Frec.Consulta"
-                    android:textSize="16sp" />
-
-                <NumberPicker
-                    android:id="@+id/npIntervalo"
-                    android:focusable="false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true">
-                </NumberPicker>
-            </LinearLayout>
-        </LinearLayout>
+        <!-- Inicio seccion pickers -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="10sp"
-            android:weightSum="1">
+            android:baselineAligned="false">
 
-            <Button
-                android:id="@+id/btnLanzarReceiver"
-                android:layout_width="wrap_content"
+            <!-- Inicio Seccion Picker de Nivel de Alerta -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="18sp"
-                android:text="Lanzar"
-                android:textSize="18sp" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:padding="10sp">
 
-            <Button
-                android:id="@+id/btnPararReceiver"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_nivel_alerta"
+                    android:textSize="16sp"/>
+
+                <NumberPicker
+                    android:id="@+id/npNivelAlerta"
+                    android:focusable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </NumberPicker>
+
+            </LinearLayout>
+            <!-- Fin Seccion Picker de Nivel de Alerta -->
+
+            <!-- Inicio Seccion Picker de la Tasa de Refresco -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Parar"
-                android:textSize="18sp" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:padding="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_tasa_refresco"
+                    android:textSize="16sp" />
+
+                <NumberPicker
+                    android:id="@+id/npTasaRefresco"
+                    android:focusable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </NumberPicker>
+
+            </LinearLayout>
+            <!-- Fin Seccion Picker de Tasa de Refresco -->
 
         </LinearLayout>
+        <!-- Fin seccion pickers -->
 
-        <CheckBox
-            android:id="@+id/cbIniciarAuto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Activar al Inicio"
-            android:textSize="18sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
 
+        <!-- Inicio Seccion Botones de Inicar / Detener / Guardar / Salir -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="10sp">
 
-            <Button
-                android:id="@+id/btnAplicar"
-                android:layout_width="wrap_content"
+            <!-- Inicio Seccion Botones de Inicar / Detener -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="18sp"
-                android:text="Aplicar"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:padding="10sp">
 
-            <Button
-                android:id="@+id/btnSalir"
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnLanzarReceiver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:text="@string/btn_lanzar_receiver"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/btnPararReceiver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_parar_receiver"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+            <!-- Fin Seccion Botones de Inicar / Detener -->
+
+            <!-- Inicio Seccion Botones de Guardar / Salir -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Salir"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:padding="10sp">
+
+                <Button
+                    android:id="@+id/btnAplicar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:text="@string/btn_guardar"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/btnSalir"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_salir"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+            <!-- Fin Seccion Botones de Guardar / Salir -->
 
         </LinearLayout>
+        <!-- Fin Seccion Botones de Inicar / Detener / Guardar / Salir -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#000000"/>
 
     </LinearLayout>
 </ScrollView>

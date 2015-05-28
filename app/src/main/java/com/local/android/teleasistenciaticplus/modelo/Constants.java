@@ -90,6 +90,14 @@ public interface Constants {
     public static final String GPS_ULTIMA_ACTUALIZACION = "gpsultimaactualizacion";
     public static final String GPS_ULTIMA_ACTUALIZACION_FORMATO_NUMERICO = "gpsultimaactualizacionformatonumerico";
 
+    ///////////////////////////////////////////////////////////////////////////
+    // MONITOR BATERIA
+    ///////////////////////////////////////////////////////////////////////////
+    public static final String MONITOR_BATERIA_ARRANCAR_AL_INICIO = "ActivarAlInicio" ;
+    public static final String MONITOR_BATERIA_NIVEL_ALERTA = "NivelAlerta";
+    public static final String MONITOR_BATERIA_TASA_REFRESCO = "Intervalo";
+    public static final String MONITOR_BATERIA_ULTIMO_NIVEL_REGISTRADO = "UltimoNivel";
+
     ////////////////////////////////////////////////
     // ZONA SEGURA
     ////////////////////////////////////////////////

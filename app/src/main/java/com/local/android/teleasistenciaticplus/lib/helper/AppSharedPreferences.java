@@ -308,6 +308,55 @@ public class AppSharedPreferences implements Constants {
 
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    // METODOS PARA EL MONITOR DE BATERIA
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Proporciona una cadena de caracteres con información sobre los datos de batería guardados.
+     * @return CharSequence con la información.
+     */
+    public CharSequence dameCadenaPreferenciasMonitorBateria()
+    {
+        return "ActivarAlInicio = " + getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO) +
+                ", TasaRefresco = " + getPreferenceData(MONITOR_BATERIA_TASA_REFRESCO) +
+                ", NivelAlerta = " + getPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA);
+    }
+
+    public boolean hayDatosBateria()
+    {
+        CharSequence letras = getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO);
+        return (letras.length() > 0 && Boolean.parseBoolean(letras.toString()));
+    }
+
+    public int damePreferenciasBateriaNivelAlerta()
+    {
+        CharSequence letras = getPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA);
+        if(letras.length()>0)
+            return Integer.parseInt(letras.toString());
+        else
+            return 0;
+    }
+
+    public int damePreferenciasBateriaTasaRefresco()
+    {
+        CharSequence letras = getPreferenceData(MONITOR_BATERIA_TASA_REFRESCO);
+        if(letras.length()>0)
+            return Integer.parseInt(letras.toString());
+        else
+            return 0;
+    }
+
+    public boolean damePreferenciasBAteriaActivarAlInicio()
+    {
+        return hayDatosBateria();
+    }
+
+    public void escribeUltimoNivelRegistradoBateria(CharSequence ultimoNivel)
+    {
+        setPreferenceData(MONITOR_BATERIA_ULTIMO_NIVEL_REGISTRADO, ultimoNivel.toString());
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////// METODOS GENERICOS CUALQUIER SHARED PREFERENCES //////////////////
