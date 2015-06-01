@@ -48,14 +48,33 @@ public class actUserOptionsDatosPersonales extends FragmentActivity implements A
 
     }
 
-    /*
     @Override
     public void onBackPressed() {
-        super.onDestroy();
-        actMain.getInstance().finish(); //Si se pulsa el botón de BACK, eliminamos la Stack completa de llamadas
-        finish();
+        //super.onBackPressed();
+        TextView textEditNombre = (TextView) findViewById(R.id.user_options_datos_personales_nombre_text);
+        TextView textEditApellidos = (TextView) findViewById(R.id.user_options_datos_personales_apellidos_text);
+
+        //Sólo se permite la modificación con nombre y apellidos correctos -al menos con un valor-
+        if ((textEditNombre.getText().length() > 0) && (textEditApellidos.getText().length() > 0)) {
+
+            finish();
+
+        } else {
+
+            /////////
+            //Feedback para que introduzca valores de nombre y apellidos
+            /////////
+            AppDialog newFragment = AppDialog.newInstance(AppDialog.tipoDialogo.SIMPLE,1,
+                    getResources().getString(R.string.user_options_datos_personales_edit),
+                    getResources().getString(R.string.user_options_datos_personales_empty_name_surname_edit),
+                    getResources().getString(R.string.close_window),
+                    "sin_uso");
+            newFragment.show(getFragmentManager(),"dialog");
+            //Fin del mensaje de información
+
+        }
+
     }
-    */
 
     /**
      * Se guardan los datos del usuario en las SharedPreferences

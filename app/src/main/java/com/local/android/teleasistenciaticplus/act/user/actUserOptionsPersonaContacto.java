@@ -317,4 +317,26 @@ public class actUserOptionsPersonaContacto extends FragmentActivity implements A
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        boolean hasContactData = new AppSharedPreferences().hasPersonasContacto();
+
+        if (!hasContactData) {
+            /////////
+            //Feedback para que introduzca al menos una persona de contacto
+            /////////
+            AppDialog newFragment = AppDialog.newInstance(AppDialog.tipoDialogo.SIMPLE,1,
+                    getResources().getString(R.string.user_options_contactos_edit),
+                    getResources().getString(R.string.user_options_contactos_empty_edit),
+                    getResources().getString(R.string.close_window),
+                    "sin_uso");
+            newFragment.show(getFragmentManager(),"dialog");
+            //Fin del mensaje de información
+
+        } else {
+            finish();
+        }
+
+    }
 }

@@ -61,7 +61,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="personalizado"
+        android:text="Personalizado"
         android:id="@+id/btn_ducha_personalizado_minutos"
         android:textColor="#ffFFFFFF"
         android:textSize="34dp"
