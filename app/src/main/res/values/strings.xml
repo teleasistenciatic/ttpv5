@@ -174,7 +174,7 @@
     <string name="tv_estado_receiver">Estado del monitor:</string>
     <string name="tv_nivel_alerta">Nivel alerta</string>
     <string name="tv_tasa_refresco">Tasa refresco</string>
-    <string name="btn_lanzar_receiver">Inciciar</string>
+    <string name="btn_lanzar_receiver">Iniciar</string>
     <string name="btn_parar_receiver">Detener</string>
     <string name="cb_activar_al_inicio">Activar al Inicio</string>
     <string name="btn_guardar">Guardar</string>

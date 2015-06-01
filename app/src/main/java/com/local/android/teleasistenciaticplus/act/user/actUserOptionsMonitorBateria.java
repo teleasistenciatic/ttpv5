@@ -3,6 +3,7 @@ package com.local.android.teleasistenciaticplus.act.user;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.NumberPicker;
@@ -35,8 +36,12 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
 
         setContentView(R.layout.layout_user_option_monitor_bateria);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         monitor = actMain.getInstance().getMonitorBateria();
-        AppLog.i("onCreate, options", "He recogido la instancia del monitor y monitor.hayDatos() = " + monitor.hayDatos());
+        AppLog.i("Opciones.onCreate",
+                "He recogido la instancia del monitor y monitor.hayDatos() = " +
+                        monitor.hayDatos());
 
         // Inicializo el layout
         tvEstado = (TextView) findViewById(R.id.tvEstado);
@@ -83,8 +88,8 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         switch (v.getId())
         {
             case R.id.btnLanzarReceiver:
-                monitor.activaReceiver(false, false);
-                monitor.desactivaReceiver(false);
+                /* monitor.activaReceiver(false, false);
+                monitor.desactivaReceiver(false); */
                 monitor.activaReceiver(true, true);
                 break;
             case R.id.btnPararReceiver:
@@ -104,26 +109,26 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         mostrarDatos();
     }
 
-    public static void mostrarDatos() // Terminado
+    public void mostrarDatos() // Terminado
     {
         AppLog.i("mostrarDatos()","getReceiverActivo = " + monitor.getReceiverActivo());
         if (monitor.getReceiverActivo())
         {
             if(monitor.hayDatos()){
                 AppLog.i("mostrarDatos()","hayDatos = " + monitor.hayDatos());
-                tvReceiver.setText("Monitor Batería Activado");
-                tvNivel.setText(monitor.textoNivel());
-                tvEstado.setText(monitor.textoEstado());
+                tvReceiver.setText(this.getText(R.string.tv_estado_receiver) + " Iniciado");
+                tvNivel.setText(this.getText(R.string.tv_nivel_carga) + " " +
+                        String.valueOf(monitor.getNivel()) + "%");
+                tvEstado.setText(this.getText(R.string.tv_estado_bateria) + " " + monitor.textoEstado());
             }
         }
         else
         {
-            tvNivel.setText("Sin recepción de datos");
-            tvEstado.setText("Monitor de batería");
-            tvReceiver.setText("Desactivado");
+            tvReceiver.setText(this.getText(R.string.tv_estado_receiver) + " Detenido");
+            tvNivel.setText(this.getText(R.string.tv_nivel_carga) + " No disponible");
+            tvEstado.setText(this.getText(R.string.tv_estado_bateria) + " No disponible");
         }
     }
 }
-
 
 

@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10sp"
         android:padding="10sp"
         android:scrollbars="vertical"
         android:textAppearance="?android:attr/textAppearanceMedium">
@@ -19,16 +18,26 @@
             android:background="#000000"/>
 
         <TextView
-            android:id="@+id/tvNivel"
+            android:id="@+id/tvReceiver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="10sp"
             android:layout_marginStart="15sp"
             android:layout_marginLeft="15sp"
+            android:text="@string/tv_estado_receiver"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvNivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="15sp"
+            android:layout_marginLeft="15sp"
             android:text="@string/tv_nivel_carga"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
-            <!-- android:textSize="18sp" -->
+        <!-- android:textSize="18sp" -->
 
         <TextView
             android:id="@+id/tvEstado"
@@ -38,16 +47,6 @@
             android:layout_marginStart="15sp"
             android:layout_marginLeft="15sp"
             android:text="@string/tv_estado_bateria"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/tvReceiver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
-            android:layout_marginStart="15sp"
-            android:layout_marginLeft="15sp"
-            android:text="@string/tv_estado_receiver"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <View
@@ -115,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_tasa_refresco"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
 
                 <NumberPicker
                     android:id="@+id/npTasaRefresco"
