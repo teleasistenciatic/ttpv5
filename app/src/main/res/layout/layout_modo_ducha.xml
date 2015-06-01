@@ -18,23 +18,23 @@
     <TextView android:text="@string/modo_ducha_title" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="126dp"
         android:textSize="26dp"
-        android:textColor="#ffFFFFFF" />
+        android:textColor="#ffFFFFFF"
+        android:layout_below="@+id/iconoModoDucha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/modo_ducha_boton_15_minutos"
         android:id="@+id/btn_ducha_15_minutos"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textColor="#ffFFFFFF"
         android:textSize="34dp"
         android:onClick="activarDucha"
-        android:nestedScrollingEnabled="false" />
+        android:nestedScrollingEnabled="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,20 +44,29 @@
         android:textColor="#ffFFFFFF"
         android:textSize="34dp"
         android:onClick="activarDucha"
-        android:layout_above="@+id/btn_ducha_45_minutos"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp" />
+        android:layout_below="@+id/btn_ducha_15_minutos"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/modo_ducha_boton_45_minutos"
         android:id="@+id/btn_ducha_45_minutos"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="45dp"
         android:textColor="#ffFFFFFF"
         android:textSize="34dp"
-        android:onClick="activarDucha" />
+        android:onClick="activarDucha"
+        android:layout_below="@+id/btn_ducha_30_minutos"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="personalizado"
+        android:id="@+id/btn_ducha_personalizado_minutos"
+        android:textColor="#ffFFFFFF"
+        android:textSize="34dp"
+        android:onClick="elegirMinutos"
+        android:layout_below="@+id/btn_ducha_45_minutos"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
