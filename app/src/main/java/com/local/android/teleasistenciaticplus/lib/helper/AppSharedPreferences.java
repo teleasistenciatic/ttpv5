@@ -326,7 +326,12 @@ public class AppSharedPreferences implements Constants {
     public boolean hayDatosBateria()
     {
         CharSequence letras = getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO);
-        return (letras.length() > 0 && Boolean.parseBoolean(letras.toString()));
+        return (letras.length() > 0);
+    }
+
+    public void escribePreferenciasBateriaNivelAlerta(int nivelAlerta)
+    {
+        setPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA, String.valueOf(nivelAlerta));
     }
 
     public int damePreferenciasBateriaNivelAlerta()
@@ -338,6 +343,11 @@ public class AppSharedPreferences implements Constants {
             return 0;
     }
 
+    public void escribePreferenciasBateriaTasaRefresco(int tasaRefresco)
+    {
+        setPreferenceData(MONITOR_BATERIA_TASA_REFRESCO, String.valueOf(tasaRefresco));
+    }
+
     public int damePreferenciasBateriaTasaRefresco()
     {
         CharSequence letras = getPreferenceData(MONITOR_BATERIA_TASA_REFRESCO);
@@ -347,9 +357,15 @@ public class AppSharedPreferences implements Constants {
             return 0;
     }
 
+    public void escribePreferenciasBateriaActivarAlInicio(boolean activarAlInicio)
+    {
+        setPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO, String.valueOf(activarAlInicio));
+    }
+
     public boolean damePreferenciasBAteriaActivarAlInicio()
     {
-        return hayDatosBateria();
+        return (getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO).length() > 0 &&
+            Boolean.parseBoolean(getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO)));
     }
 
     public void escribeUltimoNivelRegistradoBateria(CharSequence ultimoNivel)

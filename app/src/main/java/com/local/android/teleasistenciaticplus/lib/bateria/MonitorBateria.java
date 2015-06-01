@@ -124,13 +124,13 @@ public class MonitorBateria
     private void cargaPreferencias() // Termminado
     {
         // Saco el nivel de alerta y la opción de si se debe iniciar el receiver con la actividad.
-        AppSharedPreferences miSharedPref = new AppSharedPreferences();
-        if(miSharedPref.hayDatosBateria())
+        AppSharedPreferences prefMonitorBateria = new AppSharedPreferences();
+        if(prefMonitorBateria.hayDatosBateria())
         {
             // Hay valores guardados, los leo
-            nivelAlerta = miSharedPref.damePreferenciasBateriaNivelAlerta();
-            tasaRefresco = miSharedPref.damePreferenciasBateriaTasaRefresco();
-            activarAlInicio = miSharedPref.damePreferenciasBAteriaActivarAlInicio();
+            nivelAlerta = prefMonitorBateria.damePreferenciasBateriaNivelAlerta();
+            tasaRefresco = prefMonitorBateria.damePreferenciasBateriaTasaRefresco();
+            activarAlInicio = prefMonitorBateria.damePreferenciasBAteriaActivarAlInicio();
         }
         else
         {
@@ -144,13 +144,11 @@ public class MonitorBateria
     private void guardaPreferencias() // Terminado
     {
         // Creo un editor para guardar las preferencias.
-        AppSharedPreferences miSharedPref = new AppSharedPreferences();
-        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_NIVEL_ALERTA,
-                Integer.toString(nivelAlerta));
-        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_TASA_REFRESCO,
-                Integer.toString(tasaRefresco));
-        miSharedPref.setPreferenceData(AppSharedPreferences.MONITOR_BATERIA_ARRANCAR_AL_INICIO,
-                Boolean.toString(activarAlInicio));
+        AppSharedPreferences prefMonitorBateria = new AppSharedPreferences();
+        prefMonitorBateria.escribePreferenciasBateriaNivelAlerta(getNivelAlerta());
+        prefMonitorBateria.escribePreferenciasBateriaTasaRefresco(getTasaRefresco());
+        prefMonitorBateria.escribePreferenciasBateriaActivarAlInicio(getActivarAlInicio());
+
         Toast.makeText(GlobalData.getAppContext(), "Configuración Guardada", Toast.LENGTH_SHORT).show();
         AppLog.i(TAG + ".guardaPreferencias()","Preferencias guardadas con valores: " +
                 new AppSharedPreferences().dameCadenaPreferenciasMonitorBateria());
