@@ -53,7 +53,7 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
 
         npNivelAlerta = (NumberPicker) findViewById(R.id.npNivelAlerta);
         npNivelAlerta.setMinValue(20);
-        npNivelAlerta.setMaxValue(50);
+        npNivelAlerta.setMaxValue(99);
         npNivelAlerta.setWrapSelectorWheel(false);
         npNivelAlerta.setValue(monitor.getNivelAlerta());
 

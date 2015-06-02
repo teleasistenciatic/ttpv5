@@ -35,7 +35,7 @@ public class SmsLauncher {
         //Generar el texto
         for (int i = 0; i <= 5; i++) {
 
-            if  ( (i == 1) || (i == 3) || (i == 5) ) {
+            if  ( (i == 1) || (i == 3) || (i == 5) || (i == 6)) {
                 //Envio del SMS
                 // Se genera un aviso u otro en base a la clase que lo llama
                 String textoSms = null;
@@ -84,18 +84,28 @@ public class SmsLauncher {
 
                         //textoSms= new SmsTextGenerator().getTextGenerateSmsSalidaZonaSegura( telefonos[i] );
                         break;
+
+                    case SINBATERIA:
+                        /////////////////////////////////////////////////////
+                        StatsFileLogTextGenerator.write("aviso", "sin bateria");
+                        /////////////////////////////////////////////////////
+
+                        textoSms= new SmsTextGenerator().getTextGenerateSmsBateriaAgotada( telefonos[i] );
+                        break;
+
                 }
 
                 ///////////////////////////////////////////////////////////////////////
-                // Sólo se envía el SMS en los modos ducha,aviso y tranquilidad
+                // Sólo se envía el SMS en los modos ducha, aviso, tranquilidad y batería
                 // Eliminar tras el pilotaje
                 switch (aviso) {
 
                     case DUCHANOATENDIDA:
                     case AVISO:
                     case IAMOK:
+                    case SINBATERIA:
 
-                        //Envío "fisico" del SMS
+                        AppLog.i("TAG","Envío \"fisico\" del SMS");
                         new SmsDispatcher( telefonos[i], textoSms).send();
                         break;
                 }

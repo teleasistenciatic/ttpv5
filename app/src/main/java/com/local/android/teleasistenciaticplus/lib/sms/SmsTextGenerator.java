@@ -35,6 +35,12 @@ public class SmsTextGenerator {
 
     }
 
+    /**
+     * Genera el texto de un SMS que contiene el aviso de que el usuario se encuentra bien.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
     public String getTextGenerateSmsIamOK(String phoneNumberDestination) {
         // Andres García comunica que se encuentra bien a las 12:00 del día 12/03/2015 en la posición GPS
 
@@ -47,6 +53,12 @@ public class SmsTextGenerator {
         return smsBodyText;
     }
 
+    /**
+     * Genera el texto de un SMS de un aviso genérico.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
     public String getTextGenerateSmsAviso(String phoneNumberDestination) {
         // Andres García comunica que se encuentra bien a las 12:00 del día 12/03/2015
 
@@ -58,6 +70,12 @@ public class SmsTextGenerator {
         return smsBodyText;
     }
 
+    /**
+     * Genera el texto de un SMS que contiene el aviso de alerta de modo ducha no desactivado.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
     public String getTextGenerateSmsDucha(String phoneNumberDestination) {
 
         String smsBodyText = nombreApp + ": " + nombre + " " + apellidos + " genera aviso de ducha";
@@ -70,6 +88,12 @@ public class SmsTextGenerator {
 
     }
 
+    /**
+     * Genera el texto de un SMS que contiene un aviso de que el sistema ha detectado una caída.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
     public String getTextGenerateSmsCaida(String phoneNumberDestination){
         String smsBodyText = nombreApp + ": " + nombre + " " + apellidos + " genera aviso de caida";
 
@@ -80,8 +104,30 @@ public class SmsTextGenerator {
         return smsBodyText;
     }
 
+    /**
+     * Genera el texto de un SMS que contiene un aviso de salida de la Zona Segura.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
     public String getTextGenerateSmsSalidaZonaSegura(String phoneNumberDestination){
         String smsBodyText = nombreApp + ": " + nombre + " " + apellidos + " genera aviso de salida de zona segura";
+
+        smsBodyText = addDateText(smsBodyText);
+        smsBodyText = addGpsText(smsBodyText);
+        smsBodyText = addDebugText(smsBodyText);
+
+        return smsBodyText;
+    }
+
+    /**
+     * Genera el texto de un SMS que contiene el aviso de batería a punto de agotarse.
+     * @param phoneNumberDestination El número de teléfono del destinatario del SMS. No usado en la versión actual.
+     * @return Objeto String con el texto generado.
+     */
+    // TODO phoneNumberDestination
+    public String getTextGenerateSmsBateriaAgotada(String phoneNumberDestination) {
+        String smsBodyText = nombreApp + ": " + nombre + " " + apellidos + " genera aviso de bateria agotada";
 
         smsBodyText = addDateText(smsBodyText);
         smsBodyText = addGpsText(smsBodyText);

@@ -17,9 +17,12 @@ import com.local.android.teleasistenciaticplus.R;
 import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.local.android.teleasistenciaticplus.lib.sms.SmsTextGenerator;
 import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.local.android.teleasistenciaticplus.modelo.GlobalData;
+import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
 
 import static com.local.android.teleasistenciaticplus.modelo.Constants.*;
 
@@ -55,12 +58,32 @@ public class MonitorBateria
             @Override
             public void onReceive( final Context context, final Intent intent )
             {
-                if(intent.getAction().equals(Intent.ACTION_POWER_CONNECTED) ||
-                        intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED))
+                if(intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)
+                        || intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED))
                 {
                     notificado = false;
                 }
-                else
+
+                // Si es la accion del Intent es la comunicación de batería baja, primero comprueba
+                // que no sea la alerta del 15%, y si no lo es manda un sms indiando que la batería
+                // está a punto de de agotarse.
+                if(intent.getAction().equals(Intent.ACTION_BATTERY_LOW))
+                {
+                    if(getNivel()<=5) {
+                        String palabras = "¡¡¡Enviado SMS de aviso de Batería Descargada!!!";
+                        SintetizadorVoz loro = actMain.getInstance().getSintetizador();
+                        loro.hablaPorEsaBoquita(palabras);
+                        new SmsLauncher(TipoAviso.SINBATERIA).generateAndSend();
+                        Toast.makeText(GlobalData.getAppContext(), "Enviado SMS Batería Descargada",
+                                Toast.LENGTH_LONG).show();
+                        AppLog.i(TAG + ".onReceive", "Enviado un SMS de aviso por batería agotada");
+                    }
+                }
+
+                // Acción a realizar cuando llega un evento de cambio de estado de batería. Se pide
+                // información con la frecuencia establecida en la configuración. (Muchas peticiones,
+                // mucho gasto...)
+                if(intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED))
                 {
                     // Con esta condición la tasa de refresco mínimo de comprobaciones es uno cada
                     // dos eventos si tasaRefresco es 0.
@@ -75,7 +98,7 @@ public class MonitorBateria
                         // Extraigo los datos de nivel de carga y estado de batería del intent recibido.
                         nivel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         estado = intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
-                        AppLog.i(TAG + ".onReceive()", "Recogido nivel = " + nivel + " y estado = " + estado);
+                        AppLog.i(TAG + ".onReceive()", "Recogido nivel = " + getNivel() + " y estado = " + textoEstado());
 
                         if ( STATS_LOG_BATERIA )
 						{
@@ -154,6 +177,9 @@ public class MonitorBateria
                 new AppSharedPreferences().dameCadenaPreferenciasMonitorBateria());
     }
 
+    /**
+     * Guarda el nivel de carga de batería más reciente.
+     */
     private void guardaUltimoNivel()
     {
         AppSharedPreferences miSharedPref = new AppSharedPreferences();
@@ -161,7 +187,11 @@ public class MonitorBateria
         AppLog.i(TAG + "guardaUltimoNivel()", "Guardado el último nivel de batería leído: " + nivel);
     }
 
-
+    /**
+     *
+     * @param ahorrar
+     * @param tostar
+     */
     public void activaReceiver(boolean ahorrar, boolean tostar) // Terminado
     {
         if ( STATS_LOG_BATERIA ) {
@@ -192,6 +222,7 @@ public class MonitorBateria
             IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
             intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
             intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+            intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
             GlobalData.getAppContext().registerReceiver(mBatInfoReceiver, intentFilter);
 
             setReceiverActivo(true);

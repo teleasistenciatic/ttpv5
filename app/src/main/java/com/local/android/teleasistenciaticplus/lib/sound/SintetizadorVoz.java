@@ -44,12 +44,16 @@ public class SintetizadorVoz implements OnInitListener
         context.startActivity(installIntent);
     }
 
+    /**
+     * Método que convierte a voz el texto recibido.
+     * @param text Texto a ser convertido en voz.
+     */
     public void hablaPorEsaBoquita(String text)
     {
         if (listoParaHablar)
             sintetizador.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         else
-            Log.i("VOZ", "Tas quedao con las ganas de oirme hablar, pringao");
+            Log.i("VOZ", "Tas quedao con las ganas de oirme hablar, pero aun no estaba listo");
     }
 
     public void finaliza()
