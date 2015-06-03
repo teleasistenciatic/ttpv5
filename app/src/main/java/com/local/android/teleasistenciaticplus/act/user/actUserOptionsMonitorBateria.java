@@ -63,8 +63,10 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         npNivelAlerta.setValue(monitor.getNivelAlerta());
 
         npIntervalo = (NumberPicker) findViewById(R.id.npTasaRefresco);
-        npIntervalo.setMinValue(0); // Pide el estado de la batería al recibir cada evento.
-        npIntervalo.setMaxValue(10); // Pide el estado de la batería al recibir 500 eventos.
+        npIntervalo.setMinValue(0);
+        npIntervalo.setMaxValue(8);
+        npIntervalo.setDisplayedValues(new String[] {"MAX","-","ALTO","-","MED","-","BAJO","-","MIN"});
+        npIntervalo.setWrapSelectorWheel(false);
         npIntervalo.setValue(monitor.getTasaRefresco());
 
         btnLanzarReceiver = (Button) findViewById(R.id.btnLanzarReceiver);

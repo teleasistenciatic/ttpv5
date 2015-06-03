@@ -89,7 +89,7 @@ public class MonitorBateria
                     // dos eventos si tasaRefresco es 0.
                     // El contador se tiene en cuenta la tasa de refresco solo si powerSafe es true,
                     // si no pasa al else.
-                    if(powerSafe && contador < tasaRefresco && hayDatos())
+                    if(powerSafe && contador < (tasaRefresco * 2) && hayDatos())
                     {
                         contador++;
                     }
@@ -160,7 +160,7 @@ public class MonitorBateria
             // No hay valores guardados, pongo valores por defecto.
             activarAlInicio = false;
             nivelAlerta = 30;
-            tasaRefresco = 6;
+            tasaRefresco = 4;
         }
     }
 
