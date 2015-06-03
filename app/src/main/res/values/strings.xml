@@ -173,7 +173,7 @@
     <string name="tv_nivel_carga">Nivel de carga:</string>
     <string name="tv_estado_bateria">Estado de la batería:</string>
     <string name="tv_estado_receiver">Estado del monitor:</string>
-    <string name="tv_nivel_alerta">Nivel alerta</string>
+    <string name="tv_nivel_alerta">Nivel alerta %</string>
     <string name="tv_tasa_refresco">Tasa refresco</string>
     <string name="btn_lanzar_receiver">Iniciar</string>
     <string name="btn_parar_receiver">Detener</string>
@@ -182,6 +182,7 @@
     <string name="btn_salir">Salir</string>
     <string name="menu_user_options_monitor_bateria_guardar">Guardar Configuración</string>
     <string name="menu_user_options_monitor_bateria_salir">Salida</string>
+    <string name="txt_cuerpo_notificacion_bateria">AVISO BATERIA</string>
 
     <!-- fin Relacionadas Monitor Bateria -->
 

@@ -312,7 +312,7 @@ public class MonitorBateria
                     .setSmallIcon(R.drawable.logo_transparente_1x1)
                     .setContentText("Nivel de carga: " + String.valueOf(nivel) + "%")
                             // .setContentInfo(creaCadenaEstado(estado))
-                    .setContentTitle("POCA BATERIA")
+                    .setContentTitle("AVISO BATERIA")
                     .setLargeIcon(BitmapFactory.decodeResource(GlobalData.getAppContext().getResources(),
                             R.drawable.logo_transparente_1x1))
                     .setAutoCancel(true)
