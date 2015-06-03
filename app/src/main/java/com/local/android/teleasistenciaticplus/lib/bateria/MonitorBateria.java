@@ -188,9 +188,9 @@ public class MonitorBateria
     }
 
     /**
-     *
-     * @param ahorrar
-     * @param tostar
+     * Método que registra un receiver dinámicamente para que entre en funcionamiento.
+     * @param ahorrar Bandera que indica si activar el modo de ahorro de energía.
+     * @param tostar Bandera que indica si lanzar un Toast al registrar el receiver.
      */
     public void activaReceiver(boolean ahorrar, boolean tostar) // Terminado
     {

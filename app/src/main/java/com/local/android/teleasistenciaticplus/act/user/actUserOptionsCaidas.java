@@ -28,6 +28,7 @@ public class actUserOptionsCaidas extends Activity {
         /////////////////////////////////////////////////////
 
         setContentView(R.layout.activity_act_user_options_caidas);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         AppSharedPreferences userSharedPreferences = new AppSharedPreferences();
 

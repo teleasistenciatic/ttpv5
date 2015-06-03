@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffe3e9e3"
     tools:context=".MainActivity">
 
     <fragment xmlns:map="http://schemas.android.com/apk/res-auto"

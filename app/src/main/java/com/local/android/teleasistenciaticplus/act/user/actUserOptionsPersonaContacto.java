@@ -28,6 +28,7 @@ public class actUserOptionsPersonaContacto extends FragmentActivity implements A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_user_options_persona_contacto);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         /////////////////////////////////////////////////////
         StatsFileLogTextGenerator.write("configuracion", "personas contacto");

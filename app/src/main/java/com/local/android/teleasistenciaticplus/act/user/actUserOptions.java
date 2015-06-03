@@ -29,6 +29,8 @@ public class actUserOptions extends Activity {
 
         /// Layout
         setContentView(R.layout.layout_user_options_main);
+        getActionBar().setIcon(R.drawable.config_wheel);
+
         /// Listview
         final ListView listView = (ListView) findViewById(R.id.user_options_listView);
         /// String para el ListView

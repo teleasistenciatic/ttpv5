@@ -169,6 +169,7 @@
     <!-- Fin Widget -->
 
     <!-- Relacionados con Monitor Bateria -->
+    <string name="tv_user_options_monitor_bateria_info_estado">Información de Estado</string>
     <string name="tv_nivel_carga">Nivel de carga:</string>
     <string name="tv_estado_bateria">Estado de la batería:</string>
     <string name="tv_estado_receiver">Estado del monitor:</string>
@@ -179,6 +180,9 @@
     <string name="cb_activar_al_inicio">Activar al Inicio</string>
     <string name="btn_guardar">Guardar</string>
     <string name="btn_salir">Salir</string>
+    <string name="menu_user_options_monitor_bateria_guardar">Guardar Configuración</string>
+    <string name="menu_user_options_monitor_bateria_salir">Salida</string>
+
     <!-- fin Relacionadas Monitor Bateria -->
 
 </resources>

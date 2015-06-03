@@ -2,6 +2,8 @@ package com.local.android.teleasistenciaticplus.act.user;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,7 +21,7 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
 {
     private static TextView tvEstado, tvNivel, tvReceiver;
     private static NumberPicker npNivelAlerta, npIntervalo;
-    private static Button btnLanzarReceiver, btnPararReceiver, btnAplicar, btnSalir;
+    private static Button btnLanzarReceiver, btnPararReceiver;
     private static CheckBox cbIniciarAuto;
     // Pillo el monitor de batería declarado en la actividad principal.
     private static MonitorBateria monitor;
@@ -37,6 +39,9 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         setContentView(R.layout.layout_user_option_monitor_bateria);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getActionBar().setIcon(R.drawable.config_wheel);
+        AppLog.i("actUserOptionsMonitorBateria", "Color del titulo: " + getTitle() + ", es: " + getTitleColor());
+        // getWindow().setNavigationBarColor(0xe3e9e3);
 
         monitor = actMain.getInstance().getMonitorBateria();
         AppLog.i("Opciones.onCreate",
@@ -53,7 +58,7 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
 
         npNivelAlerta = (NumberPicker) findViewById(R.id.npNivelAlerta);
         npNivelAlerta.setMinValue(20);
-        npNivelAlerta.setMaxValue(99);
+        npNivelAlerta.setMaxValue(50);
         npNivelAlerta.setWrapSelectorWheel(false);
         npNivelAlerta.setValue(monitor.getNivelAlerta());
 
@@ -71,14 +76,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         cbIniciarAuto = (CheckBox) findViewById(R.id.cbIniciarAuto);
         cbIniciarAuto.setChecked(monitor.getActivarAlInicio());
 
-        btnAplicar = (Button) findViewById(R.id.btnAplicar);
-        btnAplicar.setOnClickListener(this);
-
-        btnSalir = (Button) findViewById(R.id.btnSalir);
-        btnSalir.setFocusable(true);
-        btnSalir.requestFocus();
-        btnSalir.setOnClickListener(this);
-
         // if(monitor.getReceiverActivo())
         //    mostrarDatos();
     }
@@ -94,16 +91,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
                 break;
             case R.id.btnPararReceiver:
                 monitor.desactivaReceiver(true);
-                break;
-            case R.id.btnAplicar:
-                // Actualizo el valor de los atributos afectados por cambios.
-                monitor.setNivelAlerta(npNivelAlerta.getValue());
-                monitor.setTasaRefresco(npIntervalo.getValue());
-                monitor.setActivarAlInicio(cbIniciarAuto.isChecked());
-                monitor.commit();
-                break;
-            case R.id.btnSalir:
-                finish();
                 break;
         }
         mostrarDatos();
@@ -129,6 +116,37 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
             tvEstado.setText(this.getText(R.string.tv_estado_bateria) + " No disponible");
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_act_user_options_monitor_bateria, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId())
+        {
+            case R.id.menu_user_options_monitor_bateria_guardar:
+                // Actualizo el valor de los atributos afectados por cambios.
+                monitor.setNivelAlerta(npNivelAlerta.getValue());
+                monitor.setTasaRefresco(npIntervalo.getValue());
+                monitor.setActivarAlInicio(cbIniciarAuto.isChecked());
+                monitor.commit();
+                this.mostrarDatos();
+                break;
+            case R.id.menu_user_options_monitor_bateria_salida:
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
 
 

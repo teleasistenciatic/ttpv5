@@ -33,6 +33,7 @@ public class actUserOptionsZonaSegura extends Activity implements ServiceConnect
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_user_options_zona_segura);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         /////////////////////////////////////////////////////
         StatsFileLogTextGenerator.write("configuracion", "zona segura");

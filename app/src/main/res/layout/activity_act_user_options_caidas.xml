@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#ffe3e9e3"
     tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsCaidas">
 
     <TextView android:text="@string/caidas_texto" android:layout_width="wrap_content"

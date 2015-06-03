@@ -28,6 +28,7 @@ public class actUserOptionsDatosPersonales extends FragmentActivity implements A
         /////////////////////////////////////////////////////
 
         setContentView(R.layout.layout_user_options_datos_personales);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         //Leemos los valores por defecto que hay guardados en el SharedPreferences
         String[] datosPersonales = new AppSharedPreferences().getUserData();

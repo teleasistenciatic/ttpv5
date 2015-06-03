@@ -15,6 +15,7 @@ public class actUserOptionsPilotaje extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_user_option_pilotaje);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         TextView mensajeDisponibleText = (TextView) findViewById(R.id.user_options_pilotaje_mensajes_disponibles_text);
         String mensajesEnviados = new AppSharedPreferences().getSmsEnviados();

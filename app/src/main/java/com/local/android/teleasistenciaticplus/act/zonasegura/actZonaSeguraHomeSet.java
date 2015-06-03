@@ -44,6 +44,7 @@ public class actZonaSeguraHomeSet extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_act_zonasegura_sethome);
+        getActionBar().setIcon(R.drawable.config_wheel);
 
         /** Manejador de Mapa */
         /** Sets a callback object which will be triggered when the GoogleMap instance is ready to be used. */
