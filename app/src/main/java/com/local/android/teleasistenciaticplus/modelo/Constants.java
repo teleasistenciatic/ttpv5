@@ -43,7 +43,7 @@ public interface Constants {
     public static final long MEMORY_DIVIDER = 1048576L; //BytestoMegabytes
     public static final boolean SHOW_ANIMATION = true; //Decide si se realizan transiciones entre actividades o fragmentos
     public static final boolean PLAY_SOUNDS = true; //Decide si se reproducen sonidos en la aplicación
-    public static final boolean PLAY_BIENVENIDO_SOUND = false; //Decide si se reproducen el infernal sonido de bienvenida
+    public static final boolean PLAY_BIENVENIDO_SOUND = true; //Decide si se reproducen el infernal sonido de bienvenida
 
         /*
         1024 bytes      == 1 kilobyte
@@ -112,8 +112,8 @@ public interface Constants {
     public static final int MAX_ZONA_SEGURA_RADIO = 5000;
     public static final float DEFAULT_MAP_ZOOM = 15;
 
-    public static final long GPS_READ_INTERVAL = 1000 * 10; //60*1000 para produccion
-    public static final long GPS_READ_FASTEST_INTERVAL = 1000 * 5; //5*1000 para produccion
+    public static final long GPS_READ_INTERVAL = 1000 * 60; //60*1000 para produccion
+    public static final long GPS_READ_FASTEST_INTERVAL = 1000 * 30; //10*1000 para produccion
 
     ////////////////////////////////////////////////
     // LIMITE DE CARACTERES DE CADENAS

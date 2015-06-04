@@ -1,126 +1,130 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#ffe3e9e3"
-    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffe3e9e3"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto">
 
 
-    <TextView
-        android:id="@+id/user_options_persona_contacto_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/user_options_persona_contacto_label"></TextView>
+        <TextView
+            android:id="@+id/user_options_persona_contacto_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_options_persona_contacto_label"></TextView>
 
-    <!-- Linea -->
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        <!-- Linea -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
-    <!-- Primera persona -->
-
-
-    <TextView
-        android:id="@+id/user_options_persona_contacto_name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text=""
-        android:textSize="10sp"></TextView>
-
-    <EditText
-        android:id="@+id/user_options_persona_contacto_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:focusable="false"
-        android:onClick="user_options_persona_contacto_text_click_1"
-        android:text="Persona de contacto"
-
-        android:textSize="20sp"></EditText>
-
-    <ImageButton
-        android:id="@+id/button_user_options_persona_contacto_1_borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
-        android:onClick="user_options_persona_contacto_button_erase" />
+        <!-- Primera persona -->
 
 
-    <!-- Segunda persona de contacto -->
-    <TextView
-        android:id="@+id/user_options_persona_contacto_name_text_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10sp"></TextView>
+        <TextView
+            android:id="@+id/user_options_persona_contacto_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=""
+            android:textSize="10sp"></TextView>
 
-    <EditText
-        android:id="@+id/user_options_persona_contacto_text_1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:focusable="false"
-        android:onClick="user_options_persona_contacto_text_click_2"
-        android:text="Persona de contacto"
-        android:textSize="20sp"></EditText>
+        <EditText
+            android:id="@+id/user_options_persona_contacto_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:onClick="user_options_persona_contacto_text_click_1"
+            android:text="Persona de contacto"
 
-    <ImageButton
-        android:id="@+id/button_user_options_persona_contacto_2_borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
-        android:onClick="user_options_persona_contacto_button_erase" />
+            android:textSize="20sp"></EditText>
 
-    <!-- Tercera persona de contacto -->
-    <TextView
-        android:id="@+id/user_options_persona_contacto_name_text_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10sp"></TextView>
+        <ImageButton
+            android:id="@+id/button_user_options_persona_contacto_1_borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:onClick="user_options_persona_contacto_button_erase" />
 
-    <EditText
-        android:id="@+id/user_options_persona_contacto_text_2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:focusable="false"
-        android:onClick="user_options_persona_contacto_text_click_3"
-        android:text="Persona de contacto"
-        android:textSize="20sp"></EditText>
 
-    <ImageButton
-        android:id="@+id/button_user_options_persona_contacto_3_borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
-        android:onClick="user_options_persona_contacto_button_erase" />
+        <!-- Segunda persona de contacto -->
+        <TextView
+            android:id="@+id/user_options_persona_contacto_name_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="10sp"></TextView>
 
-    <TextView
-        android:id="@+id/user_options_contacto_no_vacio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/user_options_contacto_no_vacio"
-        android:textColor="@color/grey">
-    </TextView>
+        <EditText
+            android:id="@+id/user_options_persona_contacto_text_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:onClick="user_options_persona_contacto_text_click_2"
+            android:text="Persona de contacto"
+            android:textSize="20sp"></EditText>
 
-    <Button
-        android:id="@+id/user_options_persona_contacto_salir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:onClick="user_options_persona_contacto_salir_button"
-        android:text="Guardar y salir" />
+        <ImageButton
+            android:id="@+id/button_user_options_persona_contacto_2_borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:onClick="user_options_persona_contacto_button_erase" />
 
-</LinearLayout>
+        <!-- Tercera persona de contacto -->
+        <TextView
+            android:id="@+id/user_options_persona_contacto_name_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="10sp"></TextView>
+
+        <EditText
+            android:id="@+id/user_options_persona_contacto_text_2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:onClick="user_options_persona_contacto_text_click_3"
+            android:text="Persona de contacto"
+            android:textSize="20sp"></EditText>
+
+        <ImageButton
+            android:id="@+id/button_user_options_persona_contacto_3_borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:onClick="user_options_persona_contacto_button_erase" />
+
+        <TextView
+            android:id="@+id/user_options_contacto_no_vacio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/user_options_contacto_no_vacio"
+            android:textColor="@color/grey"></TextView>
+
+        <Button
+            android:id="@+id/user_options_persona_contacto_salir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:onClick="user_options_persona_contacto_salir_button"
+            android:text="Guardar y salir" />
+
+    </LinearLayout>
+</ScrollView>

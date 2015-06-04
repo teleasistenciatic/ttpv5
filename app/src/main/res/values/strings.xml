@@ -142,7 +142,7 @@
 
     <!-- Modo ducha -->
         <string name="title_activity_act_modo_ducha">Modo Ducha</string>
-        <string name="modo_ducha_title">Elija el tiempo de la Ducha</string>
+        <string name="modo_ducha_title">Elija el tiempo de la ducha</string>
         <string name="modo_ducha_boton_15_minutos">15 minutos</string>
         <string name="modo_ducha_boton_30_minutos">30 minutos</string>
         <string name="modo_ducha_boton_45_minutos">45 minutos</string>
