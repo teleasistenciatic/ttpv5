@@ -11,7 +11,7 @@ public interface Constants {
     // VALORES DE DESARROLLO DE LA APLICACIÓN
     ////////////////////////////////////////////////
 
-    public static final DebugLevel DEBUG_LEVEL = DebugLevel.DEBUG;
+    public static final DebugLevel DEBUG_LEVEL = DebugLevel.PRODUCCION;
     public static final boolean FAKE_SMS = false;
     public static final int LIMITE_CARACTERS_SMS = 159;
 
