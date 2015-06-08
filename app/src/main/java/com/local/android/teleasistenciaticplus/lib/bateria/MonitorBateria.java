@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.os.BatteryManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.local.android.teleasistenciaticplus.R;
@@ -62,6 +61,9 @@ public class MonitorBateria
     private int contador;
     /** Etiqueta para identificar las líneas de monitor de bateria en el LOG */
     private static String TAG = "MonitorBateria";
+    /** Almacena el último intent de cambio de estado de batería que ha recogido el BroadcastReceiver */
+    private Intent ultimoIntentRecibido = null;
+
 
     /**
      * Constructor de la clase sin parámetros.
@@ -88,6 +90,7 @@ public class MonitorBateria
             public void onReceive( final Context context, final Intent intent )
             {
                 String accion = intent.getAction();
+                AppLog.i(TAG + ".onReceive", "Evento recibido: " + accion);
                 if(accion.equals(Intent.ACTION_POWER_CONNECTED)
                         || accion.equals(Intent.ACTION_POWER_DISCONNECTED))
                 {
@@ -101,12 +104,12 @@ public class MonitorBateria
                 {
                     // Mando mensaje de texto
                     String palabras = "Enviado SMS de aviso de Batería Descargada.";
+                    AppLog.i(TAG + ".onReceive()", "Enviando un SMS de aviso por batería agotada");
                     SintetizadorVoz loro = actMain.getInstance().getSintetizador();
                     loro.hablaPorEsaBoquita(palabras);
                     new SmsLauncher(TipoAviso.SINBATERIA).generateAndSend();
                     Toast.makeText(GlobalData.getAppContext(), "Enviado SMS Batería Descargada",
                             Toast.LENGTH_LONG).show();
-                    AppLog.i(TAG + ".onReceive", "Enviado un SMS de aviso por batería agotada");
                 }
 
                 // Acción a realizar cuando llega un evento de cambio de estado de batería. Se pide
@@ -114,6 +117,9 @@ public class MonitorBateria
                 // mucho gasto...)
                 if(accion.equals(Intent.ACTION_BATTERY_CHANGED))
                 {
+                    // Guardo el intent para cuando nos demanden los niveles llamando a los métodos
+                    // oportunos.
+                    ultimoIntentRecibido = intent;
                     // Con esta condición la tasa de refresco mínimo de comprobaciones es uno cada
                     // dos eventos si tasaRefresco es 0.
                     // El contador se tiene en cuenta la tasa de refresco solo si powerSafe es true,
@@ -127,7 +133,8 @@ public class MonitorBateria
                         // Extraigo los datos de nivel de carga y estado de batería del intent recibido.
                         nivel = (byte)intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
                         estado = (byte)intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
-                        AppLog.i(TAG + ".onReceive()", "Recogido nivel = " + getNivel() + " y estado = " + textoEstado());
+                        AppLog.i(TAG + ".onReceive()", "Recogido nivel = " + getNivel() +
+                                " y estado = " + textoEstado());
 
                         if ( STATS_LOG_BATERIA )
 						{
@@ -145,7 +152,7 @@ public class MonitorBateria
                         if ((nivel <= nivelAlerta) && estado != BatteryManager.BATTERY_STATUS_CHARGING)
                             // Lanzo una notificación
                             notificacion();
-
+                        
                         // Reinicio el contador
                         contador = 0;
                     }
@@ -163,7 +170,7 @@ public class MonitorBateria
         };
 
         // Hago una primera lectura de datos de batería. Para ello activo el receiver y seguidamente
-        // pido desactivarlo, cosa que no hará hasta que reciba datos
+        // pido desactivarlo, cosa que no hará hasta que reciba datos.
         activaReceiver(false, false);
         desactivaReceiver(false);
 
@@ -260,10 +267,10 @@ public class MonitorBateria
             // Primero establezco el tasaRefresco de refresco a 0 para que lea inmediatamente la
             // Registro el receiver para activarlo con el filtro de eventos de cambio de bateria,
             // cargador conectado, y cargador desconectado.
-            IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+            IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
             intentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
             intentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-            intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
+            intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
             GlobalData.getAppContext().registerReceiver(mBatInfoReceiver, intentFilter);
 
             setReceiverActivo(true);
@@ -358,16 +365,22 @@ public class MonitorBateria
     }
 
     /**
-     * Devuelve el nivel de carga de la batería en tanto por ciento
+     * Devuelve el nivel de carga de la batería en tanto por ciento.
      * @return El nivel de carga.
      */
-    public int getNivel() { return nivel; }
+    public int getNivel() 
+    {
+        return ultimoIntentRecibido.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+    }
 
     /**
      * Devuelve el valor numérico del estado de la batería.
      * @return El valor numérico del estado.
      */
-    public int getEstado() { return estado; }
+    public int getEstado()
+    { 
+        return ultimoIntentRecibido.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
+    }
 
     /**
      * Devuelve el estado del receiver, activo o inactivo
@@ -430,10 +443,9 @@ public class MonitorBateria
      * @return True si se han recogido, false en otro caso.
      */
     public boolean hayDatos() {
-        // Devuelvo true si estado != 0, que significa que ha leido algo
-        return (nivel != 0 && estado != 0);
+        return ultimoIntentRecibido!=null;
     }
-
+    
     /**
      * Lanza una notificación del sistema, alertando de que la batería está por debajo del nivel de
      * Alerta. Cuando esto ocurre además de la notificación se envía un SMS un falimiar.
@@ -466,7 +478,7 @@ public class MonitorBateria
             notif.defaults |= Notification.DEFAULT_VIBRATE;
             //notif.defaults |= Notification.DEFAULT_SOUND;
             notificador.notify(idNotificacion, notif);
-            Log.i("Notificador", "Notificacion lanzada con id = " + idNotificacion);
+            AppLog.i("Notificador", "Notificacion lanzada con id = " + idNotificacion);
             notificado = true;
 
             // Lanzo también el nivel de batería por voz.
@@ -476,8 +488,6 @@ public class MonitorBateria
             /////////////////////////////////////////////////////
             StatsFileLogTextGenerator.write("bateria", "notificacion bateria baja");
             /////////////////////////////////////////////////////
-
-
         }
     }
 
@@ -518,7 +528,7 @@ public class MonitorBateria
      */
     public String textoNivel() // Terminado
     {
-        return "Nivel de carga: " + String.valueOf(getNivel()) + "%";
+        return String.valueOf(getNivel()) + "%";
     }
 
 }

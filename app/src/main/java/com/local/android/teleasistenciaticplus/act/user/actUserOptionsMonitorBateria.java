@@ -106,8 +106,7 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
             if(monitor.hayDatos()){
                 AppLog.i("mostrarDatos()","hayDatos = " + monitor.hayDatos());
                 tvReceiver.setText(this.getText(R.string.tv_estado_receiver) + " Iniciado");
-                tvNivel.setText(this.getText(R.string.tv_nivel_carga) + " " +
-                        String.valueOf(monitor.getNivel()) + "%");
+                tvNivel.setText(this.getText(R.string.tv_nivel_carga) + " " + monitor.textoNivel());
                 tvEstado.setText(this.getText(R.string.tv_estado_bateria) + " " + monitor.textoEstado());
             }
         }

@@ -212,7 +212,10 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             StatsFileLogTextGenerator.write("bateria", "no se ha podido monitorizar la bateria");
             /////////////////////////////////////////////////////
         }
-        AppLog.i("Monitor Bateria", "Creado objeto monBat, " + monBat.textoNivel() + " " + monBat.textoEstado());
+        if(monBat.hayDatos())
+            AppLog.i("Monitor Bateria", "Creado objeto monBat, " + monBat.textoNivel() + " " + monBat.textoEstado());
+        else
+            AppLog.i("actMain", "Quería sacar datos de batería pero no tengo aun.");
     }
 
     @Override
