@@ -24,6 +24,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import com.local.android.teleasistenciaticplus.R;
+import com.local.android.teleasistenciaticplus.lib.filesystem.FileOperation;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.helper.AppTime;
@@ -78,6 +79,8 @@ public class serviceZonaSegura extends Service implements
         
         super.onCreate();
         AppLog.d(TAG, "Servicio Zona Segura iniciado.");
+
+        FileOperation.fileLogErase(Constants.DEBUG_ZONA_SEGURA_LOG_FILE);
 
         /*Toast.makeText(getBaseContext(), (String) "Servicio iniciado",
                 Toast.LENGTH_SHORT).show();*/
