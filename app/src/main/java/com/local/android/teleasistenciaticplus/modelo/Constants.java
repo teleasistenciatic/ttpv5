@@ -31,7 +31,8 @@ public interface Constants {
     public static final Boolean STATS_TO_FILE = true;
     public static final String STATS_LOG_DIR = "ttpvstats"; //directorio en el cual se crearan las estadisticas
     public static final String STAT_FILE_SHARED_PREFERENCES = "ficherostatssesion";
-    public static final Boolean STATS_LOG_ZONA_SEGURA_GPS = false;
+    public static final String DEBUG_ZONA_SEGURA_LOG_FILE = "teleasistenciagps.log.txt";
+    public static final Boolean STATS_LOG_ZONA_SEGURA_GPS = true;
     public static final Boolean STATS_LOG_BATERIA = true;
 
     ////////////////////////////////////////////////
@@ -112,8 +113,8 @@ public interface Constants {
     public static final int MAX_ZONA_SEGURA_RADIO = 5000;
     public static final float DEFAULT_MAP_ZOOM = 15;
 
-    public static final long GPS_READ_INTERVAL = 1000 * 60; //60*1000 para produccion
-    public static final long GPS_READ_FASTEST_INTERVAL = 1000 * 30; //10*1000 para produccion
+    public static final long GPS_READ_INTERVAL = 1000 * 120; //10*1000 para debug
+    public static final long GPS_READ_FASTEST_INTERVAL = 1000 * 120; //5*1000 para debug
 
     ////////////////////////////////////////////////
     // LIMITE DE CARACTERES DE CADENAS
@@ -125,5 +126,4 @@ public interface Constants {
     // TIEMPO MAXIMO PARA CONSIDERAR POSICION DE GPS CORRECTA
     ////////////////////////////////////////////////
     public static final int MAX_GPS_TIME = 300;
-
 }

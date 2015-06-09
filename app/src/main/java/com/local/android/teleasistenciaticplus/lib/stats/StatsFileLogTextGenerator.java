@@ -1,5 +1,11 @@
 package com.local.android.teleasistenciaticplus.lib.stats;
 
+import android.os.Environment;
+
+import com.local.android.teleasistenciaticplus.lib.filesystem.FileOperation;
+import com.local.android.teleasistenciaticplus.modelo.Constants;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,4 +27,14 @@ public class StatsFileLogTextGenerator {
 
         mStatsFileLog.write(texto);
     }
+
+    public static void writeGps(String accion, String valor) {
+
+        String currentDateandTime = sdf.format(new Date());
+        String texto = ">" + currentDateandTime + ";" + accion + ";" + valor;
+
+        FileOperation.fileLogWrite(Constants.DEBUG_ZONA_SEGURA_LOG_FILE, texto, valor);
+    }
+
+
 }

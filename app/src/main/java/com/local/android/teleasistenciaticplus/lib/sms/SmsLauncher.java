@@ -35,7 +35,7 @@ public class SmsLauncher {
         //Generar el texto
         for (int i = 0; i <= 5; i++) {
 
-            if  ( (i == 1) || (i == 3) || (i == 5) || (i == 6)) {
+            if  ( ( (i == 1) || (i == 3) || (i == 5) ) && telefonos[i].length()!=0 ) {
                 //Envio del SMS
                 // Se genera un aviso u otro en base a la clase que lo llama
                 String textoSms = null;

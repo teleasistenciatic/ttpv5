@@ -244,7 +244,7 @@ public class serviceZonaSegura extends Service implements
      */
     @Override
     public void onLocationChanged(Location location) {
-        AppLog.d(TAG, "Firing onLocationChanged...........................................");
+        //AppLog.d(TAG, "Firing onLocationChanged...........................................");
 
         mCurrentLocation = location;
         //mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
@@ -277,7 +277,7 @@ public class serviceZonaSegura extends Service implements
      */
     private void checkZonaSegura() {
 
-        AppLog.d(TAG, "Check Zona Segura initiated .............");
+        //AppLog.d(TAG, "Check Zona Segura initiated .............");
 
         if ( mCurrentLocation != null ) {
 
@@ -358,7 +358,8 @@ public class serviceZonaSegura extends Service implements
             }
             ////////////////////////////////////////////////////////////////////////
 
-            AppLog.d(TAG, mostrar);
+            //AppLog.d(TAG, mostrar);
+            //AppLog.d(TAG, mostrar);
 
             //Si estamos en modo depuración se indica
             if ( (Constants.PLAY_SOUNDS) && (Constants.DEBUG_LEVEL == DebugLevel.DEBUG)) {
@@ -372,7 +373,7 @@ public class serviceZonaSegura extends Service implements
 
             if ( Constants.STATS_LOG_ZONA_SEGURA_GPS ) {
                 /////////////////////////////////////////////////////
-                StatsFileLogTextGenerator.write("zona segura", (String) mostrar);
+                StatsFileLogTextGenerator.writeGps("zona segura", (String) mostrar);
                 /////////////////////////////////////////////////////
             }
 
