@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.local.android.teleasistenciaticplus.act.debug.actDebugMemory">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugMemory">
 
     <TextView
         android:id="@+id/debug_used_memory_label"

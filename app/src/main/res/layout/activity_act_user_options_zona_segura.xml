@@ -12,7 +12,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffe3e9e3"
-    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsZonaSegura">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsZonaSegura">
 
     <TextView
         android:id="@+id/zona_segura_label_principal"

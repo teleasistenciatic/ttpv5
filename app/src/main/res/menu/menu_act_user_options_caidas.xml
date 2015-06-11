@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsCaidas">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsCaidas">
     <item android:id="@+id/menu_user_options_caidas_exit_app" android:title="@string/menu_user_options_exit"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

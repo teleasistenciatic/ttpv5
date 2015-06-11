@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.local.android.teleasistenciaticplus.act.debug.actDebugCaidas">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugCaidas">
 
     <TextView android:text="@string/title_activity_act_user_options_caidas" android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsMonitorBateria">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsMonitorBateria">
 
     <item
         android:id="@+id/menu_user_options_monitor_bateria_guardar"

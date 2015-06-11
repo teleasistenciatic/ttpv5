@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.local.android.teleasistenciaticplus"
+    package="com.fundacionmagtel.android.teleasistenciaticplus"
     android:versionCode="@string/version_code"
     android:versionName="@string/version_name" >
     <!--
@@ -42,7 +42,7 @@
 
     <!-- Aplicacion -->
     <application
-        android:name=".modelo.Hook"
+        android:name="com.fundacionmagtel.android.teleasistenciaticplus.modelo.Hook"
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -60,7 +60,7 @@
 
         <!-- Actividad de carga, MAIN -->
         <activity
-            android:name=".act.actLoadingScreen"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.actLoadingScreen"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
             android:relinquishTaskIdentity="true"
@@ -75,7 +75,7 @@
 
         <!-- Actividad principal Modo Offline -->
         <activity
-            android:name=".act.main.actMain"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.main.actMain"
             android:icon="@drawable/ic_launcher"
             android:label="@string/title_activity_act_main"
             android:logo="@drawable/ic_launcher"
@@ -85,59 +85,59 @@
 
         <!-- Actividad principal Debug -->
         <activity
-            android:name=".act.debug.actMainDebug"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:label="@string/title_activity_act_main_debug"
-            android:parentActivityName=".act.main.actMain"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.main.actMain"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugMemory"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugMemory"
             android:label="@string/title_activity_act_debug_memory"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugDataConnection"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugDataConnection"
             android:label="@string/title_activity_act_debug_data_connection"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugCifrado"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugCifrado"
             android:label="@string/title_activity_act_debug_cifrado"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugShowLog"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugShowLog"
             android:label="@string/title_activity_act_debug_show_log"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugSMS"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugSMS"
             android:label="@string/title_activity_act_debug_sms"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugChronometer"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugChronometer"
             android:label="@string/title_activity_act_debug_ducha"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugGoogleServices"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugGoogleServices"
             android:label="@string/title_activity_act_debug_google_services"
-            android:parentActivityName=".act.debug.actMainDebug"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugGoogleMaps"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugGoogleMaps"
             android:label="@string/title_activity_act_debug_google_maps"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugOjeadorBateria"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugOjeadorBateria"
             android:label="@string/title_activity_act_debug_monitor_bateria"
             android:screenOrientation="portrait" >
         </activity>
@@ -147,39 +147,39 @@
         <!-- Actividad de opciones de usuario -->
 
         <activity
-            android:name=".act.user.actUserOptions"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptions"
             android:label="@string/title_activity_act_user_options"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.user.actUserOptionsDatosPersonales"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales"
             android:label="@string/title_activity_act_user_options_datos_personales"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.user.actUserOptionsPersonaContacto"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto"
             android:label="@string/title_activity_act_user_options_persona_contacto"
             android:screenOrientation="portrait" >
         </activity>
 
         <activity
-            android:name=".act.user.actUserOptionsPilotaje"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsPilotaje"
             android:label="@string/title_activity_act_options_pilotaje" >
         </activity>
 
         <activity
-            android:name=".act.user.actUserOptionsMonitorBateria"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsMonitorBateria"
             android:label="@string/title_activity_act_user_options_monitor_bateria"
             android:screenOrientation="portrait" >
         </activity>
 
         <activity
-            android:name=".act.debug.actDebugUserConfig"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugUserConfig"
             android:label="@string/title_activity_act_debug_user_config"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.debug.actDebugCaidas"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugCaidas"
             android:label="@string/title_activity_act_debug_caidas"
             android:screenOrientation="portrait" >
         </activity>
@@ -193,18 +193,18 @@
 
         <!-- Modo Ducha -->
         <activity
-            android:name=".act.ducha.actModoDucha"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha"
             android:label="@string/title_activity_act_modo_ducha"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.ducha.actDuchaCuentaAtras"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actDuchaCuentaAtras"
             android:label="@string/title_activity_act_ducha_cuenta_atras"
-            android:parentActivityName=".act.ducha.actModoDucha"
+            android:parentActivityName="com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.local.android.teleasistenciaticplus.act.ducha.actModoDucha" />
+                android:value="com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha" />
         </activity>
 
         <!-- Fin Activades Botones Adicionales -->
@@ -212,13 +212,13 @@
 
         <!-- Mensaje de tarificación extra -->
         <activity
-            android:name=".act.actMensajeTarificacionExtraYPoliticaDeUso"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.actMensajeTarificacionExtraYPoliticaDeUso"
             android:label="@string/title_activity_act_mensaje_tarificacion_extra"
             android:screenOrientation="portrait" >
         </activity>
         <!-- Fin mensaje de tarificación extra -->
 
-        <receiver android:name=".act.widget.actWidget" >
+        <receiver android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.widget.actWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -229,29 +229,29 @@
         </receiver>
 
         <service
-            android:name=".lib.detectorCaidas.ServicioMuestreador"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador"
             android:exported="false" />
 
         <activity
-            android:name=".act.user.actUserOptionsCaidas"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsCaidas"
             android:label="@string/title_activity_act_user_options_caidas"
             android:screenOrientation="portrait" >
         </activity>
 
         <!-- Actividad y servicio de Zona Segura -->
         <activity
-            android:name=".act.user.actUserOptionsZonaSegura"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsZonaSegura"
             android:label="@string/title_activity_act_user_options_zona_segura"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".act.zonasegura.actZonaSeguraHomeSet"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.zonasegura.actZonaSeguraHomeSet"
             android:label="@string/title_activity_act_zona_segura_set_home"
             android:screenOrientation="portrait" >
         </activity>
 
         <service
-            android:name=".act.zonasegura.serviceZonaSegura"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura"
             android:exported="false"
             android:process=":miserviciozonasegura" >
             //Solo se puede llamar por nuestra aplicación //
@@ -259,7 +259,7 @@
         <!-- Fin actividad y servicio de Zona Segura -->
 
         <activity
-            android:name=".act.debug.actDebugGpsSharedPreferences"
+            android:name="com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actDebugGpsSharedPreferences"
             android:label="@string/title_activity_act_debug_gps_shared_preferences" >
         </activity>
 

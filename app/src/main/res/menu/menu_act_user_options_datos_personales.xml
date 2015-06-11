@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.local.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales">
+    tools:context="com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales">
     <item
         android:id="@+id/menu_user_options_datos_personales_exit_app"
         android:orderInCategory="100"
