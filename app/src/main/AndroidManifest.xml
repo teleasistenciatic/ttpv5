@@ -18,6 +18,8 @@
     <!-- Telefono -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <!-- Almacenamiento -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -170,6 +172,12 @@
         <activity
             android:name=".act.user.actUserOptionsMonitorBateria"
             android:label="@string/title_activity_act_user_options_monitor_bateria"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:name=".act.user.actUserOptionsManosLibres"
+            android:label="@string/title_activity_act_user_options_manos_libres"
             android:screenOrientation="portrait" >
         </activity>
 

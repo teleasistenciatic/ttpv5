@@ -28,6 +28,7 @@ import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.local.android.teleasistenciaticplus.lib.sound.ManosLibres;
 import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
 import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
@@ -64,8 +65,12 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     static actMain instanciaActMain;
 
+    /** Objeto de la clase MonitorBateria */
     private MonitorBateria monBat;
+    /** Objeto de la clase SintetizadorVoz */
     private SintetizadorVoz sintetizador = null;
+    /** Objeto de la clase ManosLibres */
+    private ManosLibres sinManos;
 
 
     @Override
@@ -212,10 +217,23 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             StatsFileLogTextGenerator.write("bateria", "no se ha podido monitorizar la bateria");
             /////////////////////////////////////////////////////
         }
-        if(monBat.hayDatos())
+
+        if(monBat.hayDatos()) {
             AppLog.i("Monitor Bateria", "Creado objeto monBat, " + monBat.textoNivel() + " " + monBat.textoEstado());
-        else
+        }
+        else {
             AppLog.i("actMain", "Quería sacar datos de batería pero no tengo aun.");
+        }
+
+        /////////////////////////////////////////////////////////////////////
+        // Creación del objeto de la clase ManosLibres.
+        /////////////////////////////////////////////////////////////////////
+        sinManos = new ManosLibres(GlobalData.getAppContext());
+        AppLog.i("actMain", "Creado objeto sinManos de la clase ManosLibres");
+        // Activo el manos libres si está configurado así.
+        sinManos.setActivado(new AppSharedPreferences().getActivarManosLibresAlInicio());
+        AppLog.i("actMain","Activar manos libres al inicio = " +
+                new AppSharedPreferences().getActivarManosLibresAlInicio());
     }
 
     @Override
@@ -282,12 +300,19 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
     @Override
     protected void onDestroy()
     {
-        // Quito el registro del BroadcastReceiver del contexto. (Desactivo)
+        // Desactivar BroadcastReceiver de MonitorBateria.
         if(monBat.getReceiverActivo()) {
             monBat.desactivaReceiver(false);
         }
+
+        // Liberación del sintetizador de voz.
         if(sintetizador!=null) {
             sintetizador.finaliza();
+        }
+
+        // Desactivar BroadcastReceiver de ManosLibres.
+        if(sinManos.estaActivo()){
+            sinManos.desregistraReceiver();
         }
 
         /////////////////////////////////////////////////////
@@ -311,6 +336,12 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
      * @return Objeto de la clase SintetizadorVoz, o null si no están activados los sonidos en la app.
      */
     public SintetizadorVoz getSintetizador() { return sintetizador; }
+
+    /**
+     * Getter del objeto ManosLibres.
+     * @return Objeto de la clase ManosLibres.
+     */
+    public ManosLibres getManosLibres() { return sinManos; }
 
     /////////////////////////////////////////////////////////////
     // Métodos asociados a los botones de la UI

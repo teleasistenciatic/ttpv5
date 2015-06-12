@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/menu_user_options_manos_libres_guardar"
+        android:title="@string/txt_menu_user_options_manos_libres_guardar"
+        android:orderInCategory="10"
+        android:icon="@drawable/ico_aspa_salir_cerrar_blanco_borde"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_user_options_manos_libres_salida"
+        android:title="@string/txt_menu_user_options_manos_libres_salida"
+        android:orderInCategory="10"
+        android:icon="@drawable/ico_aspa_salir_cerrar_blanco_borde"
+        app:showAsAction="ifRoom" />
+</menu>

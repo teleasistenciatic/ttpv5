@@ -17,6 +17,7 @@ import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
+
 public class actUserOptionsMonitorBateria extends Activity implements View.OnClickListener
 {
     private static TextView tvEstado, tvNivel, tvReceiver;

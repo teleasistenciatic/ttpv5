@@ -284,7 +284,7 @@ public class AppSharedPreferences implements Constants {
         String[] gpsPosicion = new String[5];
 
         gpsPosicion[0] = getPreferenceData(Constants.GPS_LATITUD);
-        gpsPosicion[1] =  getPreferenceData(Constants.GPS_LONGITUD);
+        gpsPosicion[1] = getPreferenceData(Constants.GPS_LONGITUD);
         gpsPosicion[2] = getPreferenceData(Constants.GPS_PRECISION);
         gpsPosicion[3] = getPreferenceData(Constants.GPS_ULTIMA_ACTUALIZACION);
         gpsPosicion[4] = getPreferenceData(Constants.GPS_ULTIMA_ACTUALIZACION_FORMATO_NUMERICO);
@@ -314,6 +314,7 @@ public class AppSharedPreferences implements Constants {
 
     /**
      * Proporciona una cadena de caracteres con información sobre los datos de batería guardados.
+     * Se utiliza para información de estado y debug.
      * @return CharSequence con la información.
      */
     public CharSequence dameCadenaPreferenciasMonitorBateria()
@@ -323,17 +324,30 @@ public class AppSharedPreferences implements Constants {
                 ", NivelAlerta = " + getPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA);
     }
 
+    /**
+     * Método que devuelve si hay almacenados datos de batería en SharedPreferences.
+     * @return true si hay datos registrados, false en otro caso.
+     */
     public boolean hayDatosBateria()
     {
         CharSequence letras = getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO);
         return (letras.length() > 0);
     }
 
+    /**
+     * Método que guarda en SharedPreferences el dato de nivel de batería para dar una alerta
+     * de poca batería.
+     * @param nivelAlerta Valor entero que corresponde al % de batería al que se debe alertar.
+     */
     public void escribePreferenciasBateriaNivelAlerta(int nivelAlerta)
     {
         setPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA, String.valueOf(nivelAlerta));
     }
 
+    /**
+     * Método que lee el el dato de nivel de batería para dar una alerta almacenado en SharedPreferences.
+     * @return Valor entero que corresponde al % de batería al que se debe alertar. 0 si no existe el dato.
+     */
     public int damePreferenciasBateriaNivelAlerta()
     {
         CharSequence letras = getPreferenceData(MONITOR_BATERIA_NIVEL_ALERTA);
@@ -343,11 +357,21 @@ public class AppSharedPreferences implements Constants {
             return 0;
     }
 
+    /**
+     * Método que guarda en SharedPreferences el dato de tasa de refresco de los datos de batería,
+     * es decir, la frecuencia con la que se mira el estado de la batería.
+     * @param tasaRefresco Valor entero que corresponde al nº de eventos de batería a ignorar antes
+     *                     de pedir nueva información de estado.
+     */
     public void escribePreferenciasBateriaTasaRefresco(int tasaRefresco)
     {
         setPreferenceData(MONITOR_BATERIA_TASA_REFRESCO, String.valueOf(tasaRefresco));
     }
 
+    /**
+     * Método getter que lee el dato de tasa de refresco del estado de la batería de SharedPreferences.
+      * @return Entero con el valor de la tasa de refresco.
+     */
     public int damePreferenciasBateriaTasaRefresco()
     {
         CharSequence letras = getPreferenceData(MONITOR_BATERIA_TASA_REFRESCO);
@@ -357,22 +381,61 @@ public class AppSharedPreferences implements Constants {
             return 0;
     }
 
+    /**
+     * Método que guarda en SharedPreferences el dato que indica si hay que activar el monitor de
+     * batería
+     * @param activarAlInicio true que indica que hay que activar el monitor de batería al iniciar la app.
+     *                        false en otro caso.
+     */
     public void escribePreferenciasBateriaActivarAlInicio(boolean activarAlInicio)
     {
         setPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO, String.valueOf(activarAlInicio));
     }
 
+
+    /**
+     * Método que lee de SharedPreferences el dato que indica si hay que activar el monitor de
+     * batería al iniciar la app.
+     * @return true si hay que activar el monitor de batería al iniciar la app, false en otro caso.
+     */
     public boolean damePreferenciasBAteriaActivarAlInicio()
     {
         return (getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO).length() > 0 &&
             Boolean.parseBoolean(getPreferenceData(MONITOR_BATERIA_ARRANCAR_AL_INICIO)));
     }
 
+    /**
+     * Método que guarda en SharedPreferences el datos del último nivel de batería conocido.
+     * @param ultimoNivel Entero con el último nivel de carga de la batería.
+     */
     public void escribeUltimoNivelRegistradoBateria(CharSequence ultimoNivel)
     {
         setPreferenceData(MONITOR_BATERIA_ULTIMO_NIVEL_REGISTRADO, ultimoNivel.toString());
     }
 
+    /////////////////////////////////////////////////////////
+    // METODOS PARA EL MANOS LIBRES
+    /////////////////////////////////////////////////////////
+
+    /**
+     * Getter. Lee de SharedPreferences la configuración de activar al inicio del manos libres.
+     * @return true si se ha de iniciar con la app, false en otro caso.
+     */
+    public boolean getActivarManosLibresAlInicio()
+    {
+        return (new AppSharedPreferences().getPreferenceData(MANOS_LIBRES_ACTIVAR_AL_INICIO).length() > 0 &&
+                Boolean.parseBoolean(getPreferenceData(MANOS_LIBRES_ACTIVAR_AL_INICIO)));
+    }
+
+    /**
+     * Setter. Escribe en SharedPreferences la configuración de activar al inicio del manos libres.
+     * @param activarAlInicio true si se ha de iniciar con la app, false en otro caso.
+     */
+    public void setActivarManosLibresAlInicio(boolean activarAlInicio)
+    {
+        new AppSharedPreferences().setPreferenceData(MANOS_LIBRES_ACTIVAR_AL_INICIO,
+                String.valueOf(activarAlInicio));
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////// METODOS GENERICOS CUALQUIER SHARED PREFERENCES //////////////////
@@ -407,6 +470,10 @@ public class AppSharedPreferences implements Constants {
             return false;
         }
     }
+
+    ///////////////////////////////////////////////
+    // Métodos para el conteo de SMS
+    ///////////////////////////////////////////////
 
     public String getSmsEnviados() {
         return ( getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES) );
