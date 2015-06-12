@@ -17,16 +17,23 @@ import com.local.android.teleasistenciaticplus.act.main.actMain;
 import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
-
+/**
+ * Actividad de configuración y consulta del monitor de batería.
+ */
 public class actUserOptionsMonitorBateria extends Activity implements View.OnClickListener
 {
+    /** Objetos TextView para para mostrar información en pantalla */
     private static TextView tvEstado, tvNivel, tvReceiver;
+    /** Objetos NumberPicker para selección del nivel de alerta y la tasa de refresco */
     private static NumberPicker npNivelAlerta, npIntervalo;
+    /** Objetos Button para iniciar o detener el monitor de bateria. */
     private static Button btnLanzarReceiver, btnPararReceiver;
+    /** Objeto CheckBox para establecer si iniciar el monitor de batería con la app. */
     private static CheckBox cbIniciarAuto;
-    // Pillo el monitor de batería declarado en la actividad principal.
+    /** Instancia del monitor de batería declarado en la actividad principal. */
     private static MonitorBateria monitor;
 
+    /** Método del sistema onCreate */
     @Override
     public void onCreate(Bundle savedInstanceState) // Terminado
     {
