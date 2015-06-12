@@ -99,6 +99,11 @@ public interface Constants {
     public static final String MONITOR_BATERIA_TASA_REFRESCO = "Intervalo";
     public static final String MONITOR_BATERIA_ULTIMO_NIVEL_REGISTRADO = "UltimoNivel";
 
+    ////////////////////////////////////////////////////////
+    // MANOS LIBRES (CONSTANTS)
+    ////////////////////////////////////////////////////////
+    public static final String MANOS_LIBRES_ACTIVAR_AL_INICIO = "ManosLibresActivarAlInicio";
+
     ////////////////////////////////////////////////
     // ZONA SEGURA
     ////////////////////////////////////////////////

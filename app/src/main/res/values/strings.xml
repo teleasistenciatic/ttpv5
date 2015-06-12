@@ -98,6 +98,7 @@
     <string name="title_activity_act_debug_user_config">Configuración > sharedPreferences</string>
     <string name="title_activity_act_user_options">Configuración usuario/a</string>
     <string name="title_activity_act_user_options_monitor_bateria">Configuración > Monitor de Batería</string>
+    <string name="title_activity_act_user_options_manos_libres">Configuración >Manos Libres</string>
     <!-- Fin cadenas de configuración de usuario -->
 
     <!--Comprobación de registro de usuario -->
@@ -178,13 +179,22 @@
     <string name="btn_lanzar_receiver">Iniciar</string>
     <string name="btn_parar_receiver">Detener</string>
     <string name="cb_activar_al_inicio">Activar al Inicio</string>
-    <string name="btn_guardar">Guardar</string>
-    <string name="btn_salir">Salir</string>
-    <string name="menu_user_options_monitor_bateria_guardar">Guardar Configuración</string>
-    <string name="menu_user_options_monitor_bateria_salir">Salida</string>
+    <string name="btn_guardar">Recordar Esto</string>
+    <string name="btn_salir">Salir de aquí</string>
+    <string name="menu_user_options_monitor_bateria_guardar">Recordar Esto</string>
+    <string name="menu_user_options_monitor_bateria_salir">Salir de Aquí</string>
     <string name="txt_cuerpo_notificacion_bateria">AVISO BATERIA</string>
 
-    <!-- fin Relacionadas Monitor Bateria -->
+    <!-- Fin Relacionadas Monitor Bateria -->
+
+    ////////////////////////////////////////////////////////
+    // MANOS LIBRES
+    ////////////////////////////////////////////////////////
+    <!-- Relacionados con Manos Libres -->
+    <string name="txt_estado_manos_libres">Estado del Modo Manos Libres</string>
+    <string name="txt_menu_user_options_manos_libres_guardar">Recordar esto</string>
+    <string name="txt_menu_user_options_manos_libres_salida">Salir de aquí</string>
+    <!-- Fin Relacionados con Manos Libres -->
 
 </resources>
 

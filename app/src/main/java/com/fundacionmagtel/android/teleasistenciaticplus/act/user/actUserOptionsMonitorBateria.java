@@ -1,4 +1,4 @@
-package com.fundacionmagtel.android.teleasistenciaticplus.act.user;
+package com.local.android.teleasistenciaticplus.act.user;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,28 +12,28 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.local.android.teleasistenciaticplus.R;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.main.actMain;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.local.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
+import com.local.android.teleasistenciaticplus.act.main.actMain;
+import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 /**
- * Actividad que muestra las opciones del monitor de bateria
- * @author German Moreno
+ * Actividad de configuración y consulta del monitor de batería.
  */
 public class actUserOptionsMonitorBateria extends Activity implements View.OnClickListener
 {
+    /** Objetos TextView para para mostrar información en pantalla */
     private static TextView tvEstado, tvNivel, tvReceiver;
+    /** Objetos NumberPicker para selección del nivel de alerta y la tasa de refresco */
     private static NumberPicker npNivelAlerta, npIntervalo;
+    /** Objetos Button para iniciar o detener el monitor de bateria. */
     private static Button btnLanzarReceiver, btnPararReceiver;
+    /** Objeto CheckBox para establecer si iniciar el monitor de batería con la app. */
     private static CheckBox cbIniciarAuto;
-    // Pillo el monitor de batería declarado en la actividad principal.
+    /** Instancia del monitor de batería declarado en la actividad principal. */
     private static MonitorBateria monitor;
 
-    /**
-     * Método de framework onCreate
-     * @param savedInstanceState
-     */
+    /** Método del sistema onCreate */
     @Override
     public void onCreate(Bundle savedInstanceState) // Terminado
     {
@@ -90,10 +90,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         //    mostrarDatos();
     }
 
-    /**
-     * Método controlador de eventos de click
-     * @param v
-     */
     @Override
     public void onClick(View v) {   // Terminado
         switch (v.getId())
@@ -110,9 +106,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         mostrarDatos();
     }
 
-    /**
-     * Mostrado de datos de la batería
-     */
     public void mostrarDatos() // Terminado
     {
         AppLog.i("mostrarDatos()","getReceiverActivo = " + monitor.getReceiverActivo());
@@ -133,11 +126,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         }
     }
 
-    /**
-     * Creación del menú
-     * @param menu
-     * @return
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -145,11 +133,6 @@ public class actUserOptionsMonitorBateria extends Activity implements View.OnCli
         return true;
     }
 
-    /**
-     * Operaciones tras pulsar el menú
-     * @param item
-     * @return
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -1,4 +1,4 @@
-package com.fundacionmagtel.android.teleasistenciaticplus.act.main;
+package com.local.android.teleasistenciaticplus.act.main;
 
 
 import android.app.DialogFragment;
@@ -15,26 +15,27 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
-import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
 import com.local.android.teleasistenciaticplus.R;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptions;
-import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppDialog;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.sms.SmsLauncher;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
-import com.fundacionmagtel.android.teleasistenciaticplus.modelo.DebugLevel;
-import com.fundacionmagtel.android.teleasistenciaticplus.modelo.TipoAviso;
+import com.local.android.teleasistenciaticplus.act.debug.actMainDebug;
+import com.local.android.teleasistenciaticplus.act.ducha.actModoDucha;
+import com.local.android.teleasistenciaticplus.act.user.actUserOptions;
+import com.local.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales;
+import com.local.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto;
+import com.local.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura;
+import com.local.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
+import com.local.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
+import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
+import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.local.android.teleasistenciaticplus.lib.sound.ManosLibres;
+import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
+import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.local.android.teleasistenciaticplus.modelo.Constants;
+import com.local.android.teleasistenciaticplus.modelo.DebugLevel;
+import com.local.android.teleasistenciaticplus.modelo.GlobalData;
+import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,8 +65,12 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     static actMain instanciaActMain;
 
+    /** Objeto de la clase MonitorBateria */
     private MonitorBateria monBat;
+    /** Objeto de la clase SintetizadorVoz */
     private SintetizadorVoz sintetizador = null;
+    /** Objeto de la clase ManosLibres */
+    private ManosLibres sinManos;
 
 
     @Override
@@ -212,15 +217,25 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             StatsFileLogTextGenerator.write("bateria", "no se ha podido monitorizar la bateria");
             /////////////////////////////////////////////////////
         }
-        if(monBat.hayDatos())
+
+        if(monBat.hayDatos()) {
             AppLog.i("Monitor Bateria", "Creado objeto monBat, " + monBat.textoNivel() + " " + monBat.textoEstado());
-        else
+        }
+        else {
             AppLog.i("actMain", "Quería sacar datos de batería pero no tengo aun.");
+        }
+
+        /////////////////////////////////////////////////////////////////////
+        // Creación del objeto de la clase ManosLibres.
+        /////////////////////////////////////////////////////////////////////
+        sinManos = new ManosLibres(GlobalData.getAppContext());
+        AppLog.i("actMain", "Creado objeto sinManos de la clase ManosLibres");
+        // Activo el manos libres si está configurado así.
+        sinManos.setActivado(new AppSharedPreferences().getActivarManosLibresAlInicio());
+        AppLog.i("actMain","Activar manos libres al inicio = " +
+                new AppSharedPreferences().getActivarManosLibresAlInicio());
     }
 
-    /**
-     * Metodo de framework onStart
-     */
     @Override
     protected void onStart() {
 
@@ -228,27 +243,18 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     }
 
-    /**
-     * Metodo de framework onResume
-     */
     @Override
     public void onResume(){
         super.onResume();
     }
 
 
-    /**
-     * Metodo para obtener una referencia estática a la actividad
-     * y así poder llamar métodos de la misma desde otras clases.
-     */
+
     public static actMain getInstance(){
         return instanciaActMain;
     }
 
 
-    /**
-     * Crear el menú
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -264,9 +270,6 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
     }
 
-    /**
-     * Metodo para controlar que opción se selecciona en el menu
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -294,18 +297,22 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Método de framework onDestroy
-     */
     @Override
     protected void onDestroy()
     {
-        // Quito el registro del BroadcastReceiver del contexto. (Desactivo)
+        // Desactivar BroadcastReceiver de MonitorBateria.
         if(monBat.getReceiverActivo()) {
             monBat.desactivaReceiver(false);
         }
+
+        // Liberación del sintetizador de voz.
         if(sintetizador!=null) {
             sintetizador.finaliza();
+        }
+
+        // Desactivar BroadcastReceiver de ManosLibres.
+        if(sinManos.estaActivo()){
+            sinManos.desregistraReceiver();
         }
 
         /////////////////////////////////////////////////////
@@ -329,6 +336,12 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
      * @return Objeto de la clase SintetizadorVoz, o null si no están activados los sonidos en la app.
      */
     public SintetizadorVoz getSintetizador() { return sintetizador; }
+
+    /**
+     * Getter del objeto ManosLibres.
+     * @return Objeto de la clase ManosLibres.
+     */
+    public ManosLibres getManosLibres() { return sinManos; }
 
     /////////////////////////////////////////////////////////////
     // Métodos asociados a los botones de la UI
@@ -647,7 +660,7 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
     }
 
     /**
-     * Botón para enviar SMS de tranquilidad (I'm OK)
+     * botón para enviar SMS de tranquilidad (I'm OK)
      *
      * @param view Vista del botón
      */
