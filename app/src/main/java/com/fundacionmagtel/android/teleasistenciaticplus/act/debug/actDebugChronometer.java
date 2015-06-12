@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Actividad de depuracion del modo ducha

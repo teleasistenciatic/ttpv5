@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 
 public class actDebugOjeadorBateria extends Activity

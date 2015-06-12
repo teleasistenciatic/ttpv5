@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;

@@ -10,7 +10,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogT
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.DebugLevel;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.TipoAviso;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 import java.util.LinkedList;
 

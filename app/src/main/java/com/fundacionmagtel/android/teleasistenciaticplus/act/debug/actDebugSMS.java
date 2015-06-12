@@ -8,7 +8,7 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.TextView;
 
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.sms.SmsDispatcher;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.phone.PhoneContacts;

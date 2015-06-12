@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Actividad para controlar en depuración las appSharedPreferences

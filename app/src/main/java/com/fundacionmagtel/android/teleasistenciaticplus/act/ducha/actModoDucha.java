@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;
 

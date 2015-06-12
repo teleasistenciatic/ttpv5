@@ -1,4 +1,4 @@
-package com.local.android.teleasistenciaticplus.act.user;
+package com.fundacionmagtel.android.teleasistenciaticplus.act.user;
 
 import android.app.Activity;
 import android.os.Bundle;

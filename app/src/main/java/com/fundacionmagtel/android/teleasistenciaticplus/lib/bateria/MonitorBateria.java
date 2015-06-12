@@ -18,7 +18,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.sms.SmsLauncher;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.TipoAviso;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;

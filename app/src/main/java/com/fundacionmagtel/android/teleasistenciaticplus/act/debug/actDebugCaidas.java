@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 
 /**

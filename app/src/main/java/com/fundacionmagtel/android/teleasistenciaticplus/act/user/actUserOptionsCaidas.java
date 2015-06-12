@@ -13,7 +13,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas.Serv
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Actividad que muestra las opciones para el módulo de Caidas

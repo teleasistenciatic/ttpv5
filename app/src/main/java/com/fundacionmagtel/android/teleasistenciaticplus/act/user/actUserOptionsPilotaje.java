@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Actividad con las opciones necesarias en el pilotaje

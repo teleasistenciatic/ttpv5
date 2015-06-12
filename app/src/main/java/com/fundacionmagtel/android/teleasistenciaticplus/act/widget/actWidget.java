@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Implementación de la acción del Widget que levanta la Actividad Principal.

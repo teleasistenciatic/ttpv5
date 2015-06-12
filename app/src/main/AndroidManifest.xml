@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.local.android.teleasistenciaticplus"
+    package="com.fundacionmagtel.android.teleasistenciaticplus"
     android:versionCode="@string/version_code"
     android:versionName="@string/version_name" >
     <!--
@@ -212,7 +212,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.local.android.teleasistenciaticplus.act.ducha.actModoDucha" />
+                android:value="com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha" />
         </activity>
 
         <!-- Fin Activades Botones Adicionales -->

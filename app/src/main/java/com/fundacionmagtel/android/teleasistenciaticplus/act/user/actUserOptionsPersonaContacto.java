@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.phone.PhoneContacts;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 

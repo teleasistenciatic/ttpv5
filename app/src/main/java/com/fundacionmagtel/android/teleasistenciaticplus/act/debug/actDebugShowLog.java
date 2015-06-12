@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 import static com.fundacionmagtel.android.teleasistenciaticplus.lib.filesystem.FileOperation.fileRead;
 

@@ -1,4 +1,4 @@
-package com.local.android.teleasistenciaticplus.act.user;
+package com.fundacionmagtel.android.teleasistenciaticplus.act.user;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import android.widget.CheckBox;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.local.android.teleasistenciaticplus.R;
-import com.local.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
-import com.local.android.teleasistenciaticplus.act.main.actMain;
-import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
-import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.main.actMain;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
 
 /**
  * Actividad de configuración y consulta del monitor de batería.

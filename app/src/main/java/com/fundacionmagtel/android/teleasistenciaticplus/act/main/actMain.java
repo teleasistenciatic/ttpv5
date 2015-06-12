@@ -1,4 +1,4 @@
-package com.local.android.teleasistenciaticplus.act.main;
+package com.fundacionmagtel.android.teleasistenciaticplus.act.main;
 
 
 import android.app.DialogFragment;
@@ -15,27 +15,27 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.local.android.teleasistenciaticplus.R;
-import com.local.android.teleasistenciaticplus.act.debug.actMainDebug;
-import com.local.android.teleasistenciaticplus.act.ducha.actModoDucha;
-import com.local.android.teleasistenciaticplus.act.user.actUserOptions;
-import com.local.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales;
-import com.local.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto;
-import com.local.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura;
-import com.local.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
-import com.local.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
-import com.local.android.teleasistenciaticplus.lib.helper.AppDialog;
-import com.local.android.teleasistenciaticplus.lib.helper.AppLog;
-import com.local.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
-import com.local.android.teleasistenciaticplus.lib.sms.SmsLauncher;
-import com.local.android.teleasistenciaticplus.lib.sound.ManosLibres;
-import com.local.android.teleasistenciaticplus.lib.sound.PlaySound;
-import com.local.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
-import com.local.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
-import com.local.android.teleasistenciaticplus.modelo.Constants;
-import com.local.android.teleasistenciaticplus.modelo.DebugLevel;
-import com.local.android.teleasistenciaticplus.modelo.GlobalData;
-import com.local.android.teleasistenciaticplus.modelo.TipoAviso;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.debug.actMainDebug;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.ducha.actModoDucha;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptions;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsDatosPersonales;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.user.actUserOptionsPersonaContacto;
+import com.fundacionmagtel.android.teleasistenciaticplus.act.zonasegura.serviceZonaSegura;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.bateria.MonitorBateria;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas.ServicioMuestreador;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppDialog;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.sms.SmsLauncher;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.ManosLibres;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.SintetizadorVoz;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
+import com.fundacionmagtel.android.teleasistenciaticplus.modelo.DebugLevel;
+import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
+import com.fundacionmagtel.android.teleasistenciaticplus.modelo.TipoAviso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

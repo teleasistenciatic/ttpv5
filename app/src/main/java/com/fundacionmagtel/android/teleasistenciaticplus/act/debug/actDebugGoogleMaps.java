@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 
-import com.local.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
  * Actividad de depuración para comprobar si funciona correctamente
