@@ -16,10 +16,15 @@ import java.util.Date;
 /**
  * Created by FESEJU on 12/02/2015.
  * Escritura del log a un fichero físico en android
+ * @author Juan Jose Ferres
  */
 
 public class FileOperation implements Constants {
 
+    /**
+     * Inicializa el fichero de log
+     * @param fichero nombre del fichero
+     */
     public static void fileLogInitialize(String fichero) {
 
         File sdcard = Environment.getExternalStorageDirectory();
@@ -88,6 +93,12 @@ public class FileOperation implements Constants {
         }
     }
 
+    /**
+     * Lee el fichero COMPLETO y lo devuelve como una cadena
+     * @param fileName
+     * @return
+     */
+
     public static String fileRead(String fileName) {
 
         //Find the directory for the SD Card using the API
@@ -116,15 +127,15 @@ public class FileOperation implements Constants {
 
         return text.toString();
     }
+}
 
-    /**
-     * Lectura del fichero por defecto de LOG de sistema que se encuentra en CONSTANTS.
-     * @return
-     */
     /*
+
+     // Lectura del fichero por defecto de LOG de sistema que se encuentra en CONSTANTS.
+     // @return
+
     public static String fileLogRead() {
 
       return ( fileRead( Constants.DEBUG_LOG_FILE )) ;
 
     }*/
-}

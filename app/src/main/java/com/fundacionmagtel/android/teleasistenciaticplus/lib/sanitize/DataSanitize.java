@@ -2,6 +2,8 @@ package com.fundacionmagtel.android.teleasistenciaticplus.lib.sanitize;
 
 /**
  * Created by FESEJU on 21/04/2015.
+ * Clase
+ * @author Juan Jose Ferres
  */
 public class DataSanitize {
 
@@ -25,7 +27,11 @@ public class DataSanitize {
         return output;
     }
 
-    /** Devuelve los primeros caracteres de una cadena dado un valor **/
+    /** Devuelve los primeros caracteres de una cadena dado un valor
+     *  Se utiliza para limitar cadenas al tener un límite de 160
+     *  caracteres por SMS
+     * **/
+
     public String trimStringSize(String cadena, int max) {
         if ( cadena.length() > max) {
             return cadena.substring(0,max);
@@ -33,5 +39,4 @@ public class DataSanitize {
             return cadena;
         }
     }
-
 }

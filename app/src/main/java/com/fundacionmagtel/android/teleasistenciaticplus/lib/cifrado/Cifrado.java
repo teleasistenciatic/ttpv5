@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Clase encargada de cifrar según el algoritmo AES de 128
  * https://www.youtube.com/watch?v=NHuibtoL_qk
- *
+ * @author Juan Jose Ferres
  */
 
 public class Cifrado {
@@ -58,8 +58,9 @@ public class Cifrado {
      * @throws Exception
      */
     public String cifrar(String text) throws Exception {
-        if (text == null || text.length() == 0)
+        if (text == null || text.length() == 0) {
             throw new Exception("Empty string");
+        }
 
         byte[] encrypted;
 

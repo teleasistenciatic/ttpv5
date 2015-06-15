@@ -10,6 +10,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.modelo.DebugLevel;
 /**
  * Created by FESEJU on 25/03/2015.
  * Clase helper encargada de generar el texto de los mensajes SMS que luego enviará SmsDispatcher
+ * @author Juan Jose Ferres
  */
 public class SmsTextGenerator {
 

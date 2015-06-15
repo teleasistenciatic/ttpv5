@@ -6,6 +6,14 @@ import android.net.NetworkInfo;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
 
+/**
+ * Clase que comprueba si disponemos de conexión de datos
+ * es un paso previo para garantizar la posible comunicación
+ * con el servidor de la aplicación en su versión de cliente
+ * servidor.
+ * @author Juan Jose Ferres
+ */
+
 public class Networking {
 
     /**
@@ -90,5 +98,4 @@ public class Networking {
             return false;
         }
     }
-
 }

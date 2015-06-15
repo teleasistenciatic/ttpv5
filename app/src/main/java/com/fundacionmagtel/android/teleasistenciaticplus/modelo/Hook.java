@@ -11,6 +11,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.phone.PhoneData;
  * - HOOK que se ejecutara en primer lugar, incluso antes que la actividad principal.
  * Lo usaremos para operaciones iniciales, como por ejemplo guardar el contexto de la aplicación
  *
+ * @author Juan Jose Ferres
  */
 
 public class Hook extends Application {

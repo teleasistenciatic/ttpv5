@@ -11,6 +11,7 @@ import android.os.Bundle;
  * Clase diálogo genérica para poder reutilizarla en distintas actividades.
  *
  * Created by SAMUAN on 15/04/2015.
+ * @author Antonio Salvador
  */
 public class AppDialog extends DialogFragment {
 
@@ -97,6 +98,9 @@ public class AppDialog extends DialogFragment {
 
     public enum tipoDialogo {SIMPLE,DOBLE}
 
+    /**
+     * Interface del diálogo
+     */
     public interface AppDialogDobleListener{
 
         public void onAccionAceptar(DialogFragment dialog);
@@ -104,7 +108,9 @@ public class AppDialog extends DialogFragment {
 
     }
 
-    //Metodo a implementar para recibir event callbacks
+    /**
+     * Metodo a implementar para recibir event callbacks
+     */
     public interface AppDialogNeutralListener {
 
         public void onAccionNeutral(DialogFragment dialog);
@@ -114,8 +120,10 @@ public class AppDialog extends DialogFragment {
     AppDialogDobleListener listenerDoble; //referencia a activity
     AppDialogNeutralListener listenerNeutral;
 
-    // Override the Fragment.onAttach() method to instantiate the AppDialogListener
     @Override
+    /**
+     * Override the Fragment.onAttach() method to instantiate the AppDialogListener
+     */
     public void onAttach(Activity activity) {
 
         super.onAttach(activity);
@@ -133,9 +141,7 @@ public class AppDialog extends DialogFragment {
             throw new ClassCastException(activity.toString()
                     + " must implement AppDialogListener");
         }
-
     }
-
 }
 
 /** Ejemplo de uso **/

@@ -15,6 +15,7 @@ import java.util.Map;
  * Created by FESEJU on 20/03/2015.
  * Clase que automatiza y abstrae el manejo de los datos de la
  * libreta de direcciones.
+ * @author Juan Jose Ferres
  */
 public class PhoneContacts {
 
@@ -24,7 +25,8 @@ public class PhoneContacts {
     private String contactId;
 
     /**
-     *
+     * Constructor que devuelve los datos de un contacto seleccionado
+     * a través de intentForResult.
      * @param data
      */
     public PhoneContacts(Intent data) {

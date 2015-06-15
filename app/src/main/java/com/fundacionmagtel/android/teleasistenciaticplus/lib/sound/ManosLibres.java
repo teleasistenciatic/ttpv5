@@ -11,6 +11,8 @@ import android.util.Log;
 /**
  * Clase que detecta llamadas entrantes y salientes activando el altavoz del movil.
  * Created by ANTONIO SALVADOR Y GERMAN MORENO 28/05/2015.
+ * @author Antonio Salvador
+ * @author German Moreno
  */
 public class ManosLibres
 {
@@ -180,4 +182,3 @@ public class ManosLibres
         setActivado(false);
     }
 }
-

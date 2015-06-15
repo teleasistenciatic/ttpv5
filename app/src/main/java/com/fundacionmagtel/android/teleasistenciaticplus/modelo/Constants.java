@@ -3,6 +3,7 @@ package com.fundacionmagtel.android.teleasistenciaticplus.modelo;
 /**
  * Created by FESEJU on 11/02/2015.
  * Interfaz de constantes generales de la aplicación
+ * @author Juan Jose Ferres
  */
 
 public interface Constants {

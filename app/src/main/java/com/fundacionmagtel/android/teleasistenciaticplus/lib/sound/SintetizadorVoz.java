@@ -1,10 +1,5 @@
 package com.fundacionmagtel.android.teleasistenciaticplus.lib.sound;
 
-/**
- * Created by MORUGE on 15/05/2015.
- *
- */
-
 import java.util.Locale;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +7,10 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 
+/**
+ * Created by MORUGE on 15/05/2015.
+ * @author German Moreno
+ */
 public class SintetizadorVoz implements OnInitListener
 {
     private TextToSpeech sintetizador;

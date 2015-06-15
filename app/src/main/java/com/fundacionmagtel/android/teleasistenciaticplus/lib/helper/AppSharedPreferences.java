@@ -12,7 +12,9 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogT
 /**
  * Created by FESEJU on 23/03/2015.
  * Leera y guardará preferencias de la aplicación mediante SharedPreferences
+ * @author Juan Jose Ferres
  */
+
 public class AppSharedPreferences implements Constants {
 
     String TAG = "AppSharedPreferences";
@@ -441,16 +443,32 @@ public class AppSharedPreferences implements Constants {
     //////////////////////////////// METODOS GENERICOS CUALQUIER SHARED PREFERENCES //////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Establece un valor del SharedPreferences genérico. El fichero donde se guarda está en
+     * las constantes APP_SHARED_PREFERENCES_FILE
+     *
+     * @param map
+     * @param valor
+     */
     public void setPreferenceData(String map, String valor) {
         SharedPreferences.Editor editor = GlobalData.getAppContext().getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS).edit();
         editor.putString(map, valor);
         editor.commit();
     }
 
+    /**
+     * Eliminación de un valor mediante su establecimiento a cadena vacía
+     * @param map
+     */
     public void deletePreferenceData(String map) {
         setPreferenceData(map, "");
     }
 
+    /**
+     * Lee un valor de datos del SharedPreferences
+     * @param map
+     * @return
+     */
     public String getPreferenceData(String map) {
 
         SharedPreferences prefs = GlobalData.getAppContext().getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS);
@@ -459,6 +477,11 @@ public class AppSharedPreferences implements Constants {
         return value;
     }
 
+    /**
+     * ¿Existe ese valor del SharedAppPreferences? Comprobación distinas de ""
+     * @param map
+     * @return
+     */
     public boolean hasPreferenceData(String map) {
 
         SharedPreferences prefs = GlobalData.getAppContext().getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS);
@@ -472,13 +495,17 @@ public class AppSharedPreferences implements Constants {
     }
 
     ///////////////////////////////////////////////
-    // Métodos para el conteo de SMS
+    // Métodos para el conteo de SMS: sólo para versión pilotaje
     ///////////////////////////////////////////////
 
+    /** Mensajes SMS enviados **/
     public String getSmsEnviados() {
         return ( getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES) );
     }
 
+    /**
+     * Aumentamos el número de SMS's enviados
+     */
     public void incrementaSmsEnviado() {
         String mensajesEnviados = getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES);
 
@@ -500,6 +527,10 @@ public class AppSharedPreferences implements Constants {
         setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(mEnviados) );
     }
 
+    /*
+
+    //Actualmente no está en uso
+
     public void decrementaSmsEnviado() {
         String mensajesEnviados = getPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES);
 
@@ -518,5 +549,5 @@ public class AppSharedPreferences implements Constants {
         }
 
         setPreferenceData(Constants.SMS_ENVIADOS_SHARED_PREFERENCES, String.valueOf(mEnviados) );
-    }
+    }*/
 }

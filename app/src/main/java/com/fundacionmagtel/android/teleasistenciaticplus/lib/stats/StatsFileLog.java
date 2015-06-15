@@ -15,6 +15,11 @@ import java.util.Date;
 
 /**
  * Created by FESEJU on 26/05/2015.
+ * Clase encargada de volcar los datos
+ * estadísticos recopilados en el pilotaje del proyecto.
+ *
+ * Estos se diferencian en que se almacenan en la carpeta
+ * correspondiente y uno por ejecución.
  */
 public class StatsFileLog implements Constants {
 

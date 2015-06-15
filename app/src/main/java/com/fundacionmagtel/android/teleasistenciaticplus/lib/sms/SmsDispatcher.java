@@ -14,6 +14,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogT
  * La clase final que envía realmente el SMS
  * Depende de que la constante FAKE_SMS para enviarse (si esta a true, no se manda para no suponer
  * una tarificación adicional)
+ * @author Juan José Ferres
  */
 
 public class SmsDispatcher implements Constants {
@@ -26,6 +27,7 @@ public class SmsDispatcher implements Constants {
      * @param phone telefono
      * @param msgText mensaje
      */
+
     public SmsDispatcher(String phone, String msgText) {
         this.phoneNumber = phone;
         this.message = msgText;

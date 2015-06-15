@@ -29,6 +29,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogT
  * consumo de energía, generar notificaciones del sistema con avisos del nivel de batería restante y
  * SMS de aviso a familiares con la posición GPS cuando el nivel de batería es crítico.
  * Created by MORUGE on 14/05/2015.
+ * @author German Moreno
  */
 public class MonitorBateria
 {

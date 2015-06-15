@@ -10,6 +10,8 @@ import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
 /**
  * Created by FESEJU on 13/02/2015.
  * Devolverá valores de configuración de la aplicación como la versión
+ *
+ * @author Juan Jose Ferres
  */
 public class AppInfo implements Constants {
     /**

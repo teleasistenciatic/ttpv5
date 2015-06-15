@@ -5,6 +5,7 @@ package com.fundacionmagtel.android.teleasistenciaticplus.lib.helper;
  * Genera log de aplicación añadiendo distintas funcionalidades:
  * - Mostrado o no de log en base a constantes de la aplicación
  * - Guardado en fichero de texto en la aplicación
+ * @author Juan Jose Ferres
  */
 
 import android.util.Log;
@@ -16,7 +17,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
  * El método original es ( public static int d (String tag, String msg) )
  * Esta clase encapsula la llamada a Log y la hace dependiente de una constante:
  * Constants = DebugLevel.DEBUG;
- * <p/>
+ *
  * DEBUG	    Log.d.
  * ERROR	    Log.e.
  * INFO	    Log.i.

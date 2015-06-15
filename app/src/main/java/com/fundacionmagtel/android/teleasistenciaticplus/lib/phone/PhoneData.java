@@ -9,6 +9,7 @@ import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
 /**
  * Created by GAMO1J on 02/03/2015.
  * Clase para recuperar los datos del terminal
+ * @author Jose Manuel Galvez
  */
 
 public class PhoneData {
@@ -22,7 +23,15 @@ public class PhoneData {
     private String phoneImei;
 
     /**
-     * Constructor
+     * Constructor que obtiene datos como el IMEI.
+     *
+     * En la primera versión de la aplicación, la identificación del teléfono
+     * se realizaba mediante el numero de teléfono. Dado los problemas de
+     * phishing y privacidad que implicaba el que la aplciación tuviera acceso
+     * al numero de teléfono del mismo, esto dejó de estar disponible con
+     * posterioridad.
+     *
+     * Se pasó de usar el teléfono como identificador para que fuese el IMEI
      */
     public PhoneData() {
 
@@ -48,6 +57,10 @@ public class PhoneData {
 
     }
 
+    /**
+     * Getter del IMEI del teléfono
+     * @return IMEI del teléfono
+     */
     public String getPhoneImei() {
         return phoneNumber;
     }

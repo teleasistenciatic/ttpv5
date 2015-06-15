@@ -14,15 +14,13 @@ import com.fundacionmagtel.android.teleasistenciaticplus.modelo.GlobalData;
  * parámetro el id del recurso a reproducir
  * Ejemplo de uso desde otros métodos:
  *   PlaySound.play(R.raw.bienvenido);
+ *   @author Jose Manuel Galvez
  */
 public class PlaySound {
-
-
     /**
      * Constructor
      */
     public PlaySound() {}
-
 
     /**
      * Método estático que reproduce el sonido

@@ -19,6 +19,7 @@ import java.net.URLConnection;
  * @input url contiene la ruta completa que intentará leer la clase
  * Por defecto toma el valor de las
  * text devolverá el texto contenido en el fichero leido o null
+ * @author Juan Jose Ferres
  */
 public class HttpUrlTextRead implements Constants {
 

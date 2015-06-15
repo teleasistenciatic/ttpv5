@@ -10,6 +10,8 @@ import android.content.Context;
  * - Al guardar el Contexto (BIG) de la aplicación mediante getApplicationContext()
  * no tendremos el problema de memoryLeak
  *
+ * @author Juan Jose Ferres
+ *
  */
 
 public class GlobalData extends Application {
