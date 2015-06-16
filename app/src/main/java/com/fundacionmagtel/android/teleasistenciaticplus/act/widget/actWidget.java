@@ -19,16 +19,15 @@ import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
  */
 public class actWidget extends AppWidgetProvider
 {
-    private AppWidgetManager gestorVentanas; /** Guarda una instancia del gestor de ventanas */
-
-@Override
-public void onReceive(Context context, Intent intent) {
-    super.onReceive(context, intent);
-    AppLog.i("actWidget.onReceive()", "He recibido el evento: " + intent.getAction());
-    if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED))
-    {
-
-    }
+    /**
+     * Método de framework onReceive. Usado para log.
+     * @param context
+     * @param intent
+     */
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        AppLog.i("actWidget.onReceive()", "He recibido el evento: " + intent.getAction());
 }
 
     /**
@@ -43,12 +42,11 @@ public void onReceive(Context context, Intent intent) {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++)
-            actualizarWidget(context, appWidgetManager, appWidgetIds[i]);
+            actualizarWidget(context, appWidgetManager, appWidgetIds[i], null);
 
-        AppLog.i("actWidget.onUpdate()","Actualizo las vistas del Widget.");
+        AppLog.i("actWidget.onUpdate()", "Actualizo las vistas del Widget.");
 
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        gestorVentanas = appWidgetManager;
     }
 
     /**
@@ -70,27 +68,20 @@ public void onReceive(Context context, Intent intent) {
         super.onDisabled(context);
     }
 
-
-/*
-    @Override
-    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
-        super.onRestored(context, oldWidgetIds, newWidgetIds);
-        AppLog.i("actWidget.onRestored()","Restaurado Widget, actualizo las vistas llamando a onUpdate()");
-        onUpdate(context, gestorVentanas, newWidgetIds);
-    }
-*/
     /**
      * Método de framwork actualizarWidget
      * @param context
      * @param widgetManager
      * @param widgetId
      */
-    static void actualizarWidget(Context context, AppWidgetManager widgetManager, int widgetId)
+    static void actualizarWidget(Context context, AppWidgetManager widgetManager, int widgetId,
+                                 Bundle infoCambios)
     {
         // Creamos los Intent y PendingIntent para lanzar la actividad principal de la APP
         PendingIntent widgetPendingIntent;
         Intent widgetIntent;
         int idImagen;
+        Bundle datosWidget;
 
         widgetIntent = new Intent(context,actLoadingScreen.class);
 
@@ -105,7 +96,13 @@ public void onReceive(Context context, Intent intent) {
         views.setOnClickPendingIntent(R.id.ib_boton_rojo, widgetPendingIntent);
 
         // Asigno el icono adecuado al ImageButton que es la parte visible del Widget.
-        idImagen = imagenQueCabe(widgetManager.getAppWidgetOptions(widgetId));
+        if(infoCambios == null) {
+            datosWidget = widgetManager.getAppWidgetOptions(widgetId);
+        }
+        else {
+            datosWidget = infoCambios;
+        }
+        idImagen = imagenQueCabe(datosWidget);
         views.setImageViewResource(R.id.ib_boton_rojo, idImagen);
 
         // Solicito al widget manager que actualice el layout del widget
@@ -114,40 +111,8 @@ public void onReceive(Context context, Intent intent) {
         AppLog.i("actWidget.actualizarWidget()", "Widget actualizado.");
     }
 
-    /////////////////////////////////
-    // IMPLEMENTACIÓN BÁSICA DEL RECEPTOR DE EVENTOS DEL WIDGET. Lo dejo comentado para uso futuro.
-    /////////////////////////////////
-    /*
-    public void onReceive(Context context, Intent receivedIntent)
-    {
-        //super.onReceive(context, intent);
-
-        // Recupero una instancia de mi widgetManager
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-        ComponentName thisWidget = new ComponentName(context.getPackageName(),
-                    actWidget.class.getName());
-
-        // Vector con los id de los widget activos.
-        int[] widgetIds = widgetManager.getAppWidgetIds(thisWidget);
-
-        // Control
-        Log.i("actWidget.onReceive()","widgetId: "+widgetIds[0]);
-        Log.i("actWidget.onReceive()","Recibido evento con acción: "+receivedIntent.getAction());
-
-        // Estudio el evento que he recibido.
-        // if(receivedIntent.getAction().equals())
-
-        // Fuerzo la actualización del Widget
-        onUpdate(context, widgetManager, widgetIds);
-    }
-    */
-
-    /////////////////////////////////
-    // IMPLEMENTACION DE LA RESPUESTA AL EVENTO DE ACTUALIZAR EL WIDGET
-    /////////////////////////////////
-
     /**
-     * Método de framework onAppWidgetOptionsChanged
+     * Método de framework onAppWidgetOptionsChanged. Redimensionado del Widget
      * @param context
      * @param widMgr
      * @param widId
@@ -158,15 +123,26 @@ public void onReceive(Context context, Intent intent) {
                                           Bundle cambios)
     {
         super.onAppWidgetOptionsChanged(context, widMgr, widId, cambios);
-        RemoteViews vistas = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+        //RemoteViews vistas = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
 
+        // Mando a actualizar el Widget directamente.
+        actualizarWidget(context, widMgr, widId, cambios);
+
+        /*
         // Mediante la siguiente llamada establezco el id de la imagen adecuada al tamaño.
         int id=imagenQueCabe(cambios);
         vistas.setImageViewResource(R.id.ib_boton_rojo, id);
         // Actualizo
+
         widMgr.updateAppWidget(widId, vistas);
+        */
     }
 
+    /**
+     * Método que calcula el tamaño de la imagen del widget según el nuevo tamaño
+     * @param cambios Bundle con la información del nuevo tamaño
+     * @return El id de la imagen que corresponde cargar.
+     */
     private static int imagenQueCabe(Bundle cambios)
     {
         int ancho, alto;

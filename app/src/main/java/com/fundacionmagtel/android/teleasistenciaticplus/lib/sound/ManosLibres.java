@@ -132,7 +132,6 @@ public class ManosLibres
         IntentFilter filtro = new IntentFilter();
         // Voy añadiendo lo que quiero filtrar.
         filtro.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-        filtro.addAction(Intent.ACTION_NEW_OUTGOING_CALL);
         // Registro el broadcast para que empiece a funcionar.
         contexto.registerReceiver(receiver, filtro);
     }
