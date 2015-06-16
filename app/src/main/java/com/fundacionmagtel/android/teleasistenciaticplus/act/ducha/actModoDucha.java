@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
-import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
 import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;
+import com.fundacionmagtel.android.teleasistenciaticplus.modelo.Constants;
 
+
+/**A ctividad que permite seleccionar el tiempo de ducha.
+ * Implementa un diálogo con un numberPicker para la opción de tiempo personalizado
+ *
+ * @author Jose Manuel Gálvez Moreno
+ */
 public class actModoDucha extends FragmentActivity implements duchaDialog.duchaDialogNeutralListener {
 
-
+    //Variable que almacena el tiempo elegido por el usuario desde el diálogo.
     private static int MinutosPersonalizado;
 
 
@@ -21,20 +27,13 @@ public class actModoDucha extends FragmentActivity implements duchaDialog.duchaD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_modo_ducha);
-
-
-        //TODO Recuperar los minutos personalizados del sharedpreferences
-
         MinutosPersonalizado = 60;
-
-
-        //TODO Comprobar antes de nada que haya contactos.
-        // Si no hay mostrar diálogo para acceder a la zona de configuración.
-        //Se queda pendiente hasta que Antonio incluya los diálogos
-
     }
 
-
+    /** Selector del tiempo de ducha predeterminado
+     *
+     * @param v
+     */
     public void activarDucha(View v){
         int tiempo_minutos = 0;
 
@@ -72,12 +71,22 @@ public class actModoDucha extends FragmentActivity implements duchaDialog.duchaD
         finish();
     }
 
+    /**
+     * Método asociado al botón de tiempo personalizado.
+     * Se encarga de mostrar el cuadro de diálogo con el numberPicker
+     * @param v
+     */
     public void elegirMinutos(View v){
         duchaDialog newFragment = duchaDialog.newInstance(1,"Aceptar");
-        newFragment.show(getFragmentManager(),"dialog");
+        newFragment.show(getFragmentManager(), "dialog");
 
     }
-    //Implementación del interfaz de diálogo
+
+    /**Implementación del interfaz de diálogo
+     *
+     * @param dialog
+     * @param mins
+     */
     public void onAccionNeutral(DialogFragment dialog, int mins){
 
 

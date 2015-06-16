@@ -191,6 +191,11 @@
             android:label="@string/title_activity_act_debug_caidas"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".presentador.actStaff"
+            android:label="equipo emplea30"
+            android:screenOrientation="portrait" >
+        </activity>
 
 
         <!-- Fin Actividad de opciones de usuario -->

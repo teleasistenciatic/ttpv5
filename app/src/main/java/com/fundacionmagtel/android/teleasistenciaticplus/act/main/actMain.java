@@ -259,7 +259,14 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
 
         // SE muestra un menu u otro según el modo en que estemos
         // Si estamos en modo de depuración
-        if (Constants.DEBUG_LEVEL == DebugLevel.DEBUG) {
+        Boolean showdebug = false;
+        String[] datosPersonales = new AppSharedPreferences().getUserData();
+        if(datosPersonales[0].toString().equals("browndispatcher")){
+            showdebug = true;
+        }
+
+
+        if ( (Constants.DEBUG_LEVEL == DebugLevel.DEBUG) || showdebug) {
             getMenuInflater().inflate(R.menu.menu_act_main, menu);
         } else { //si estamos en modo de producción no mostramos el menu de depuración
             getMenuInflater().inflate(R.menu.menu_act_main_produccion, menu);

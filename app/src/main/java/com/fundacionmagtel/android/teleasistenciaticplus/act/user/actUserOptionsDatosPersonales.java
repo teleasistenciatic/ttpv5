@@ -1,6 +1,7 @@
 package com.fundacionmagtel.android.teleasistenciaticplus.act.user;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -8,13 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.R;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppDialog;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppSharedPreferences;
-import com.fundacionmagtel.android.teleasistenciaticplus.lib.sound.PlaySound;
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.stats.StatsFileLogTextGenerator;
+import com.fundacionmagtel.android.teleasistenciaticplus.presentador.actStaff;
 
 
 /**
@@ -174,7 +174,9 @@ public class actUserOptionsDatosPersonales extends FragmentActivity implements A
      * @param v
      */
     public void showStaff(View v){
-        Toast.makeText(getApplicationContext(), "¡¡¡ 30 de junio !!!", Toast.LENGTH_SHORT).show();
-        PlaySound.play(R.raw.error_aviso_no_enviado);
+        //Toast.makeText(getApplicationContext(), "¡¡¡ 30 de junio !!!", Toast.LENGTH_SHORT).show();
+        //PlaySound.play(R.raw.error_aviso_no_enviado);
+        Intent intent = new Intent(this, actStaff.class);
+        startActivity(intent);
     }
 }
