@@ -310,8 +310,9 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             sintetizador.finaliza();
         }
 
-        // Desactivar BroadcastReceiver de ManosLibres.
+        // Desactivar el altavoz del movil y desregistrar BroadcastReceiver de ManosLibres.
         if(sinManos.estaActivo()){
+            sinManos.desenchufaElAltavoz();
             sinManos.desregistraReceiver();
         }
 

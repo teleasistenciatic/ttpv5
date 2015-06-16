@@ -226,8 +226,10 @@
         </activity>
         <!-- Fin mensaje de tarificación extra -->
 
+        <!-- Receiver del AppWidgetProvider, que es una especialización de BroadcastReceiver -->
         <receiver android:name=".act.widget.actWidget" >
             <intent-filter>
+                <!-- Unico action que es necesario declarar explícitamente -->
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
@@ -235,6 +237,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/xml_configwidget" />
         </receiver>
+        <!-- Fin Receiver del AppWidgetProvider -->
 
         <service
             android:name=".lib.detectorCaidas.ServicioMuestreador"

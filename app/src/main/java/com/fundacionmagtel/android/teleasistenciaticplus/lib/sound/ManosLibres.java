@@ -8,11 +8,11 @@ import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
+
 /**
  * Clase que detecta llamadas entrantes y salientes activando el altavoz del movil.
  * Created by ANTONIO SALVADOR Y GERMAN MORENO 28/05/2015.
- * @author Antonio Salvador
- * @author German Moreno
  */
 public class ManosLibres
 {
@@ -58,7 +58,6 @@ public class ManosLibres
                 // Recojo la información extra que viene con el Intent.
                 String stateStr = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
                 int state = 0;
-
                 if (stateStr.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
                     // El telefono está inactivo (0).
                     state = TelephonyManager.CALL_STATE_IDLE;
@@ -70,26 +69,26 @@ public class ManosLibres
                     state = TelephonyManager.CALL_STATE_RINGING;
                 }
 
-                Log.i(MLTAG + ".onReceive", "llamada detectada: " + stateStr);
-                Log.i(MLTAG + ".onReceive", "llamada detectada estado anterior " + ultimoEstado);
+                AppLog.i(MLTAG + ".onReceive", "llamada detectada: " + stateStr);
+                AppLog.i(MLTAG + ".onReceive", "llamada detectada estado anterior " + ultimoEstado);
 
                 if (ultimoEstado == state) {
                     // No hay cambios de estado, no miro los extras.
-                    Log.i(MLTAG + ".onReceive", "No hago comprobaciones al no haber cambios de estado");
+                    AppLog.i(MLTAG + ".onReceive", "No hago comprobaciones al no haber cambios de estado");
                     return;
                 }
 
                 switch (state) {
                     case TelephonyManager.CALL_STATE_RINGING:
                         // Se trata de una llamada entrante que está sonando.
-                        Log.i(MLTAG + ".onReceive", "Llamada entrante sonando...");
+                        AppLog.i(MLTAG + ".onReceive", "Llamada entrante sonando...");
                         // Establezco el flag de llamada entrante.
                         isIncoming = true;
                         break;
 
                     case TelephonyManager.CALL_STATE_OFFHOOK:
                         // Teléfono descolgado.
-                        Log.i(MLTAG + ".onReceive", "Llamada entrante en curso...");
+                        AppLog.i(MLTAG + ".onReceive", "Llamada entrante en curso...");
 
                         try {
                             Thread.sleep(500); // Delay 0,5 seconds to handle better turning on loudspeaker
@@ -107,11 +106,11 @@ public class ManosLibres
                     case TelephonyManager.CALL_STATE_IDLE:
                         // Telefono en reposo.
                         if (ultimoEstado == TelephonyManager.CALL_STATE_RINGING) {
-                            Log.i(MLTAG + ".onReceive", "En reposo pero ha sonado antes sin contestar, llamada perdida.");
+                            AppLog.i(MLTAG + ".onReceive", "En reposo pero ha sonado antes sin contestar, llamada perdida.");
                         } else if (isIncoming) {
-                            Log.i(MLTAG + ".onReceive", "Inactivo pero ha habido una llamada entrante...");
+                            AppLog.i(MLTAG + ".onReceive", "Inactivo pero ha habido una llamada entrante...");
                         } else {
-                            Log.i(MLTAG + ".onReceive", "Inactivo despues de un descuelgue, pongo AudioManager.MODE_NORMAL");
+                            AppLog.i(MLTAG + ".onReceive", "Inactivo despues de un descuelgue, pongo AudioManager.MODE_NORMAL");
                             desenchufaElAltavoz();
                             // audioManager2.setSpeakerphoneOn(false);
                             // audioManager2.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager2.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -121,7 +120,6 @@ public class ManosLibres
                 ultimoEstado = state;
             }
         };
-
         this.registraReceiver();
     }
 
@@ -149,14 +147,15 @@ public class ManosLibres
     }
 
     /**
-     * Establece el estado del Manos Libres, activo -> altavoz, inactivo -> auricular.
+     * Establece el modo de audio de la llamada, activo -> altavoz, inactivo -> auricular.
      * @param opcion true -> activo, false -> inactivo.
      */
     public void setActivado(boolean opcion) {
         activado = opcion;
     }
+
     /**
-     * Devuelve el estado del Manos Libres, activo -> altavoz, inactivo -> auricular.
+     * Devuelve el modo de audio de la llamada, activo -> altavoz, inactivo -> auricular.
      * @return true si está activo, false en otro caso.
      */
     public boolean estaActivo(){ return activado; }
@@ -169,8 +168,8 @@ public class ManosLibres
         audioManager.setSpeakerphoneOn(true);
         audioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,
                 audioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL), 0);
-        Log.i(MLTAG + ".activarManosLibres", "Activado altavoz y volumen al máximo.");
         setActivado(true);
+        AppLog.i(MLTAG + ".activarManosLibres", "Activado altavoz y volumen al máximo.");
     }
 
     /**
@@ -180,5 +179,6 @@ public class ManosLibres
         audioManager.setMode(AudioManager.MODE_NORMAL);
         audioManager.setSpeakerphoneOn(false);
         setActivado(false);
+        AppLog.i(MLTAG + ".desenchufaElAltavoz()", "Desactivado altavoz y audio en el auricular.");
     }
 }

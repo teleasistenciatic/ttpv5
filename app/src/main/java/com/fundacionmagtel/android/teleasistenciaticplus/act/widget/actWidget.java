@@ -8,10 +8,10 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.R;
+import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 
 /**
  * Implementación de la acción del Widget que levanta la Actividad Principal.
@@ -19,6 +19,17 @@ import com.fundacionmagtel.android.teleasistenciaticplus.R;
  */
 public class actWidget extends AppWidgetProvider
 {
+    private AppWidgetManager gestorVentanas; /** Guarda una instancia del gestor de ventanas */
+
+@Override
+public void onReceive(Context context, Intent intent) {
+    super.onReceive(context, intent);
+    AppLog.i("actWidget.onReceive()", "He recibido el evento: " + intent.getAction());
+    if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED))
+    {
+
+    }
+}
 
     /**
      * Método de framework onUpdate
@@ -33,6 +44,11 @@ public class actWidget extends AppWidgetProvider
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++)
             actualizarWidget(context, appWidgetManager, appWidgetIds[i]);
+
+        AppLog.i("actWidget.onUpdate()","Actualizo las vistas del Widget.");
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        gestorVentanas = appWidgetManager;
     }
 
     /**
@@ -41,9 +57,8 @@ public class actWidget extends AppWidgetProvider
      * @param context
      */
     @Override
-    public void onEnabled(Context context)
-    {
-        // Enter relevant functionality for when the first layout_widget is created
+    public void onEnabled(Context context) {
+        super.onEnabled(context);
     }
 
     /**
@@ -51,11 +66,19 @@ public class actWidget extends AppWidgetProvider
      * @param context
      */
     @Override
-    public void onDisabled(Context context)
-    {
-        // Enter relevant functionality for when the last layout_widget is disabled
+    public void onDisabled(Context context) {
+        super.onDisabled(context);
     }
 
+
+/*
+    @Override
+    public void onRestored(Context context, int[] oldWidgetIds, int[] newWidgetIds) {
+        super.onRestored(context, oldWidgetIds, newWidgetIds);
+        AppLog.i("actWidget.onRestored()","Restaurado Widget, actualizo las vistas llamando a onUpdate()");
+        onUpdate(context, gestorVentanas, newWidgetIds);
+    }
+*/
     /**
      * Método de framwork actualizarWidget
      * @param context
@@ -67,17 +90,28 @@ public class actWidget extends AppWidgetProvider
         // Creamos los Intent y PendingIntent para lanzar la actividad principal de la APP
         PendingIntent widgetPendingIntent;
         Intent widgetIntent;
+        int idImagen;
+
         widgetIntent = new Intent(context,actLoadingScreen.class);
+
         //widgetIntent = new Intent(context,actMain.class);
         widgetPendingIntent = PendingIntent.getActivity(context, widgetId, widgetIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT );
+
         // Recupero las vistas del layout del widget
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+
         // Asigno un listener para el botón del widget y lanzar el PendingIntent.
         views.setOnClickPendingIntent(R.id.ib_boton_rojo, widgetPendingIntent);
+
+        // Asigno el icono adecuado al ImageButton que es la parte visible del Widget.
+        idImagen = imagenQueCabe(widgetManager.getAppWidgetOptions(widgetId));
+        views.setImageViewResource(R.id.ib_boton_rojo, idImagen);
+
         // Solicito al widget manager que actualice el layout del widget
         widgetManager.updateAppWidget(widgetId, views);
-        Log.i("actWidget.onUpdate()","Widget actualizado.");
+
+        AppLog.i("actWidget.actualizarWidget()", "Widget actualizado.");
     }
 
     /////////////////////////////////
@@ -123,9 +157,20 @@ public class actWidget extends AppWidgetProvider
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager widMgr, int widId,
                                           Bundle cambios)
     {
+        super.onAppWidgetOptionsChanged(context, widMgr, widId, cambios);
         RemoteViews vistas = new RemoteViews(context.getPackageName(), R.layout.layout_widget);
+
+        // Mediante la siguiente llamada establezco el id de la imagen adecuada al tamaño.
+        int id=imagenQueCabe(cambios);
+        vistas.setImageViewResource(R.id.ib_boton_rojo, id);
+        // Actualizo
+        widMgr.updateAppWidget(widId, vistas);
+    }
+
+    private static int imagenQueCabe(Bundle cambios)
+    {
         int ancho, alto;
-        int medida;
+        int minimo;
         int idImagenLogo;
         // Primero capturo el ancho y alto mínimos del tamaño actual del widget.
         ancho=cambios.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
@@ -134,11 +179,11 @@ public class actWidget extends AppWidgetProvider
         ancho=getCellsForSize(ancho);
         alto=getCellsForSize(alto);
         // Veo cual es mayor
-        Log.i("actWidget.widgetChanged","Ancho por alto del widget en celdas: "+ancho+" x "+alto);
+        AppLog.i("actWidget.imagenQueCabe()","Tamaño del widget: "+ancho+" x "+alto);
         // Me quedo con el valor mas bajo.
-        medida=Math.min(ancho,alto);
+        minimo=Math.min(ancho,alto);
         // Elijo la imagen para el ImageButton del widget de medidas apropiadas.
-        switch (medida)
+        switch (minimo)
         {
             case 1:
                 idImagenLogo = R.drawable.logo_transparente_1x1;
@@ -149,15 +194,14 @@ public class actWidget extends AppWidgetProvider
             case 3:
                 idImagenLogo = R.drawable.logo_transparente_3x3;
                 break;
-            // case 4:
+            case 4:
             default:
                 idImagenLogo = R.drawable.logo_transparente_4x4;
                 break;
         }
-        vistas.setImageViewResource(R.id.ib_boton_rojo, idImagenLogo);
-        // Actualizo
-        widMgr.updateAppWidget(widId, vistas);
+        return idImagenLogo;
     }
+
 
     /**
      * Devuelve el número de celdas ocupadas por el widget.
