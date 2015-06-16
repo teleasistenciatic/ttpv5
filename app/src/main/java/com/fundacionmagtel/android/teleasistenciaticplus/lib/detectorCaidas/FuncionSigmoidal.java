@@ -6,6 +6,11 @@ package com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas;
  */
 public class FuncionSigmoidal implements IFuncionActivacion{
 
+    /**
+     * Implementación de la función sigmoidal como función de activación.
+     * @param val vector de valores z
+     * @return
+     */
     @Override
     public double[] activar(double[] val) {
         double[] respuesta=new double[val.length];

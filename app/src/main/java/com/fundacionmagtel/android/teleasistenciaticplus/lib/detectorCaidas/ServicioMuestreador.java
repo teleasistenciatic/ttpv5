@@ -32,11 +32,13 @@ public class ServicioMuestreador extends Service implements SensorEventListener,
     private SensorManager sensor;
     private String TAG="ServicioMuestreador";
 
+    /**
+     * Método de framework onCreate
+     */
     @Override
     public void onCreate() {
         super.onCreate();
         AppLog.i(TAG, "creando");
-
 
         mgr = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
         monitor=new Monitor(getResources());
@@ -67,6 +69,9 @@ public class ServicioMuestreador extends Service implements SensorEventListener,
         return START_STICKY;
     }
 
+    /**
+     * Método de framework onDestroy
+     */
     @Override
     public void onDestroy() {
         handlerThread.quit();
@@ -75,23 +80,37 @@ public class ServicioMuestreador extends Service implements SensorEventListener,
         setSharedPreferenceData(DETECTOR_CAIDAS_SERVICIO_INICIADO,"false");
     }
 
-
+    /**
+     * Método de framework onBind
+     * @param intent
+     * @return
+     */
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+    /**
+     * Método de framework onSensorChanged
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         monitor.gestionar(event);
     }
 
+    /**
+     * Método de framework onAccuracyChanged
+     * @param sensor
+     * @param accuracy
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {   }
 
-
-    /* ******************* GETTER AND SETTER *************************** */
-
+    /**
+     * Método para guardar en preferencias el estado del servicio.
+     * @param map clave para identificar el dato.
+     * @param valor indica si está activo o inactivo.
+     */
     private void setSharedPreferenceData(String map, String valor) {
         SharedPreferences.Editor editor = getSharedPreferences(APP_SHARED_PREFERENCES_FILE, Context.MODE_MULTI_PROCESS).edit();
         editor.putString(map, valor);

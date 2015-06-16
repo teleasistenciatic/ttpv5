@@ -100,12 +100,6 @@ class Monitor implements Constants {
      */
     public void gestionar(SensorEvent event) {
 
-        //apuntador de tiempo de prueba...
-      /*  tiempoActual=System.currentTimeMillis();
-        if( ( tiempoActual - tiempoPasado) > 5000 ){
-            tiempoPasado=tiempoActual;
-        }*/
-
         float values[] = event.values;
         float x = values[0];
         float y = values[1];
@@ -193,7 +187,7 @@ class Monitor implements Constants {
                 resul=normalizador.normaliza(resul);
                 red.setVectorEn(resul);
                 red.calcular();
-                double[] laSalida=red.getVectorEn();
+                double[] laSalida=red.getVectorEn(); //respuesta de la red neuronal
 
                 //de que tipo es?
                 double mayor=0;

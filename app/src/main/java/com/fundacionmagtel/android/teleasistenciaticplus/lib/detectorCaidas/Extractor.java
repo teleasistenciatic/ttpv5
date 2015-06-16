@@ -3,7 +3,8 @@ package com.fundacionmagtel.android.teleasistenciaticplus.lib.detectorCaidas;
 import android.util.Log;
 
 /**
- *
+ * Extractor de caracteristicas relevantes desde los datos en crudo.
+ * Los datos obtenidos se pasarán a la red neuronal.
  */
 class Extractor {
 
@@ -33,7 +34,7 @@ class Extractor {
     private double[] caracteristicas;
 
     /**
-     * Calcula los 8 valores necesarios para el extractor
+     * Calcula los 8 valores necesarios para la red.
      *
      * @param peaktime tiempo de pico seguido de 2500 ms sin picos.
      * @param valores array con todos los valores capturados de aceleración
@@ -62,13 +63,13 @@ class Extractor {
             }
         }
 
-        Log.i("EXTRACTOR","EXTRACTOR PEAK "+marcadorPeak+" "+peaktime );
-        Log.i("EXTRACTOR","EXTRACTOR PEAK+1 "+marcadorPeakMas+" "+peaktimemas );
+       // Log.i("EXTRACTOR","EXTRACTOR PEAK "+marcadorPeak+" "+peaktime );
+       // Log.i("EXTRACTOR","EXTRACTOR PEAK+1 "+marcadorPeakMas+" "+peaktimemas );
         //cálculo valores iniciales.
         calcularIE();
         calcularIS();
 
-        Log.i("extractor", "Calculo Caracteristicas");
+      //  Log.i("extractor", "Calculo Caracteristicas");
         //a partir de aqui son los cálculos de los ocho valores.
         valor_AAMV=calcularAAMV2(); //modificado para calcular en 1000 ms centrados en IS IE
         valor_IDI=calcularIDI();
@@ -105,7 +106,10 @@ class Extractor {
         caracteristicas[7]= valor_SCI;
     }
 
-
+    /**
+     * Getter del vector de caracteristicas.
+     * @return
+     */
     public double[] getCaracteristicas() {
         return caracteristicas;
     }
@@ -122,7 +126,7 @@ class Extractor {
                 break;
             }
         }
-        Log.i("EXTRACTOR","EXTRACTOR IE "+marcadorIE+" "+valor_IE );
+     //   Log.i("EXTRACTOR","EXTRACTOR IE "+marcadorIE+" "+valor_IE );
     }
 
     /**
@@ -165,7 +169,7 @@ class Extractor {
             valor_IS =peaktime;
         }
 
-        Log.i("EXTRACTOR","EXTRACTOR IS "+marcadorIS+" "+valor_IS );
+      //  Log.i("EXTRACTOR","EXTRACTOR IS "+marcadorIS+" "+valor_IS );
     }
 
     /**
@@ -173,31 +177,15 @@ class Extractor {
      * En el intervalo [valor_IS,valor_IE]
      *
      */
-    private double calcularAAMV(){
-        double difTotal=0;
-        if(marcadorIS>0 && marcadorIE<=valores.length) {
-            for(int i=marcadorIS;i<=marcadorIE;i++){
-                double dif= Math.abs(valores[i].getAceleracion() - valores[i + 1].getAceleracion());
-                difTotal=difTotal+dif;
-            }
-            difTotal=difTotal/(marcadorIE-marcadorIS+1);
-            Log.i("Acelerometro", "difTotal: " + difTotal);
-        }
-        Log.i("EXTRACTOR", "EXTRACTOR AAMV " +difTotal);
-
-        return difTotal;
-    }
-
-
-    private double calcularAAMV2(){
+     private double calcularAAMV2(){
         double valor=0;
         int marcaInferior=0;
         int marcaSuperior=valores.length;
 
         int marcaMedia=marcadorIS;
-        Log.i("EXTRACTOR","EXTRACTOR AAMV 2 "+(marcadorIE-marcadorIS)/2);
+       // Log.i("EXTRACTOR","EXTRACTOR AAMV 2 "+(marcadorIE-marcadorIS)/2);
         marcaMedia=marcadorIS+((marcadorIE-marcadorIS)/2);
-        Log.i("EXTRACTOR","EXTRACTOR marcaMedia"+marcaMedia);
+      //  Log.i("EXTRACTOR","EXTRACTOR marcaMedia"+marcaMedia);
 
         //buscar marca de tiempo 500 milisegundos antes
         for(int i=marcaMedia;i>0;i--){
@@ -207,7 +195,7 @@ class Extractor {
                 break;
             }
         }
-        Log.i("EXTRACTOR","EXTRACTOR marcaInferior "+marcaInferior);
+      //  Log.i("EXTRACTOR","EXTRACTOR marcaInferior "+marcaInferior);
         //buscar marca de tiempo 500 milisegundos despues
         for(int i=marcaMedia;i<valores.length;i++){
             double difTiempo=valores[i].getTiempo()-valores[marcaMedia].getTiempo();
@@ -216,7 +204,7 @@ class Extractor {
                 break;
             }
         }
-        Log.i("EXTRACTOR","EXTRACTOR marcaInferior "+marcaSuperior);
+     //   Log.i("EXTRACTOR","EXTRACTOR marcaInferior "+marcaSuperior);
 
         //calcular el valor
         for(int i=marcaInferior;i<marcaSuperior;i++){
@@ -224,7 +212,7 @@ class Extractor {
             valor=valor+dif;
         }
         valor=valor/(marcaSuperior-marcaInferior);
-        Log.i("Acelerometro", "difTotal: " + valor);
+      //  Log.i("Acelerometro", "difTotal: " + valor);
 
 
         return valor;
@@ -238,7 +226,7 @@ class Extractor {
         long tiempoFinal=valores[marcadorIE].getTiempo();
         long tiempoInicio=valores[marcadorIS].getTiempo();
         long tiempoAdevolver=(tiempoFinal-tiempoInicio)/1000000;
-        Log.i("EXTRACTOR","EXTRACTOR IDI "+tiempoAdevolver );
+    //    Log.i("EXTRACTOR","EXTRACTOR IDI "+tiempoAdevolver );
         return tiempoAdevolver; //milisegundos.
     }
 
@@ -257,7 +245,7 @@ class Extractor {
             }
         }
 
-        Log.i("EXTRACTOR","EXTRACTOR MPI "+maxAceleracion );
+      //  Log.i("EXTRACTOR","EXTRACTOR MPI "+maxAceleracion );
         return maxAceleracion;
     }
 
@@ -288,7 +276,7 @@ class Extractor {
                 }
             }
         }
-        Log.i("EXTRACTOR","EXTRACTOR MVI "+minAceleracion );
+     //   Log.i("EXTRACTOR","EXTRACTOR MVI "+minAceleracion );
         return minAceleracion;
     }
 
@@ -317,7 +305,7 @@ class Extractor {
         }
         double valor= valores[marcaPE].getTiempo()-valores[marcaPS].getTiempo();
         valor=valor/1000000; //tiempo se necesita en milisegundos, no en nanosegundos.
-        Log.i("EXTRACTOR","EXTRACTOR PDI  "+ valor+" | PS "+marcaPS+" "+valores[marcaPS].getTiempo()+ " PE "+marcaPE+" "+valores[marcaPE].getTiempo());
+     //   Log.i("EXTRACTOR","EXTRACTOR PDI  "+ valor+" | PS "+marcaPS+" "+valores[marcaPS].getTiempo()+ " PE "+marcaPE+" "+valores[marcaPE].getTiempo());
         return valor;
     }
 
@@ -335,9 +323,9 @@ class Extractor {
         int marcaSuperior=valores.length;
 
         int marcaMedia=marcadorIS;
-        System.out.println("EXTRACTOR ARI "+(marcadorIE-marcadorIS)/2);
+     //   System.out.println("EXTRACTOR ARI "+(marcadorIE-marcadorIS)/2);
         marcaMedia=marcadorIS+  ((marcadorIE-marcadorIS)/2);
-        System.out.println("EXTRACTOR marcaMedia"+marcaMedia);
+    //    System.out.println("EXTRACTOR marcaMedia"+marcaMedia);
 
         //buscar marca de tiempo 350  milisegundos antes
         for(int i=marcaMedia;i>0;i--){
@@ -347,7 +335,7 @@ class Extractor {
                 break;
             }
         }
-        System.out.println("EXTRACTOR marcaInferior "+marcaInferior);
+   //     System.out.println("EXTRACTOR marcaInferior "+marcaInferior);
         //buscar marca de tiempo 350 milisegundos despues
         for(int i=marcaMedia;i<valores.length;i++){
             double difTiempo=valores[i].getTiempo()-valores[marcaMedia].getTiempo();
@@ -415,7 +403,7 @@ class Extractor {
             contador=contador+valores[i].getAceleracion();
         }
         double valor=contador/(marcaFin-marcaInicio+1);
-        Log.i("EXTRACTOR","EXTRACTOR FFI "+valor );
+    //    Log.i("EXTRACTOR","EXTRACTOR FFI "+valor );
         return valor;
      }
 
@@ -501,7 +489,7 @@ class Extractor {
                 marcaActual++;
             }
         }
-        Log.i("EXTRACTOR","EXTRACTOR SCI "+contadorPasos );
+      //  Log.i("EXTRACTOR","EXTRACTOR SCI "+contadorPasos );
         return contadorPasos;
     }
 

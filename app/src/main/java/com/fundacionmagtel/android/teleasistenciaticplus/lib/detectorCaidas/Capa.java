@@ -66,10 +66,18 @@ class Capa {
 
     /* ***********   GETTER AND SETTER ****************** */
 
+    /**
+     * Setter del vector de entrada a la capa.
+     * @param vector_entrada
+     */
     public void setVector_entrada(double[] vector_entrada) {
         this.vector_entrada = vector_entrada;
     }
 
+    /**
+     * Getter del vector de entrada a la capa.
+     * @return
+     */
     public double[] getVector_salida() {
         return vector_salida;
     }

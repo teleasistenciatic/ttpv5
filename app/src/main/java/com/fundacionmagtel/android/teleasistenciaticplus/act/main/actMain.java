@@ -168,13 +168,12 @@ public class actMain extends FragmentActivity implements AppDialog.AppDialogNeut
             /////////////////////////////////////////////////////
             StatsFileLogTextGenerator.write("caidas", "servicio inactivo");
             /////////////////////////////////////////////////////
-        }else{ //no existe la preferencia. crear e iniciar el servicio.
-            mispreferences.setPreferenceData(Constants.DETECTOR_CAIDAS_ARRANCAR_AL_INICIO,Constants.DETECTOR_CAIDAS_ACTIVAR);
-            Intent intentA= new Intent(this,ServicioMuestreador.class);
-            startService(intentA);
-            AppLog.i(TAG, "caidas creado y activo");
+        }else{ //no existe la preferencia. crear la referencia pero no arranco el servicio.
+            mispreferences.setPreferenceData(Constants.DETECTOR_CAIDAS_ARRANCAR_AL_INICIO,Constants.DETECTOR_CAIDAS_DESACTIVAR);
+
+            AppLog.i(TAG, "caidas creado, servicio parado ");
             /////////////////////////////////////////////////////
-            StatsFileLogTextGenerator.write("caidas", "no existe preferencia, servicio iniciado");
+            StatsFileLogTextGenerator.write("caidas", "no existe preferencia, servicio parado");
             /////////////////////////////////////////////////////
         }
 

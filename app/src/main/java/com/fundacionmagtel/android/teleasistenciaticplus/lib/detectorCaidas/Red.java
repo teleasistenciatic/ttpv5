@@ -43,13 +43,18 @@ class Red {
         lista.add( capa );
     }
 
-    /* ************ GETTER AND SETTER *************************** */
-
+    /**
+     * Setter del vector de datos para clasificar.
+     * @param vectorEn
+     */
     public void setVectorEn(double[] vectorEn) {
         this.vectorEn = vectorEn;
     }
 
-
+    /**
+     * Getter del vector de datos para clasificar.
+     * @return
+     */
     public double[] getVectorEn() {
         return vectorEn;
     }

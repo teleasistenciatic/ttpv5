@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.fundacionmagtel.android.teleasistenciaticplus.lib.helper.AppLog;
 
+
 /**
  * Clase que detecta llamadas entrantes y salientes activando el altavoz del movil.
  * Created by ANTONIO SALVADOR Y GERMAN MORENO 28/05/2015.
@@ -32,6 +33,7 @@ public class ManosLibres
     /** TAG para el Log */
     String MLTAG = "ManosLibres";
 
+
     /**
      * Constructor con parámetros. Recibe el contexto de la app que crea la clase.
      * @param c Contexto de la aplicación que nos instancia.
@@ -47,7 +49,7 @@ public class ManosLibres
         {
             /**
              * Método onReceive del BroadcastReceiver dinamico, que recibe los eventos del sistema
-             * PHONE_STATE y NEW_OUTGOING_CALL, que proporcionan información sobre el estado del teléfono
+             * PHONE_STATE, que proporcionan información sobre el estado del teléfono
              * y sobre la realización de nuevas llamadas salientes.
              * @param context Almacena el contexto de donde se lanzó el Intent.
              * @param intent Intent del evento de teléfono, que almacena información extra.
@@ -157,7 +159,8 @@ public class ManosLibres
      * Devuelve el modo de audio de la llamada, activo -> altavoz, inactivo -> auricular.
      * @return true si está activo, false en otro caso.
      */
-    public boolean estaActivo(){ return activado; }
+    public boolean estaActivo(){ return activado;
+    }
 
     /**
      * Activa el altavoz del móvil al máximo volumen y establece el modo en llamada.

@@ -42,6 +42,7 @@ public class actUserOptions extends Activity {
 
         /// Listview
         final ListView listView = (ListView) findViewById(R.id.user_options_listView);
+
         /// String para el ListView
         String[] values = new String[]{
                 "Datos personales", // 0,
@@ -53,9 +54,20 @@ public class actUserOptions extends Activity {
                 "Manos Libres" //6
         };
 
+        // identificadores de imagenes para el ListView
+        Integer[] imageId = {
+                R.drawable.personal,
+                R.drawable.familiar,
+                R.drawable.caida,
+                R.drawable.areasegura,
+                R.drawable.bateria,
+                R.drawable.ducha,
+                R.drawable.manoslibres
+        };
+
         /// Creación del adaptador con su String
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        AdaptadorConf adapter = new AdaptadorConf(this,values,imageId);
+
         /// Vinculación del adaptador con la lista
         listView.setAdapter(adapter);
 
