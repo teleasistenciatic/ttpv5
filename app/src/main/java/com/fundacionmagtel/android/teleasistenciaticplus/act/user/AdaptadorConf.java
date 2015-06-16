@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.fundacionmagtel.android.teleasistenciaticplus.R;
 
 /**
- * Adaptador para crear las lineas de la lista de la actividad de configuración.
+ * Adaptador para crear las lineas de la lista de la actividad de configuraciÃ³n.
  *
  * Created by SAMUAN on 15/06/2015.
  */
@@ -25,8 +25,8 @@ public class AdaptadorConf extends ArrayAdapter {
     /**
      *
      * @param context
-     * @param textos Array con los textos a añadir en la lista.
-     * @param imageId Array con los identificadores de las imagenes a añadir en la lista.
+     * @param textos Array con los textos a aÃ±adir en la lista.
+     * @param imageId Array con los identificadores de las imagenes a aÃ±adir en la lista.
      */
     public AdaptadorConf(Activity context, String[] textos, Integer[] imageId) {
         super(context, R.layout.layout_linea_conf, textos);
@@ -36,8 +36,8 @@ public class AdaptadorConf extends ArrayAdapter {
     }
 
     /**
-     * Método que construye cada una de las líneas de la lista.
-     * Añade la imagen y el texto en el layout correspondiente.
+     * MÃ©todo que construye cada una de las lÃ­neas de la lista.
+     * AÃ±ade la imagen y el texto en el layout correspondiente.
      *
      * @param position
      * @param view
